@@ -36,7 +36,15 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(),
+      body: InfinitePage(
+        itemBuilder: (context, index) {
+          return Container(
+            child: Text(
+              '$index',
+            ),
+          );
+        },
+      ),
     );
   }
 }
