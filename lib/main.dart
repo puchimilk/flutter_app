@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_app/infinite_page_view.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -28,34 +30,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var date = DateTime(1900, 01, 01);
-  final controller = PageController(
-    initialPage: 200,
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: PageView.builder(
-        controller: controller,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            child: Text(
-              '$index',
-            ),
-          );
-        },
-      ),
+      body: Container(),
     );
-  }
-}
-
-class Calendar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
