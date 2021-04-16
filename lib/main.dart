@@ -125,6 +125,20 @@ class _MyHomePageState extends State<MyHomePage> {
     if ((weekdayPro + lastDate.day) > 35) {
       oneMonthDay = 42;
     }
+    var weekNum = 5;
+    if (oneMonthDay == 42) {
+      weekNum = 6;
+    }
+    final b = List.generate(
+        oneMonthDay,
+        (i) => DateTime(
+            firstDate.year, firstDate.month, firstDate.day + (i - weekdayPro)));
+    final c = List.generate(oneMonthDay, (i) => i).map((int i) {
+      final d = b[i].day;
+      return d;
+    }).toList();
+
+    print(c);
 
     return Stack(
       children: [
@@ -143,10 +157,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: List.generate(oneMonthDay, (i) {
                       return SizedBox(
                         width: size.width / 7,
-                        height: size.height / 5,
+                        height: size.height / weekNum,
                         child: Container(
                           child: Text(
-                            '$i',
+                            '${c[i]}',
                           ),
                         ),
                       );
@@ -155,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
               // ページ数
-              itemCount: 200,
+              itemCount: 2400,
             ),
           ),
         ),
