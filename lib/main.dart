@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './src/calendar.dart';
+import 'package:flutter/scheduler.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,13 +29,77 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  GlobalKey key = GlobalKey();
+  OverlayEntry overlayEntry;
+  final weekday = ['日', '月', '火', '水', '木', '金', '土'];
+
+  void initState() {
+    if (overlayEntry != null) {
+      overlayEntry.remove();
+    }
+    overlayEntry = OverlayEntry(
+      opaque: false,
+      builder: (context) => Calendar(),
+    );
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      Overlay.of(context).insert(overlayEntry);
+    });
+    super.initState();
+  }
+
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(),
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              child: Row(
+                children: List.generate(7, (i) {
+                  var weekcolor = TextStyle(color: Colors.black);
+                  switch (i) {
+                    case 0:
+                      weekcolor = TextStyle(color: Colors.red);
+                      break;
+                    case 6:
+                      weekcolor = TextStyle(color: Colors.blue);
+                      break;
+                  }
+                  return Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 0.5,
+                        ),
+                      ),
+                      height: 28,
+                      child: Center(
+                        child: Text(
+                          weekday[i],
+                          style: weekcolor,
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                key: key,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -54,6 +118,12 @@ class _CalendarState extends State<Calendar> {
   }
 
   Widget build(BuildContext context) {
-    return Container();
+    final controller = PageController(
+      initialPage: 200,
+    );
+
+    return PageView(
+      controller: controller,
+    );
   }
 }
