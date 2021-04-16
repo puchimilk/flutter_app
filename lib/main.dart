@@ -35,21 +35,23 @@ class _MyHomePageState extends State<MyHomePage> {
   final weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
   void initState() {
+    /*
     if (overlayEntry != null) {
       overlayEntry.remove();
     }
     overlayEntry = OverlayEntry(
       opaque: false,
-      builder: (context) => calendar(context),
+      builder: (context) => monthCalendar(context),
     );
     SchedulerBinding.instance.addPostFrameCallback((_) {
       Overlay.of(context).insert(overlayEntry);
     });
+    */
     super.initState();
   }
 
   void dispose() {
-    overlayEntry.remove();
+    // overlayEntry.remove();
     super.dispose();
   }
 
@@ -95,8 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Expanded(
-              key: key,
-              child: Container(),
+              child: monthCalendar(context),
             ),
           ],
         ),
@@ -104,19 +105,24 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  @override
-  Widget calendar(BuildContext context) {
-    final controller = PageController(
-      initialPage: 200,
-    );
-    RenderBox box = key.currentContext.findRenderObject();
-    final size = box.size;
-    final offset = box.localToGlobal(Offset.zero);
+  final controller = PageController(
+    // 表示初期位置
+    initialPage: 0,
+  );
 
-    return Container(
-      height: 100,
-      width: 100,
-      color: Colors.amber,
+  Widget monthCalendar(BuildContext context) {
+    return PageView.builder(
+      controller: controller,
+      itemBuilder: (context, i) {
+        return Container(
+          color: Colors.amber,
+          child: Text(
+            '$i',
+          ),
+        );
+      },
+      // ページ数
+      itemCount: 200,
     );
   }
 }
