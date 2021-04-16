@@ -109,12 +109,22 @@ class _MyHomePageState extends State<MyHomePage> {
     final Size size = renderBox.size;
     final Offset position = renderBox.localToGlobal(Offset.zero);
     final controller = PageController(
-      // 表示初期位置
+      // ページの初期位置
       initialPage: 0,
     );
-
-    print(size);
-    print(position);
+    final date = DateTime(1800, 01, 01);
+    final firstDate = DateTime(date.year, date.month, 1);
+    final lastDate = DateTime(date.year, date.month + 1, 0);
+    final lastMonthEndDay = DateTime(date.year, date.month - 1, 0);
+    final startDay = firstDate.weekday;
+    var weekdayPro = firstDate.weekday;
+    if (weekdayPro == 7) {
+      weekdayPro = 0;
+    }
+    var oneMonthDay = 35;
+    if ((weekdayPro + lastDate.day) > 35) {
+      oneMonthDay = 42;
+    }
 
     return Stack(
       children: [
@@ -130,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Material(
                   color: Colors.transparent,
                   child: Wrap(
-                    children: List.generate(35, (i) {
+                    children: List.generate(oneMonthDay, (i) {
                       return SizedBox(
                         width: size.width / 7,
                         height: size.height / 5,
@@ -144,6 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 );
               },
+              // ページ数
               itemCount: 200,
             ),
           ),
