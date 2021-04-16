@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,7 +31,7 @@ GlobalKey key = GlobalKey();
 OverlayEntry overlayEntry;
 
 class _MyHomePageState extends State<MyHomePage> {
-  final weekday = ['日', '月', '火', '水', '木', '金', '土'];
+  final weekday = ['San', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   void initState() {
     /*
@@ -67,23 +66,17 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: Row(
                 children: List.generate(7, (i) {
-                  var weekcolor = TextStyle(color: Colors.black);
+                  var weekcolor = TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
                   switch (i) {
                     case 0:
-                      weekcolor = TextStyle(color: Colors.red);
+                      weekcolor = TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
                       break;
                     case 6:
-                      weekcolor = TextStyle(color: Colors.blue);
+                      weekcolor = TextStyle(color: Colors.blue, fontWeight: FontWeight.bold);
                       break;
                   }
                   return Expanded(
                     child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
-                        ),
-                      ),
                       height: 28,
                       child: Center(
                         child: Text(
