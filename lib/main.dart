@@ -94,7 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Expanded(
               child: Container(
-                color: Colors.greenAccent,
                 key: key,
               ),
             ),
@@ -138,8 +137,6 @@ class _MyHomePageState extends State<MyHomePage> {
       return d;
     }).toList();
 
-    print(c);
-
     return Stack(
       children: [
         Positioned(
@@ -161,6 +158,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Container(
                           child: Text(
                             '${c[i]}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       );
