@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,7 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
   final weekday = ['San', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   void initState() {
-    /*
     if (overlayEntry != null) {
       overlayEntry.remove();
     }
@@ -45,7 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       Overlay.of(context).insert(overlayEntry);
     });
-    */
     super.initState();
   }
 
@@ -66,13 +66,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               child: Row(
                 children: List.generate(7, (i) {
-                  var weekcolor = TextStyle(color: Colors.black, fontWeight: FontWeight.bold);
+                  var weekcolor = TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold);
                   switch (i) {
                     case 0:
-                      weekcolor = TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
+                      weekcolor = TextStyle(
+                          color: Colors.red, fontWeight: FontWeight.bold);
                       break;
                     case 6:
-                      weekcolor = TextStyle(color: Colors.blue, fontWeight: FontWeight.bold);
+                      weekcolor = TextStyle(
+                          color: Colors.blue, fontWeight: FontWeight.bold);
                       break;
                   }
                   return Expanded(
@@ -90,7 +93,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Expanded(
-              child: monthCalendar(context),
+              child: Container(
+                color: Colors.greenAccent,
+                key: key,
+              ),
             ),
           ],
         ),
@@ -98,24 +104,43 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  final controller = PageController(
-    // 表示初期位置
-    initialPage: 0,
-  );
+  
 
   Widget monthCalendar(BuildContext context) {
-    return PageView.builder(
-      controller: controller,
-      itemBuilder: (context, i) {
-        return Container(
-          color: Colors.amber,
-          child: Text(
-            '$i',
+    final RenderBox renderBox = key.currentContext.findRenderObject();
+    final Size size = renderBox.size;
+    final Offset position = renderBox.localToGlobal(Offset.zero);
+    final controller = PageController(
+      // 表示初期位置
+      initialPage: 0,
+    );
+
+    print(size);
+    print(position);
+
+    return Stack(
+      children: [
+        Positioned(
+          left: position.dx,
+          top: position.dy,
+          child: SizedBox(
+            width: size.width,
+            height: size.height,
+            child: PageView.builder(
+              controller: controller,
+              itemBuilder: (context, i) {
+                return Material(
+                  color: Colors.transparent,
+                  child: Text(
+                    '$i',
+                  ),
+                );
+              },
+              itemCount: 200,
+            ),
           ),
-        );
-      },
-      // ページ数
-      itemCount: 200,
+        ),
+      ],
     );
   }
 }
