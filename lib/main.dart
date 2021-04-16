@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/infinite_page_view.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -36,14 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: InfinitePage(
-        itemBuilder: (context, index) {
-          return Container(
-            child: Text(
-              '$index',
-            ),
-          );
-        },
+      body: Container(
       ),
     );
   }
