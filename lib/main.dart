@@ -104,8 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  
-
   Widget monthCalendar(BuildContext context) {
     final RenderBox renderBox = key.currentContext.findRenderObject();
     final Size size = renderBox.size;
@@ -131,8 +129,18 @@ class _MyHomePageState extends State<MyHomePage> {
               itemBuilder: (context, i) {
                 return Material(
                   color: Colors.transparent,
-                  child: Text(
-                    '$i',
+                  child: Wrap(
+                    children: List.generate(35, (i) {
+                      return SizedBox(
+                        width: size.width / 7,
+                        height: size.height / 5,
+                        child: Container(
+                          child: Text(
+                            '$i',
+                          ),
+                        ),
+                      );
+                    }),
                   ),
                 );
               },
