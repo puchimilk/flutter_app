@@ -28,9 +28,10 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+GlobalKey key = GlobalKey();
+OverlayEntry overlayEntry;
+
 class _MyHomePageState extends State<MyHomePage> {
-  GlobalKey key = GlobalKey();
-  OverlayEntry overlayEntry;
   final weekday = ['日', '月', '火', '水', '木', '金', '土'];
 
   void initState() {
@@ -39,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     overlayEntry = OverlayEntry(
       opaque: false,
-      builder: (context) => Calendar(),
+      builder: (context) => calendar(context),
     );
     SchedulerBinding.instance.addPostFrameCallback((_) {
       Overlay.of(context).insert(overlayEntry);
@@ -48,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void dispose() {
+    overlayEntry.remove();
     super.dispose();
   }
 
@@ -93,37 +95,28 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Expanded(
-              child: Container(
-                key: key,
-              ),
+              key: key,
+              child: Container(),
             ),
           ],
         ),
       ),
     );
   }
-}
 
-class Calendar extends StatefulWidget {
-  _CalendarState createState() => _CalendarState();
-}
-
-class _CalendarState extends State<Calendar> {
-  void initState() {
-    super.initState();
-  }
-
-  void dispose() {
-    super.dispose();
-  }
-
-  Widget build(BuildContext context) {
+  @override
+  Widget calendar(BuildContext context) {
     final controller = PageController(
       initialPage: 200,
     );
+    RenderBox box = key.currentContext.findRenderObject();
+    final size = box.size;
+    final offset = box.localToGlobal(Offset.zero);
 
-    return PageView(
-      controller: controller,
+    return Container(
+      height: 100,
+      width: 100,
+      color: Colors.amber,
     );
   }
 }
