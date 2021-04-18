@@ -152,9 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     // 先月の日付を追加
     for (var i = 0; i < firstDay.weekday; i++) {
-      if (firstDayWeekDay == 0) {
-        null;
-      } else {
+      if (firstDayWeekDay != 0) {
         var reverseDay = lastDayOfLastMonth.day - lastDayOfLastMonthWeekDay;
         date.add(reverseDay + i);
       }
@@ -165,9 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
     // 来月の日付を追加
     for (var i = 0; i < firstDayOfNextMonth.day + (6 - firstDayOfNextMonth.weekday); i++) {
-      if (lastDay.weekday == 6) {
-        null;
-      } else {
+      if (lastDay.weekday != 6) {
         date.add(firstDayOfNextMonth.day + i);
       }
     }
