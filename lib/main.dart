@@ -33,7 +33,15 @@ GlobalKey key = GlobalKey();
 OverlayEntry overlayEntry;
 
 class _MyHomePageState extends State<MyHomePage> {
-  final weekday = ['SAN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  final weekday = [
+    'SAN',
+    'MON',
+    'TUE',
+    'WED',
+    'THU',
+    'FRI',
+    'SAT'
+  ];
 
   void initState() {
     if (overlayEntry != null) {
@@ -80,13 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.redAccent,
                         fontWeight: FontWeight.bold,
                       );
-                    break;
+                      break;
                     case 6:
                       weekcolor = TextStyle(
                         color: Colors.blueAccent,
                         fontWeight: FontWeight.bold,
                       );
-                    break;
+                      break;
                   }
                   return Expanded(
                     child: Container(
@@ -121,55 +129,55 @@ class _MyHomePageState extends State<MyHomePage> {
       // ページの初期位置
       initialPage: 0,
     );
-    
+
     // 今日の日付
-    final today = DateTime(1900, 01, 01);
+    final baseDate = DateTime(1900, 01, 01);
     // 先月の最終日
-    final lastDayOfLastMonth = DateTime(today.year, today.month, 0);
+    final lastDayOfLastMonth = DateTime(baseDate.year, baseDate.month, 0);
     // 来月の初日
-    final firstDayOfNextMonth = DateTime(today.year, today.month + 1, 1);
+    final firstDayOfNextMonth = DateTime(baseDate.year, baseDate.month + 1, 1);
     // 今月の初日
-    final firstDay = DateTime(today.year, today.month, 1);
+    final firstDay = DateTime(baseDate.year, baseDate.month, 1);
     // 今月の最終日
-    final lastDay = DateTime(today.year, today.month + 1, 0);
-    // 曜日を取得
-    var todayWeekday = today.weekday;
-    // 曜日が'7'だった場合'0'へ変更
-    if (todayWeekday == 7) {
-      todayWeekday = 0;
-    }
+    final lastDay = DateTime(baseDate.year, baseDate.month + 1, 0);
     // 空のリストを作成
-    var dateList = [];
+    var date = [];
+    var firstDayWeekDay = firstDay.weekday;
+    if (firstDayWeekDay == 7) {
+      firstDayWeekDay = 0;
+    }
+    var lastDayOfLastMonthWeekDay = lastDayOfLastMonth.weekday;
+    if (lastDayOfLastMonth.weekday == 7) {
+      lastDayOfLastMonthWeekDay = 0;
+    }
     // 先月の日付を追加
     for (var i = 0; i < firstDay.weekday; i++) {
-      if (lastDayOfLastMonth.weekday == 6) {
-        dateList.add(null);
+      if (firstDayWeekDay == 0) {
+        null;
       } else {
-        dateList.add(lastDayOfLastMonth.day - i);
+        var reverseDay = lastDayOfLastMonth.day - lastDayOfLastMonthWeekDay;
+        date.add(reverseDay + i);
       }
     }
-    var date = List.from(dateList.reversed);
     // 今月の日付を追加
-    for (var i = firstDay.day; i <= lastDay.day; i++) {
-      date.add(i);
+    for (var i = 0; i < lastDay.day; i++) {
+      date.add(firstDay.day + i);
     }
     // 来月の日付を追加
-    for (var i = 0;
-        i < firstDayOfNextMonth.day + (6 - firstDayOfNextMonth.weekday);
-        i++) {
-      if (firstDayOfNextMonth.weekday == 0) {
-        date.add(null);
+    for (var i = 0; i < firstDayOfNextMonth.day + (6 - firstDayOfNextMonth.weekday); i++) {
+      if (lastDay.weekday == 6) {
+        null;
       } else {
         date.add(firstDayOfNextMonth.day + i);
       }
     }
-    var weekNumber;
+    int weekNumber;
     if (date.length == 35) {
       weekNumber = 5;
     } else {
       weekNumber = 6;
     }
-    
+
     return Stack(
       children: [
         Positioned(
@@ -193,6 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             '${date[i]}',
                             textAlign: TextAlign.center,
                             style: TextStyle(
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
