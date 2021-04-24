@@ -38,7 +38,9 @@ class _MonthCalendarState extends State<MonthCalendar> {
   }
 
   Widget calendar(BuildContext context) {
-    final controller = PageController(initialPage: 0);
+    final controller = PageController(
+      initialPage: 0,
+    );
 
     final RenderBox renderBox = key.currentContext.findRenderObject();
     final Size size = renderBox.size;
@@ -65,7 +67,8 @@ class _MonthCalendarState extends State<MonthCalendar> {
                   firstdayWeekday = 0;
                 }
                 // 先月の最終日
-                final lastdayLastmonth = DateTime(firstday.year, firstday.month, 0);
+                final lastdayLastmonth =
+                    DateTime(firstday.year, firstday.month, 0);
                 var lastdayLastmonthWeekday = lastdayLastmonth.weekday;
                 if (lastdayLastmonthWeekday == 7) {
                   lastdayLastmonthWeekday = 0;
@@ -73,7 +76,8 @@ class _MonthCalendarState extends State<MonthCalendar> {
                 // 先月の日にちを追加
                 for (var i = 0; i < firstday.weekday; i++) {
                   if (firstdayWeekday != 0) {
-                    var reverseDay = lastdayLastmonth.day - lastdayLastmonthWeekday;
+                    var reverseDay =
+                        lastdayLastmonth.day - lastdayLastmonthWeekday;
                     calendar.add(reverseDay + i);
                   }
                 }
@@ -95,6 +99,7 @@ class _MonthCalendarState extends State<MonthCalendar> {
                     calendar.add(d.day + i);
                   }
                 }
+                final getIndex = i;
 
                 return Material(
                   color: Colors.transparent,
@@ -106,15 +111,22 @@ class _MonthCalendarState extends State<MonthCalendar> {
                       } else if (calendar.length == 42) {
                         weekNumber = 6;
                       }
-                      return Container(
-                        width: size.width / 7,
-                        height: size.height / weekNumber,
-                        child: Text(
-                          '${calendar[i]}',
-                          style: TextStyle(
-                            fontSize: 16,
+
+                      return GestureDetector(
+                        child: Container(
+                          width: size.width / 7,
+                          height: size.height / weekNumber,
+                          child: Text(
+                            '${calendar[i]}',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          setState(() {
+                          });
+                        },
                       );
                     }),
                   ),
@@ -125,6 +137,27 @@ class _MonthCalendarState extends State<MonthCalendar> {
           ),
         ),
       ],
+    );
+  }
+}
+
+class TestClass extends StatefulWidget {
+  const TestClass({
+    Key key,
+    this.defaultDate,
+  }) : super(key: key);
+
+  final DateTime defaultDate;
+
+  _TestClass createState() => _TestClass();
+}
+
+class _TestClass extends State<TestClass> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(
+          '${widget.defaultDate.year}-${widget.defaultDate.month}-${widget.defaultDate.day}[${widget.defaultDate.weekday}]'),
     );
   }
 }
