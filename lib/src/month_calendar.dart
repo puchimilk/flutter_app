@@ -99,7 +99,6 @@ class _MonthCalendarState extends State<MonthCalendar> {
                     calendar.add(d.day + i);
                   }
                 }
-                final getIndex = i;
 
                 return Material(
                   color: Colors.transparent,
@@ -124,8 +123,7 @@ class _MonthCalendarState extends State<MonthCalendar> {
                           ),
                         ),
                         onTap: () {
-                          setState(() {
-                          });
+                          setState(() {});
                         },
                       );
                     }),
@@ -137,27 +135,6 @@ class _MonthCalendarState extends State<MonthCalendar> {
           ),
         ),
       ],
-    );
-  }
-}
-
-class TestClass extends StatefulWidget {
-  const TestClass({
-    Key key,
-    this.defaultDate,
-  }) : super(key: key);
-
-  final DateTime defaultDate;
-
-  _TestClass createState() => _TestClass();
-}
-
-class _TestClass extends State<TestClass> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-          '${widget.defaultDate.year}-${widget.defaultDate.month}-${widget.defaultDate.day}[${widget.defaultDate.weekday}]'),
     );
   }
 }

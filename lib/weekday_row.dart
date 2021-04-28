@@ -13,28 +13,25 @@ class WeekdayRow extends StatelessWidget {
             case 0:
               weekcolor = TextStyle(
                 color: Colors.red,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontSize: 12,
               );
               break;
             case 6:
               weekcolor = TextStyle(
                 color: Colors.blueAccent,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontSize: 12,
               );
               break;
             default:
               weekcolor = TextStyle(
                 color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontSize: 12,
               );
               break;
           }
           return Expanded(
             child: Container(
-              height: 32,
+              height: 24,
               child: Center(
                 child: Text(
                   weekday[i],
