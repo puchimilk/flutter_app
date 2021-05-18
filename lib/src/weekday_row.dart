@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class WeekdayRow extends StatelessWidget {
   final weekday = ['SAN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
