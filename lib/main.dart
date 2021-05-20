@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Source Han Sans',
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -21,9 +22,9 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
+  
   final String title;
-
+  
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -32,11 +33,97 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
   }
-
+  
   void dispose() {
     super.dispose();
   }
-    
+  
+  final now = DateTime.now();
+  
+  String monthConverter(int month) {
+    String monthCon;
+    switch (month) {
+      case 1:
+        monthCon = 'January';
+        break;
+      case 2:
+        monthCon = 'February';
+        break;
+      case 3:
+        monthCon = 'March';
+        break;
+      case 4:
+        monthCon = 'April';
+        break;
+      case 5:
+        monthCon = 'May';
+        break;
+      case 6:
+        monthCon = 'June';
+        break;
+      case 7:
+        monthCon = 'Julr';
+        break;
+      case 8:
+        monthCon = 'August';
+        break;
+      case 9:
+        monthCon = 'September';
+        break;
+      case 10:
+        monthCon = 'October';
+        break;
+      case 11:
+        monthCon = 'Novenber';
+        break;
+      case 12:
+        monthCon = 'December';
+        break;
+    }
+    return monthCon;
+  }
+  
+  String weekdayConverter(int weekday) {
+    String weekdayCon;
+    switch (weekday) {
+      case 0:
+        weekdayCon = 'Sun';
+        break;
+      case 1:
+        weekdayCon = 'Mon';
+        break;
+      case 2:
+        weekdayCon = 'Tue';
+        break;
+      case 3:
+        weekdayCon = 'Wed';
+        break;
+      case 4:
+        weekdayCon = 'Thu';
+        break;
+      case 5:
+        weekdayCon = 'Fri';
+        break;
+      case 6:
+        weekdayCon = 'Sat';
+        break;
+      default:
+    }
+    return weekdayCon;
+  }
+  
+  Color onTapColor(int index) {
+    Color color;
+    color = Colors.black12;
+    return color;
+  }
+  
+  int _selectedIndex;
+  
+  _onSelected(int index) {
+    setState(() => _selectedIndex = index);
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,8 +157,85 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Container(
-        child: MonthCalendarView(),
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+              height: 32,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '${monthConverter(now.month)} ${now.year}',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Source Han Sans',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            Container(
+              height: 32,
+              child: Row(
+                children: List.generate(7, (index) {
+                  return Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        weekdayConverter(index),
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+            Expanded (
+              child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  final Size size = Size(constraints.maxWidth, constraints.maxHeight);
+                  
+                  return Wrap(
+                    children: List.generate(35, (index) {
+                      return SizedBox(
+                        width: size.width / 7,
+                        height: size.height / 5,
+                        child: GestureDetector(
+                          child: Container(
+                            color: _selectedIndex == index
+                                ? Colors.black12
+                                : Colors.transparent,
+                            child: Text(
+                              '$index',
+                            ),
+                          ),
+                          onTap: () {
+                            _onSelected(index);
+                          },
+                        ),
+                      );
+                    }),
+                  );
+                }
+              ),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+  
+  Future<void> _showDialog() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return SimpleDialog(
+          children: [
+            Text('Hey'),
+          ],
+        );
+      }
     );
   }
 }

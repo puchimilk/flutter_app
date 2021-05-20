@@ -74,3 +74,23 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Source Han Sans
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-ExtraLight.otf
+          weight: 100
+        - asset: assets/fonts/SourceHanSansJP-Light.otf
+          weight: 200
+        - asset: assets/fonts/SourceHanSansJP-Normal.otf
+          weight: 300
+        - asset: assets/fonts/SourceHanSansJP-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SourceHanSansJP-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SourceHanSansJP-Bold.otf
+          weight: 700
+        - asset: assets/fonts/SourceHanSansJP-Heavy.otf
+          weight: 900
+    - family: Archivo Black
+      fonts:
+        - asset: assets\fonts\ArchivoBlack-Regular.ttf

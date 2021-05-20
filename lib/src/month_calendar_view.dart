@@ -53,47 +53,58 @@ class MonthCalendarView extends StatelessWidget {
           }
         }
         
-        return LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            final Size size = Size(constraints.maxWidth, constraints.maxHeight);
-            var dateLength = date.length;
-            var rowNum = 5;
-            if (dateLength == 42) {
-              rowNum = 6;
-            }
-            
-            return Wrap(
-              children: List.generate(dateLength, (index) {
-                var style = TextStyle();
-                
-                return SizedBox(
-                  width: size.width / 7,
-                  height: size.height / rowNum,
-                  child: GestureDetector(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 0.5,
+        return Column(
+          children: [
+            Container(
+              child: Text(
+                '${first.year}年${first.month}月',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Expanded(
+              child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  final Size size = Size(constraints.maxWidth, constraints.maxHeight);
+                  var dateLength = date.length;
+                  var rowNum = 5;
+                  if (dateLength == 42) {
+                    rowNum = 6;
+                  }
+                  
+                  return Wrap(
+                    children: List.generate(dateLength, (index) {
+                      var style = TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      );
+                      
+                      return SizedBox(
+                        width: size.width / 7,
+                        height: size.height / rowNum,
+                        child: GestureDetector(
+                          child: Container(
+                            child: Text(
+                              '${date[index]}',
+                              style: style,
+                            ),
+                          ),
+                          onTap: () {
+                            _showDialog(context);
+                          },
                         ),
-                      ),
-                      child: Text(
-                        '${date[index]}',
-                        style: style,
-                      ),
-                    ),
-                    onTap: () {
-                      _showDialog(context);
-                      print('$index');
-                    },
-                  ),
-                );
-              }),
-            );
-          }
+                      );
+                    }),
+                  );
+                }
+              ),
+            ),
+          ],
         );
       },
-      itemCount: 200,
+      itemCount: 1200,
     );
   }
   
