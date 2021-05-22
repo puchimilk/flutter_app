@@ -1,10 +1,118 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
-class MonthCalendarView extends StatelessWidget {
+class MonthCalendarView extends StatefulWidget {
+  MonthCalendarView({
+    Key key,
+  })  : super(key: key);
+  
+  _MonthCalendarView createState() => _MonthCalendarView();
+}
+
+class _MonthCalendarView extends State<MonthCalendarView> {
+  int _selectedIndex;
+  
+  void _onSelected(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  
+  var _list = [];
+  
+  void _counter(int index) {
+    setState(() {
+      _list.add(index);
+      if (_list.length > 2) {
+        _list.removeAt(0);
+      }
+      if (_list.length == 2 && _list[0] == _list[1]) {
+        _showCalendarDialog(context);
+      }
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
-    final controller = PageController();
+    final PageController controller = PageController();
+    
+    return Expanded(
+      child: PageView.builder(
+        controller: controller,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            child: Column(
+              children: [
+                Expanded(
+                  child: LayoutBuilder(
+                    builder: (BuildContext context, BoxConstraints constraints) {
+                      Size size = Size(constraints.maxWidth, constraints.maxHeight);
+                      
+                      return Wrap(
+                        children: List.generate(35, (index) {
+                          return SizedBox(
+                            width: size.width / 7,
+                            height: size.height / 5,
+                            child: GestureDetector(
+                              child: Container(
+                                color: _selectedIndex == index
+                                    ? Colors.black12
+                                    : Colors.transparent,
+                                child: Text(
+                                  '$index',
+                                ),
+                              ),
+                              onTap: () {
+                                _onSelected(index);
+                                _counter(index);
+                              },
+                            ),
+                          );
+                        }),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+        itemCount: 1200,
+      ),
+    );
+  }
+  
+  Future<void> _showCalendarDialog(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          elevation: 0,
+          insetPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 56),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Container(
+            padding: EdgeInsets.all(16),
+            width: double.infinity,
+            height: double.infinity,
+            child: Column(
+              children: [
+                Text('Hey'),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+/*
+class MonthCalendarView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final PageController controller = PageController();
     
     return PageView.builder(
       controller: controller,
@@ -76,7 +184,6 @@ class MonthCalendarView extends StatelessWidget {
                   
                   return Wrap(
                     children: List.generate(dateLength, (index) {
-                      
                       return SizedBox(
                         width: size.width / 7,
                         height: size.height / rowNum,
@@ -87,7 +194,8 @@ class MonthCalendarView extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            _showDialog(context);
+                            _onSelected(index);
+                            _showCalendarDialog(context);
                           },
                         ),
                       );
@@ -103,22 +211,13 @@ class MonthCalendarView extends StatelessWidget {
     );
   }
   
-  Future<void> _showDialog(BuildContext context) async {
-    return showDialog(
+  Future<void> _showCalendarDialog(BuildContext context) async {
+    showDialog(
       context: context,
       builder: (BuildContext context) {
-        return SimpleDialog(
-          children: [
-            Text('Hey!'),
-          ],
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(16),
-            )
-          ),
-        );
+        return Container();
       },
     );
   }
 }
+*/
