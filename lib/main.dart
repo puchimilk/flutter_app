@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'src/month_calendar_view.dart';
+// SQLlite
+// import 'dart:async';
+// import 'package:path/path.dart';
+// import 'package:sqflite/sqflite.dart';
 
 void main() {
   runApp(MyApp());
@@ -112,16 +115,26 @@ class _MyHomePageState extends State<MyHomePage> {
     return weekdayCon;
   }
   
-  Color onTapColor(int index) {
-    Color color;
-    color = Colors.black12;
-    return color;
-  }
-  
   int _selectedIndex;
   
   _onSelected(int index) {
-    setState(() => _selectedIndex = index);
+    setState(() => {
+      _selectedIndex = index
+    });
+  }
+  
+  var data = [];
+  
+  void _counter(int index) {
+    setState(() {
+      data.add(index);
+      if (data.length > 2) {
+        data.removeAt(0);
+      }
+      if (data.length == 2 && data[0] == data[1]) {
+        _showDialog();
+      }
+    });
   }
   
   @override
@@ -206,12 +219,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: _selectedIndex == index
                                 ? Colors.black12
                                 : Colors.transparent,
-                            child: Text(
-                              '$index',
-                            ),
+                            child: Text('$index'),
                           ),
                           onTap: () {
                             _onSelected(index);
+                            _counter(index);
                           },
                         ),
                       );
@@ -226,16 +238,69 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
   
-  Future<void> _showDialog() {
-    return showDialog(
+  void _showDialog() {
+    showDialog(
       context: context,
       builder: (BuildContext context) {
-        return SimpleDialog(
-          children: [
-            Text('Hey'),
-          ],
+        return Dialog(
+          elevation: 0,
+          insetPadding: EdgeInsets.fromLTRB(32, 64, 32, 64),
+          child: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '2021年5月22日(土)',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Text(
+                                  '21週　友引',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          IconButton(
+                            iconSize: 32,
+                            padding: EdgeInsets.all(0),
+                            icon: Icon(Icons.add),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
         );
-      }
+      },
     );
   }
 }

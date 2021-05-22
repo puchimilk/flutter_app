@@ -76,10 +76,6 @@ class MonthCalendarView extends StatelessWidget {
                   
                   return Wrap(
                     children: List.generate(dateLength, (index) {
-                      var style = TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      );
                       
                       return SizedBox(
                         width: size.width / 7,
@@ -88,7 +84,6 @@ class MonthCalendarView extends StatelessWidget {
                           child: Container(
                             child: Text(
                               '${date[index]}',
-                              style: style,
                             ),
                           ),
                           onTap: () {
