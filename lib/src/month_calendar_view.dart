@@ -93,12 +93,43 @@ class _MonthCalendarView extends State<MonthCalendarView> {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Container(
-            padding: EdgeInsets.all(16),
             width: double.infinity,
             height: double.infinity,
             child: Column(
               children: [
-                Text('Hey'),
+                Container(
+                  padding: EdgeInsets.only(left: 16, right: 8),
+                  height: 64,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '2021年5月23日(土)',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            '友引',
+                            style: TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                      IconButton(
+                        iconSize: 32,
+                        icon: Icon(Icons.add),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

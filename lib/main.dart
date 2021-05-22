@@ -117,16 +117,17 @@ class _MyHomePageState extends State<MyHomePage> {
   
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         leading: IconButton(
           iconSize: 32,
           icon: Icon(
             Icons.menu,
           ),
-          onPressed: () {
-            print('LeftIcon');
-          },
+          onPressed: () => _scaffoldKey.currentState.openDrawer(),
         ),
         title: Center(
           child: Text('Hello'),
@@ -141,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icons.add,
               ),
               onPressed: () {
-                print('RightIcon');
+                print('Right of onPressed');
               },
             ),
           ),
@@ -184,6 +185,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             MonthCalendarView(),
           ],
+        ),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [],
         ),
       ),
     );
