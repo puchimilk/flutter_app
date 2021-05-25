@@ -122,102 +122,6 @@ class _MonthCalendarView extends State<MonthCalendarView> {
         itemCount: 1200,
       ),
     );
-    
-    /*
-    return Expanded(
-      child: PageView.builder(
-        controller: controller,
-        itemBuilder: (BuildContext context, int index) {
-          final date = [];
-          final base = DateTime(1900, 01, 01);
-          // 今月の初日
-          final first = DateTime(base.year, base.month + index, 1);
-          var firstWeekdayday = first.weekday;
-          if (firstWeekdayday == 7) {
-            firstWeekdayday = 0;
-          }
-          // 今月の最終日
-          final last = DateTime(first.year, first.month + 1, 0);
-          var lastWeekday = last.weekday;
-          if (lastWeekday == 7) {
-            lastWeekday = 0;
-          }
-          // 先月の最終日
-          final lastMonth = DateTime(base.year, base.month + index, 0);
-          var lastMonthWeekday = lastMonth.weekday;
-          if (lastMonthWeekday == 7) {
-            lastMonthWeekday = 0;
-          }
-          // 来月の初日
-          final nextMonth = DateTime(base.year, base.month + 1 + index, 1);
-          var nextMonthWeekday = nextMonth.weekday;
-          if (nextMonthWeekday == 7) {
-            nextMonthWeekday = 0;
-          }
-          // 先月の日にち
-          if (firstWeekdayday != 0) {
-            for (var i = 0; i < firstWeekdayday; i++) {
-              var reverse = lastMonth.day - lastMonthWeekday;
-              date.add(reverse + i);
-            }
-          }
-          // 今月の日にち
-          for (var i = 0; i < last.day; i++) {
-            date.add(first.day + i);
-          }
-          // 来月の日にち
-          if (lastWeekday != 6) {
-            for (var i = 0; i < (6 - lastWeekday); i++) {
-              date.add(nextMonth.day + i);
-            }
-          }
-          var length = 35;
-          var hei = 5;
-          if ((last.day + lastWeekday) > 35) {
-            length = 42;
-            hei = 6;
-          }
-          
-          return Container(
-            child: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                Size size = Size(constraints.maxWidth, constraints.maxHeight);
-                
-                return Wrap(
-                  children: List.generate(length, (index) {
-                    Color changeColor = _selectedIndex == index ? Colors.black12 : Colors.transparent;
-                    
-                    return SizedBox(
-                      width: size.width / 7,
-                      height: size.height / hei,
-                            child: GestureDetector(
-                              child: Container(
-                                padding: EdgeInsets.all(4),
-                                color: changeColor,
-                                child: Text(
-                                  '${date[index]}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ),
-                              onTap: () {
-                                _onSelected(index);
-                                _counter(index);
-                              },
-                            ),
-                          );
-                        }),
-                      );
-                    },
-                  ),
-            
-          );
-        },
-        itemCount: 1200,
-      ),
-    );
-    */
   }
   
   Future<void> _showCalendarDialog(BuildContext context) async {
@@ -226,9 +130,9 @@ class _MonthCalendarView extends State<MonthCalendarView> {
       builder: (BuildContext context) {
         return Dialog(
           elevation: 0,
-          insetPadding: EdgeInsets.symmetric(vertical: 80, horizontal: 56),
+          insetPadding: EdgeInsets.symmetric(vertical: 64, horizontal: 32),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Container(
             width: double.infinity,
@@ -236,8 +140,15 @@ class _MonthCalendarView extends State<MonthCalendarView> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.only(left: 16, right: 8),
-                  height: 64,
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
+                  ),
+                  //height: 48,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -247,23 +158,18 @@ class _MonthCalendarView extends State<MonthCalendarView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '2021年5月23日(土)',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
+                            '2021年1月1日(日)',
                           ),
                           Text(
-                            '友引',
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
-                          ),
+                            '大安',
+                          )
                         ],
                       ),
                       IconButton(
                         iconSize: 32,
                         icon: Icon(Icons.add),
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                       ),
                     ],
                   ),
@@ -276,99 +182,3 @@ class _MonthCalendarView extends State<MonthCalendarView> {
     );
   }
 }
-
-/*
-        final date = [];
-        final base = DateTime(1900, 01, 01);
-        // 今月の初日
-        final first = DateTime(base.year, base.month + index, 1);
-        var firstWeekdayday = first.weekday;
-        if (firstWeekdayday == 7) {
-          firstWeekdayday = 0;
-        }
-        // 今月の最終日
-        final last = DateTime(first.year, first.month + 1, 0);
-        var lastWeekday = last.weekday;
-        if (lastWeekday == 7) {
-          lastWeekday = 0;
-        }
-        // 先月の最終日
-        final lastMonth = DateTime(base.year, base.month + index, 0);
-        var lastMonthWeekday = lastMonth.weekday;
-        if (lastMonthWeekday == 7) {
-          lastMonthWeekday = 0;
-        }
-        // 来月の初日
-        final nextMonth = DateTime(base.year, base.month + 1 + index, 1);
-        var nextMonthWeekday = nextMonth.weekday;
-        if (nextMonthWeekday == 7) {
-          nextMonthWeekday = 0;
-        }
-        // 先月の日にち
-        if (firstWeekdayday != 0) {
-          for (var i = 0; i < firstWeekdayday; i++) {
-            var reverse = lastMonth.day - lastMonthWeekday;
-            date.add(reverse + i);
-          }
-        }
-        // 今月の日にち
-        for (var i = 0; i < last.day; i++) {
-          date.add(first.day + i);
-        }
-        // 来月の日にち
-        if (lastWeekday != 6) {
-          for (var i = 0; i < (6 - lastWeekday); i++) {
-            date.add(nextMonth.day + i);
-          }
-        }
-        
-        return Column(
-          children: [
-            Container(
-              child: Text(
-                '${first.year}年${first.month}月',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Expanded(
-              child: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  final Size size = Size(constraints.maxWidth, constraints.maxHeight);
-                  var dateLength = date.length;
-                  var rowNum = 5;
-                  if (dateLength == 42) {
-                    rowNum = 6;
-                  }
-                  
-                  return Wrap(
-                    children: List.generate(dateLength, (index) {
-                      return SizedBox(
-                        width: size.width / 7,
-                        height: size.height / rowNum,
-                        child: GestureDetector(
-                          child: Container(
-                            child: Text(
-                              '${date[index]}',
-                            ),
-                          ),
-                          onTap: () {
-                            _onSelected(index);
-                            _showCalendarDialog(context);
-                          },
-                        ),
-                      );
-                    }),
-                  );
-                }
-              ),
-            ),
-          ],
-        );
-      },
-      itemCount: 1200,
-    );
-  }
-*/

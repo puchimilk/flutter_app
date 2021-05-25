@@ -41,8 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
   
-  final now = DateTime.now();
-  
   String monthConverter(int month) {
     String monthCon;
     switch (month) {
@@ -158,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 32,
               alignment: Alignment.centerLeft,
               child: Text(
-                '${monthConverter(now.month)} ${now.year}',
+                '',
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Source Han Sans',
