@@ -29,6 +29,7 @@ class _MonthCalendarView extends State<MonthCalendarView> {
       if (_list.length == 2 && _list[0] == _list[1]) {
         _showCalendarDialog(context);
       }
+      print(_list);
     });
   }
   
@@ -55,11 +56,15 @@ class _MonthCalendarView extends State<MonthCalendarView> {
                             height: size.height / 5,
                             child: GestureDetector(
                               child: Container(
+                                padding: EdgeInsets.all(4),
                                 color: _selectedIndex == index
                                     ? Colors.black12
                                     : Colors.transparent,
                                 child: Text(
                                   '$index',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
                               onTap: () {

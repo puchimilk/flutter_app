@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'Source Han Sans',
+        fontFamily: 'Roboto',
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -90,25 +90,25 @@ class _MyHomePageState extends State<MyHomePage> {
     String weekdayCon;
     switch (weekday) {
       case 0:
-        weekdayCon = 'Sun';
+        weekdayCon = 'SUN';
         break;
       case 1:
-        weekdayCon = 'Mon';
+        weekdayCon = 'MON';
         break;
       case 2:
-        weekdayCon = 'Tue';
+        weekdayCon = 'TUE';
         break;
       case 3:
-        weekdayCon = 'Wed';
+        weekdayCon = 'WED';
         break;
       case 4:
-        weekdayCon = 'Thu';
+        weekdayCon = 'THU';
         break;
       case 5:
-        weekdayCon = 'Fri';
+        weekdayCon = 'FRI';
         break;
       case 6:
-        weekdayCon = 'Sat';
+        weekdayCon = 'SAT';
         break;
       default:
     }
@@ -118,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    double statuBarHeight = MediaQuery.of(context).padding.top;
     
     return Scaffold(
       key: _scaffoldKey,
@@ -147,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
+        elevation: 0,
       ),
       body: Container(
         child: Column(
@@ -161,7 +163,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.black,
                   fontFamily: 'Source Han Sans',
                   fontSize: 22,
-                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -175,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Text(
                         weekdayConverter(index),
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 18,
                         ),
                       ),
                     ),
@@ -188,8 +189,40 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       drawer: Drawer(
-        child: Column(
-          children: [],
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.bottomLeft,
+                padding: EdgeInsets.fromLTRB(16, statuBarHeight, 16, 16),
+                height: 58 + statuBarHeight,
+                child: Text(
+                  'Calendar',
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                itemBuilder: (BuildContext context, int i) {
+                  return Container(
+                    alignment: Alignment.centerLeft,
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    height: 48,
+                    child: Text(
+                      'リスト$i',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  );
+                },
+                itemCount: 4,
+              ),
+            ],
+          ),
         ),
       ),
     );
