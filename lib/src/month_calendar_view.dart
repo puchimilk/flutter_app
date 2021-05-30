@@ -26,7 +26,7 @@ class _MonthCalendarView extends State<MonthCalendarView> {
         _list.removeAt(0);
       }
       if (_list.length == 2 && _list[0] == _list[1]) {
-        _showCalendarDialog(context);
+        showCalendarDialog(context);
       }
     });
   }
@@ -40,6 +40,9 @@ class _MonthCalendarView extends State<MonthCalendarView> {
         controller: controller,
         itemBuilder: (BuildContext context, int index) {
           final date = [];
+          final dateYear = [];
+          final dateMonth = [];
+          final dateDay = [];
           final base = DateTime(1900, 01, 01);
           // 今月の初日
           final first = DateTime(base.year, base.month + index, 1);
@@ -70,17 +73,35 @@ class _MonthCalendarView extends State<MonthCalendarView> {
             for (var i = 0; i < firstWeekdayday; i++) {
               var reverse = lastMonth.day - lastMonthWeekday;
               date.add(reverse + i);
+              dateYear.add(lastMonth.year);
+              dateMonth.add(lastMonth.month);
+              dateDay.add(lastMonth.day + i);
             }
           }
           // 今月の日にち
           for (var i = 0; i < last.day; i++) {
             date.add(first.day + i);
+            dateYear.add(first.year);
+            dateMonth.add(first.month);
+            dateDay.add(first.day + i);
           }
           // 来月の日にち
           if (lastWeekday != 6) {
             for (var i = 0; i < (6 - lastWeekday); i++) {
               date.add(nextMonth.day + i);
+              dateYear.add(nextMonth.year);
+              dateMonth.add(nextMonth.month);
+              dateDay.add(nextMonth.day + i);
             }
+          }
+          
+          dateBox(int index) {
+            Map<String, int> maps = {
+              'year' : dateYear[index],
+              'month' : dateMonth[index],
+              'day' : dateDay[index],
+            };
+            return maps;
           }
           
           return LayoutBuilder(
@@ -108,9 +129,10 @@ class _MonthCalendarView extends State<MonthCalendarView> {
                           ),
                         ),
                       ),
-                      onTap: () {
+                      onTap: () async {
                         _onSelected(index);
                         _counter(index);
+                        print(dateBox(index));
                       },
                     ),
                   );
@@ -124,58 +146,13 @@ class _MonthCalendarView extends State<MonthCalendarView> {
     );
   }
   
-  Future<void> _showCalendarDialog(BuildContext context) async {
+  Future<void> showCalendarDialog(BuildContext context) async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return Dialog(
           elevation: 0,
-          insetPadding: EdgeInsets.symmetric(vertical: 64, horizontal: 32),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
           child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurple,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
-                  ),
-                  //height: 48,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '2021年1月1日(日)',
-                          ),
-                          Text(
-                            '大安',
-                          )
-                        ],
-                      ),
-                      IconButton(
-                        iconSize: 32,
-                        icon: Icon(Icons.add),
-                        onPressed: () {
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
           ),
         );
       },

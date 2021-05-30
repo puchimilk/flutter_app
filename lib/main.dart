@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/month_calendar_view.dart';
 
-//import 'dart:async';
-// import 'package:path/path.dart';
-// import 'package:sqflite/sqflite.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -117,111 +113,28 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     double statuBarHeight = MediaQuery.of(context).padding.top;
-    
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         leading: IconButton(
-          iconSize: 32,
-          icon: Icon(
-            Icons.menu,
-          ),
+          icon: Icon(Icons.menu),
           onPressed: () => _scaffoldKey.currentState.openDrawer(),
         ),
         title: Center(
-          child: Text('Hello'),
+          child: Text('Calendar'),
         ),
         actions: [
           SizedBox(
             width: 56,
-            height: 56,
             child: IconButton(
-              iconSize: 32,
-              icon: Icon(
-                Icons.add,
-              ),
-              onPressed: () {
-                print('Right of onPressed');
-              },
+              icon: Icon(Icons.add),
+              onPressed: () {},
             ),
           ),
         ],
         elevation: 0,
       ),
       body: Container(
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-              height: 32,
-              alignment: Alignment.centerLeft,
-              child: Text(
-                '',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Source Han Sans',
-                  fontSize: 22,
-                ),
-              ),
-            ),
-            Container(
-              height: 32,
-              child: Row(
-                children: List.generate(7, (index) {
-                  return Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        weekdayConverter(index),
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-              ),
-            ),
-            MonthCalendarView(),
-          ],
-        ),
-      ),
-      drawer: Drawer(
-        child: Container(
-          child: Column(
-            children: [
-              Container(
-                alignment: Alignment.bottomLeft,
-                padding: EdgeInsets.fromLTRB(16, statuBarHeight, 16, 16),
-                height: 58 + statuBarHeight,
-                child: Text(
-                  'Calendar',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
-                ),
-              ),
-              ListView.builder(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                itemBuilder: (BuildContext context, int i) {
-                  return Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    height: 48,
-                    child: Text(
-                      'リスト$i',
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                  );
-                },
-                itemCount: 4,
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
