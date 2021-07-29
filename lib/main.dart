@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/month_calendar_view.dart';
+import 'src/month_calendar_view.dart';
+import 'src/CalendarUseCase.dart';
 
 // import 'package:path/path.dart';
 // import 'package:sqflite/sqflite.dart';
@@ -48,6 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print(dayOfWeek(2015, 2, 1));
+    //print(conditionFourWeeks(2015, 2));
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
