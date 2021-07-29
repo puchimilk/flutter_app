@@ -53,7 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        child: MonthCalendarView(),
+        child: Column(
+          children: [
+            MonthCalendarView(),
+          ],
+        ),
       ),
     );
   }
