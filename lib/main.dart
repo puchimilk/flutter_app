@@ -39,18 +39,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void initState() {
-    super.initState();
-  }
-  
-  void dispose() {
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    print(dayOfWeek(2015, 2, 1));
-    //print(conditionFourWeeks(2015, 2));
+    var year = 2015;
+    var month = 2;
+    var day = 1;
+    print(conditionFourWeeks(2021, 2));
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -63,5 +57,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+  
+  @override
+  void initState() {
+    super.initState();
+  }
+  
+  @override
+  void dispose() {
+    super.dispose();
   }
 }
