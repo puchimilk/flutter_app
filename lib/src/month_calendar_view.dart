@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class MonthCalendarView extends StatefulWidget {
   MonthCalendarView({
-    Key key,
+    Key? key,
   })  : super(key: key);
   
   _MonthCalendarView createState() => _MonthCalendarView();
 }
 
 class _MonthCalendarView extends State<MonthCalendarView> {
-  int _selectedIndex;
+  int? _selectedIndex;
   
   void _onSelected(int index) {
     setState(() {

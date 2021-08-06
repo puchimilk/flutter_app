@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'src/month_calendar_view.dart';
 import 'src/CalendarUseCase.dart';
+import 'src/CalendarViewController.dart';
 
 // import 'package:path/path.dart';
 // import 'package:sqflite/sqflite.dart';
@@ -29,11 +29,11 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
-    Key key,
+    Key? key,
     this.title,
   }) : super(key: key);
   
-  final String title;
+  final String? title;
   
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -45,36 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Wrap(
-              children: List.generate(35, (index) {
-                return Text(
-                  '$index',
-                  style: TextStyle(
-                    color: tir.dayOfWeekColor(index),
-                  ),
-                );
-              }),
-            )
-          ],
-        ),
-      ),
+      body: MonthCalendarView(),
     );
-  }
-  
-  @override
-  void initState() {
-    super.initState();
-    // ...
-  }
-  
-  @override
-  void dispose() {
-    super.dispose();
-    // ...
   }
 }
