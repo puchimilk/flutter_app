@@ -1,36 +1,87 @@
-// うるう年の確認
-bool isLeapYear(int year) {
-  return year % 400 == 0 || year % 4 == 0 && year % 100 != 0;
+import 'package:flutter/material.dart';
+import 'package:flutter_app/src/month_calendar_view.dart';
+
+bool isLeapYear(int year) => year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+
+int zellerCongruence(int year, int month, int day) {
+  return DateTime(year, month, day).weekday;
 }
 
-// 曜日の計算
-int dayOfWeek(int year, int month, int day) {
-  if (month == 1 || month == 2) {
-    year -= 1;
-    month += 12;
+dayOfWeek(int year, int month, int day) {
+  var x = DateTime(year, month, day).weekday;
+  if (x == 7) {
+    x = 0;
   }
-  return (year + (year / 4).floor() - (year / 100).floor() + (year / 400).floor() + ((13 * month + 8) / 5).floor() + day) % 7;
+  return x;
 }
 
-// 4週の月
-bool conditionFourWeeks(int _year, int _month) {
-  var firstDayOfWeek = dayOfWeek(_year, _month, 1);
-  return !isLeapYear(_year) && _month == 2 && firstDayOfWeek == 0;
+bool conditionFourWeeks(int year, int month) {
+  final firstDayOfWeek = dayOfWeek(year, month, 1);
+  return !isLeapYear(year) && month == 2 && (firstDayOfWeek == 0);
 }
 
-// 6週の月
-bool conditionSixWeeks(int _year, int _month) {
-  var firstDayOfWeek = dayOfWeek(_year, _month, 1);
-  var days = numberOfDay(_year, _month);
+int numberOfDays(int year, int month) {
+  if (conditionFourWeeks(year, month)) {
+    return 4;
+  } else if (conditionSixWeeks(year, month)) {
+    return 5;
+  } else {
+    return 6;
+  }
+}
+
+bool conditionSixWeeks(int year, int month) {
+  final firstDayOfWeek = dayOfWeek(year, month, 1);
+  final days = numberOfDays(year, month);
   return (firstDayOfWeek == 6 && days == 30) || (firstDayOfWeek >= 5 && days == 31);
 }
 
-int numberOfDay(int _year, int _month) {
-  if (conditionFourWeeks(_year, _month)) {
-    return 4;
-  } else if (conditionSixWeeks(_year, _month)) {
-    return 6;
-  } else {
-    return 5;
+class CalendarViewController {
+  final weekArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  
+  Color dayOfWeekColor(int length) {
+    Color color;
+    
+    switch (length % 7) {
+      case 0:
+        color = Colors.red;
+        break;
+      case 6:
+        color = Colors.blue;
+        break;
+      default:
+        color = Colors.black;
+    }
+    
+    return color;
+  }
+}
+
+class CalendarUseCase extends StatefulWidget {
+  CalendarUseCase({
+    Key? key
+  });
+  
+  @override
+  _CalendarUseCase createState() => _CalendarUseCase();
+}
+
+class _CalendarUseCase extends State<CalendarUseCase> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class EventModel {
+  var title = "";
+  var memo = "";
+  var date = "";
+  var startTime = "";
+  var endTime = "";
+  
+  createEvent() {
+    var eventModel = EventModel();
+    eventModel.title = "";
   }
 }

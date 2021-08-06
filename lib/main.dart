@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'src/month_calendar_view.dart';
 import 'src/CalendarUseCase.dart';
 
@@ -39,12 +40,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var tir = CalendarViewController();
   @override
   Widget build(BuildContext context) {
-    var year = 2015;
-    var month = 2;
-    var day = 1;
-    print(conditionFourWeeks(2021, 2));
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -52,7 +50,16 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         child: Column(
           children: [
-            MonthCalendarView(),
+            Wrap(
+              children: List.generate(35, (index) {
+                return Text(
+                  '$index',
+                  style: TextStyle(
+                    color: tir.dayOfWeekColor(index),
+                  ),
+                );
+              }),
+            )
           ],
         ),
       ),
@@ -62,10 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    // ...
   }
   
   @override
   void dispose() {
     super.dispose();
+    // ...
   }
 }
