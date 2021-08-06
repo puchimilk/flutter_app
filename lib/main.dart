@@ -46,7 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title!),
       ),
-      body: MonthCalendarView(),
+      body: Container(
+        child: Column(
+          children: [
+            MonthCalendarView(),
+          ],
+        ),
+      ),
     );
   }
 }
