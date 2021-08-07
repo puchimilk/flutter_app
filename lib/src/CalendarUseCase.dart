@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/month_calendar_view.dart';
+import 'package:flutter_app/src/MonthCalendarView.dart';
 
 bool isLeapYear(int year) => year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
 
@@ -39,6 +39,8 @@ bool conditionSixWeeks(int year, int month) {
 class CalendarViewController {
   final weekArray = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   
+  CalendarViewController();
+  
   Color dayOfWeekColor(int length) {
     Color color;
     
@@ -70,18 +72,5 @@ class _CalendarUseCase extends State<CalendarUseCase> {
   @override
   Widget build(BuildContext context) {
     return Container();
-  }
-}
-
-class EventModel {
-  var title = "";
-  var memo = "";
-  var date = "";
-  var startTime = "";
-  var endTime = "";
-  
-  createEvent() {
-    var eventModel = EventModel();
-    eventModel.title = "";
   }
 }
