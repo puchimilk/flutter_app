@@ -109,6 +109,7 @@ class _MonthCalendarView extends State<MonthCalendarView> {
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               Size size = Size(constraints.maxWidth, constraints.maxHeight);
+              
               var height = 5;
               if (date.length == 42) {
                 height = 6;
@@ -156,8 +157,7 @@ class _MonthCalendarView extends State<MonthCalendarView> {
       builder: (BuildContext context) {
         return Dialog(
           elevation: 0,
-          child: Container(
-          ),
+          child: Container(),
         );
       },
     );
