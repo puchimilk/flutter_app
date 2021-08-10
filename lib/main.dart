@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'src/MonthCalendarView.dart';
+import 'src/CalendarViewController.dart';
 
 // import 'package:path/path.dart';
 // import 'package:sqflite/sqflite.dart';
 
 void main() {
   runApp(MyApp());
+  var date = DateTime(2020, 9);
+  print(MonthView().getCalendar(date));
 }
 
 class MyApp extends StatelessWidget {
