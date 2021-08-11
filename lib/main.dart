@@ -7,8 +7,6 @@ import 'src/CalendarViewController.dart';
 
 void main() {
   runApp(MyApp());
-  var date = DateTime(2020, 9);
-  print(MonthView().getCalendar(date));
 }
 
 class MyApp extends StatelessWidget {
@@ -50,7 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         child: Column(
           children: [
-            MonthCalendarView(),
+            //MonthCalendarView(),
+            MonthView(
+              startDate: DateTime(1800, 1),
+            ),
           ],
         ),
       ),
