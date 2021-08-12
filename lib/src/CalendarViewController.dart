@@ -4,9 +4,11 @@ import 'utils.dart';
 class MonthView extends StatefulWidget {
   MonthView({
     this.startDate,
+    this.focusDate,
   });
   
   final DateTime? startDate;
+  final DateTime? focusDate;
   
   _MonthView createState() => _MonthView();
   
@@ -40,23 +42,21 @@ class _MonthView extends State<MonthView> {
       child: PageView.builder(
         controller: controller,
         itemBuilder: (BuildContext context, int index) {
-          var pageIndex = index;
+          final pageIndex = DateTime(widget.startDate!.year, widget.startDate!.month + index);
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constrains) {
               Size size = Size(constrains.maxWidth, constrains.maxHeight);
+              final dayLength = dayCount(pageIndex).length;
+              final weekNumber = dayCount(pageIndex).length / 7;
               return Wrap(
-                children: List.generate(35, (index) {
+                children: List.generate(dayLength, (index) {
                   return SizedBox(
                     width: size.width / 7,
-                    height: size.height / 5,
+                    height: size.height / weekNumber,
                     child: GestureDetector(
                       child: Container(
                         child: Text(
-                          widget.test1(
-                            widget.startDate!,
-                            widget.startDate!,
-                            pageIndex
-                          )[index].toString(),
+                          dayCount(pageIndex)[index].toString()
                         ),
                       ),
                       onTap: () {},
