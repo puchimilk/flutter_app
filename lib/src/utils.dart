@@ -39,7 +39,7 @@ List<dynamic> nextMonth(DateTime date) {
   return calendar;
 }
 
-List<dynamic> dayCount(DateTime date) {
+List<dynamic> daySet(DateTime date) {
   var calendar = [];
   calendar.addAll(lastMonth(date));
   calendar.addAll(thisMonth(date));
