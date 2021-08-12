@@ -1,12 +1,48 @@
 import 'dart:core';
 
-a() {
-  var calendar = [];
-  var num = 0;
-  
-  for (var i = 0; i < 35; i++) {
-    calendar.add({'date' : num + i});
+List<dynamic> lastMonth(DateTime date) {
+  date = DateTime(date.year, date.month, 1);
+  var firstWeekday = date.weekday;
+  if (firstWeekday == 7) {
+    firstWeekday = 0;
   }
-  
+  date = DateTime(date.year, date.month, date.day - firstWeekday);
+  var calendar = [];
+  for (var i = 0; i < firstWeekday; i++) {
+    calendar.add(date.day + i);
+  }
+  return calendar;
+}
+
+List<dynamic> thisMonth(DateTime date) {
+  date = DateTime(date.year, date.month, 1);
+  var last = DateTime(date.year, date.month + 1, 0);
+  var dayCount = last.difference(date).inDays + 1;
+  var calendar = [];
+  for (var i = 0; i < dayCount; i++) {
+    calendar.add(date.day + i);
+  }
+  return calendar;
+}
+
+List<dynamic> nextMonth(DateTime date) {
+  date = DateTime(date.year, date.month + 1, 0);
+  var lastWeekday = date.weekday;
+  if (lastWeekday == 7) {
+    lastWeekday = 0;
+  }
+  var nextMonthDay = 6 - lastWeekday;
+  var calendar = [];
+  for (var i = 0; i < nextMonthDay; i++) {
+    calendar.add(1 + i);
+  }
+  return calendar;
+}
+
+List<dynamic> dayCount(DateTime date) {
+  var calendar = [];
+  calendar.addAll(lastMonth(date));
+  calendar.addAll(thisMonth(date));
+  calendar.addAll(nextMonth(date));
   return calendar;
 }
