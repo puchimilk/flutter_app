@@ -50,6 +50,27 @@ class MonthView extends StatefulWidget {
     return calendar;
   }
   
+  List<dynamic> dayCount(DateTime first, DateTime last) {
+    first = DateTime(first.year, first.month, 1);
+    last = DateTime(last.year, last.month + 1, 0);
+    var firstWeekday = first.weekday;
+    if (firstWeekday == 7) {
+      firstWeekday = 0;
+    }
+    var lastWeekday = last.weekday;
+    if (lastWeekday == 7) {
+      lastWeekday = 0;
+    }
+    first = DateTime(first.year, first.month, first.day - firstWeekday);
+    last = DateTime(last.year, last.month, last.day + (lastWeekday != 6 ? 6 - lastWeekday : 0));
+    final day = last.difference(first).inDays + 1;
+    var calendar = [];
+    for (var i = 0; i < day; i++) {
+      calendar.add(DateTime(first.year, first.month, first.day + i).day);
+    }
+    return calendar;
+  }
+  
   test1(DateTime start, DateTime end, int index) {
     start = DateTime(start.year, start.month + index, 1);
     var startWeekday = start.weekday;
