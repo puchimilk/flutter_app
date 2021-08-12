@@ -1,4 +1,4 @@
-import 'dart:core';
+import 'package:flutter/material.dart';
 
 List<dynamic> lastMonth(DateTime date) {
   date = DateTime(date.year, date.month, 1);
@@ -45,4 +45,19 @@ List<dynamic> dayCount(DateTime date) {
   calendar.addAll(thisMonth(date));
   calendar.addAll(nextMonth(date));
   return calendar;
+}
+
+Color dayWeekColor(int i) {
+  Color color;
+  switch (i % 7) {
+    case 0:
+      color = Colors.red;
+      break;
+    case 6:
+      color = Colors.blue;
+      break;
+    default:
+      color = Colors.black;
+  }
+  return color;
 }

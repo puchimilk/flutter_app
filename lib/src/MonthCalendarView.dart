@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'CalendarUseCase.dart';
+import 'utils.dart';
 
 class MonthCalendarView extends StatefulWidget {
   MonthCalendarView({
@@ -117,7 +116,6 @@ class _MonthCalendarView extends State<MonthCalendarView> {
               
               return Wrap(
                 children: List.generate(date.length, (int index) {
-                  CalendarViewController cvc = CalendarViewController();
                   return SizedBox(
                     width: size.width / 7,
                     height: size.height / height,
@@ -129,7 +127,7 @@ class _MonthCalendarView extends State<MonthCalendarView> {
                         child: Text(
                           '${date[index]}',
                           style: TextStyle(
-                            color: cvc.dayOfWeekColor(index),
+                            color: dayWeekColor(index),
                             fontSize: 16,
                           ),
                         ),

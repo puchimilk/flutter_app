@@ -56,7 +56,10 @@ class _MonthView extends State<MonthView> {
                     child: GestureDetector(
                       child: Container(
                         child: Text(
-                          dayCount(pageIndex)[i].toString()
+                          dayCount(pageIndex)[i].toString(),
+                          style: TextStyle(
+                            color: dayWeekColor(i),
+                          ),
                         ),
                       ),
                       onTap: () {},
