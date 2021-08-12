@@ -9,65 +9,50 @@ class MonthView extends StatefulWidget {
   
   _MonthView createState() => _MonthView();
   
-  String dateFormat(DateTime date) {
-    return '${date.year}-${date.month}-${date.day}';
-  }
-  
-  DateTime getStartDate(DateTime date) {
+  List<dynamic> lastMonth(DateTime date) {
     date = DateTime(date.year, date.month, 1);
-    var weekNumber = date.weekday;
-    if (weekNumber == 7) {
-      weekNumber = 0;
+    var firstWeekday = date.weekday;
+    if (firstWeekday == 7) {
+      firstWeekday = 0;
     }
-    var subtract = DateTime(date.year, date.month, date.day - weekNumber);
-    return subtract;
-  }
-  
-  DateTime getEndDate(DateTime date) {
-    date = DateTime(date.year, date.month + 1, 0);
-    var weekNumber = date.weekday;
-    if (weekNumber == 7) {
-      weekNumber = 0;
-    }
-    var subtract = DateTime(date.year, date.month, date.day + (weekNumber != 6 ? 6 - weekNumber : 0));
-    return subtract;
-  }
-  
-  getCalendar(DateTime date) {
-    var start = getStartDate(date);
-    var end = getEndDate(date);
-    var weekNumber = ((end.difference(start).inDays + 1) / 7).floor();
+    date = DateTime(date.year, date.month, date.day - firstWeekday);
     var calendar = [];
-    for (var i = 0; i < weekNumber; i++) {
-      var weekRow = [];
-      for (var i = 0; i < 7; i++) {
-        var _start = DateTime(start.year, start.month, start.day + i);
-        weekRow.add({'date' : _start.day});
-      }
-      start = start.add(Duration(days: 7));
-      calendar.add(weekRow);
+    for (var i = 0; i < firstWeekday; i++) {
+      calendar.add(date.day + i);
     }
     return calendar;
   }
   
-  List<dynamic> dayCount(DateTime first, DateTime last) {
-    first = DateTime(first.year, first.month, 1);
-    last = DateTime(last.year, last.month + 1, 0);
-    var firstWeekday = first.weekday;
-    if (firstWeekday == 7) {
-      firstWeekday = 0;
+  List<dynamic> thisMonth(DateTime date) {
+    date = DateTime(date.year, date.month, 1);
+    var last = DateTime(date.year, date.month + 1, 0);
+    var dayCount = last.difference(date).inDays + 1;
+    var calendar = [];
+    for (var i = 0; i < dayCount; i++) {
+      calendar.add(date.day + i);
     }
-    var lastWeekday = last.weekday;
+    return calendar;
+  }
+  
+  List<dynamic> nextMonth(DateTime date) {
+    date = DateTime(date.year, date.month + 1, 0);
+    var lastWeekday = date.weekday;
     if (lastWeekday == 7) {
       lastWeekday = 0;
     }
-    first = DateTime(first.year, first.month, first.day - firstWeekday);
-    last = DateTime(last.year, last.month, last.day + (lastWeekday != 6 ? 6 - lastWeekday : 0));
-    final day = last.difference(first).inDays + 1;
+    var nextMonthDay = 6 - lastWeekday;
     var calendar = [];
-    for (var i = 0; i < day; i++) {
-      calendar.add(DateTime(first.year, first.month, first.day + i).day);
+    for (var i = 0; i < nextMonthDay; i++) {
+      calendar.add(1 + i);
     }
+    return calendar;
+  }
+  
+  List<dynamic> dayCount(DateTime date) {
+    var calendar = [];
+    calendar.addAll(lastMonth(date));
+    calendar.addAll(thisMonth(date));
+    calendar.addAll(nextMonth(date));
     return calendar;
   }
   

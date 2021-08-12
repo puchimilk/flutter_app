@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'src/CalendarViewController.dart';
+import 'src/utils.dart';
 
 // import 'package:path/path.dart';
 // import 'package:sqflite/sqflite.dart';
 
 void main() {
   runApp(MyApp());
+  print(a());
 }
 
 class MyApp extends StatelessWidget {
@@ -55,15 +57,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-  
-  @override
-  void initState() {
-    super.initState();
-  }
-  
-  @override
-  void dispose() {
-    super.dispose();
   }
 }
