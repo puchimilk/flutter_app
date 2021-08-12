@@ -41,22 +41,22 @@ class _MonthView extends State<MonthView> {
     return Expanded(
       child: PageView.builder(
         controller: controller,
-        itemBuilder: (BuildContext context, int index) {
-          final pageIndex = DateTime(widget.startDate!.year, widget.startDate!.month + index);
+        itemBuilder: (BuildContext context, int i) {
+          final pageIndex = DateTime(widget.startDate!.year, widget.startDate!.month + i);
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constrains) {
               Size size = Size(constrains.maxWidth, constrains.maxHeight);
               final dayLength = dayCount(pageIndex).length;
               final weekNumber = dayCount(pageIndex).length / 7;
               return Wrap(
-                children: List.generate(dayLength, (index) {
+                children: List.generate(dayLength, (i) {
                   return SizedBox(
                     width: size.width / 7,
                     height: size.height / weekNumber,
                     child: GestureDetector(
                       child: Container(
                         child: Text(
-                          dayCount(pageIndex)[index].toString()
+                          dayCount(pageIndex)[i].toString()
                         ),
                       ),
                       onTap: () {},
