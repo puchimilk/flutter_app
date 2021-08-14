@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 List<dynamic> day(DateTime date) {
@@ -55,4 +56,32 @@ List<dynamic> month(DateTime date) {
     calendar.add(DateTime(first.year, first.month, first.day + i).month == date.month ? false : true);
   }
   return calendar;
+}
+
+int monthCount(DateTime first, DateTime last) {
+  var year = last.year - first.month;
+  var month = last.month - first.month;
+  return year * 12 + month;
+}
+
+class DataClass {
+  int? valueA;
+  String? valueB;
+  Map<String, String>? map;
+  
+  @override
+  bool operator ==(Object other) {
+    return other is DataClass &&
+        valueA == other.valueA &&
+        valueB == other.valueB &&
+        mapEquals(map, other.map);
+  }
+  
+  @override
+  int get hashCode => valueA.hashCode ^ valueB.hashCode ^ map.hashCode;
+  
+  @override
+  String toString() {
+    return '$valueA, $valueB, $map';
+  }
 }

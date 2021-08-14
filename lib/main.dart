@@ -7,6 +7,14 @@ import 'src/CalendarViewController.dart';
 
 void main() {
   runApp(MyApp());
+  var first = DateTime(1800, 1);
+  var last = DateTime(2099, 12);
+  int monthCount(DateTime first, DateTime last) {
+    var year = last.year - first.month;
+    var month = last.month - first.month;
+    return year * 12 + month;
+  }
+  print(monthCount(first, last));
 }
 
 class MyApp extends StatelessWidget {
@@ -50,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             //MonthCalendarView(),
             MonthView(
-              startDate: DateTime(1800, 1),
+              firstDate: DateTime(1800, 1),
+              lastDate: DateTime(2099, 12),
               focusDate: DateTime.now(),
             ),
           ],

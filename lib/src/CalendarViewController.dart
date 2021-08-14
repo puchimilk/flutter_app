@@ -3,11 +3,13 @@ import 'utils.dart';
 
 class MonthView extends StatefulWidget {
   MonthView({
-    this.startDate,
+    this.firstDate,
+    this.lastDate,
     this.focusDate,
   });
   
-  final DateTime? startDate;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
   final DateTime? focusDate;
   
   _MonthView createState() => _MonthView();
@@ -42,7 +44,7 @@ class _MonthView extends State<MonthView> {
       child: PageView.builder(
         controller: controller,
         itemBuilder: (BuildContext context, int i) {
-          final pageIndex = DateTime(widget.startDate!.year, widget.startDate!.month + i);
+          final pageIndex = DateTime(widget.firstDate!.year, widget.firstDate!.month + i);
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constrains) {
               Size size = Size(constrains.maxWidth, constrains.maxHeight);
@@ -77,7 +79,7 @@ class _MonthView extends State<MonthView> {
             },
           );
         },
-        itemCount: 2399,
+        itemCount: monthCount(widget.firstDate!, widget.lastDate!),
       ),
     );
   }
