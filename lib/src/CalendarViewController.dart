@@ -46,19 +46,26 @@ class _MonthView extends State<MonthView> {
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constrains) {
               Size size = Size(constrains.maxWidth, constrains.maxHeight);
-              final dayLength = daySet(pageIndex).length;
-              final weekNumber = daySet(pageIndex).length / 7;
+              final dayLength = day(pageIndex).length;
+              final weekNumber = day(pageIndex).length / 7;
               return Wrap(
-                children: List.generate(dayLength, (i) {
+                children: List.generate(dayLength, (index) {
                   return SizedBox(
                     width: size.width / 7,
                     height: size.height / weekNumber,
                     child: GestureDetector(
                       child: Container(
+                        decoration: BoxDecoration(
+                          color: month(pageIndex)[index] == true ? Colors.black12 : Colors.white,
+                          border: Border.all(
+                            color: Colors.black26,
+                            width: 0.5,
+                          ),
+                        ),
                         child: Text(
-                          daySet(pageIndex)[i].toString(),
+                          day(pageIndex)[index].toString(),
                           style: TextStyle(
-                            color: dayWeekColor(i),
+                            color: dayOfWeekColor(index),
                           ),
                         ),
                       ),

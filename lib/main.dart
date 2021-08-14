@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/utils.dart';
 import 'src/CalendarViewController.dart';
 
 // import 'package:path/path.dart';
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //MonthCalendarView(),
             MonthView(
               startDate: DateTime(1800, 1),
+              focusDate: DateTime.now(),
             ),
           ],
         ),

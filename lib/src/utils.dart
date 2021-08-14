@@ -1,55 +1,29 @@
 import 'package:flutter/material.dart';
 
-List<dynamic> lastMonth(DateTime date) {
-  date = DateTime(date.year, date.month, 1);
-  var firstWeekday = date.weekday;
+List<dynamic> day(DateTime date) {
+  var first = DateTime(date.year, date.month, 1);
+  var firstWeekday = first.weekday;
   if (firstWeekday == 7) {
     firstWeekday = 0;
   }
-  date = DateTime(date.year, date.month, date.day - firstWeekday);
-  var calendar = [];
-  for (var i = 0; i < firstWeekday; i++) {
-    calendar.add(date.day + i);
-  }
-  return calendar;
-}
-
-List<dynamic> thisMonth(DateTime date) {
-  date = DateTime(date.year, date.month, 1);
+  first = DateTime(first.year, first.month, first.day - firstWeekday);
   var last = DateTime(date.year, date.month + 1, 0);
-  var dayCount = last.difference(date).inDays + 1;
-  var calendar = [];
-  for (var i = 0; i < dayCount; i++) {
-    calendar.add(date.day + i);
-  }
-  return calendar;
-}
-
-List<dynamic> nextMonth(DateTime date) {
-  date = DateTime(date.year, date.month + 1, 0);
-  var lastWeekday = date.weekday;
+  var lastWeekday = last.weekday;
   if (lastWeekday == 7) {
     lastWeekday = 0;
   }
-  var nextMonthDay = 6 - lastWeekday;
+  last = DateTime(last.year, last.month, last.day + (lastWeekday != 6 ? 6 - lastWeekday : 0));
+  final dayCount = last.difference(first).inDays + 1;
   var calendar = [];
-  for (var i = 0; i < nextMonthDay; i++) {
-    calendar.add(1 + i);
+  for (var i = 0; i < dayCount; i++) {
+    calendar.add(DateTime(first.year, first.month, first.day + i).day);
   }
   return calendar;
 }
 
-List<dynamic> daySet(DateTime date) {
-  var calendar = [];
-  calendar.addAll(lastMonth(date));
-  calendar.addAll(thisMonth(date));
-  calendar.addAll(nextMonth(date));
-  return calendar;
-}
-
-Color dayWeekColor(int i) {
+Color dayOfWeekColor(int index) {
   Color color;
-  switch (i % 7) {
+  switch (index % 7) {
     case 0:
       color = Colors.red;
       break;
@@ -61,3 +35,25 @@ Color dayWeekColor(int i) {
   }
   return color;
 }
+
+List<dynamic> month(DateTime date) {
+  var first = DateTime(date.year, date.month, 1);
+  var firstWeekday = first.weekday;
+  if (firstWeekday == 7) {
+    firstWeekday = 0;
+  }
+  first = DateTime(first.year, first.month, first.day - firstWeekday);
+  var last = DateTime(date.year, date.month + 1, 0);
+  var lastWeekday = last.weekday;
+  if (lastWeekday == 7) {
+    lastWeekday = 0;
+  }
+  last = DateTime(last.year, last.month, last.day + (lastWeekday != 6 ? 6 - lastWeekday : 0));
+  final dayCount = last.difference(first).inDays + 1;
+  var calendar = [];
+  for (var i = 0; i < dayCount; i++) {
+    calendar.add(DateTime(first.year, first.month, first.day + i).month == date.month ? false : true);
+  }
+  return calendar;
+}
+

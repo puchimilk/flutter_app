@@ -127,7 +127,7 @@ class _MonthCalendarView extends State<MonthCalendarView> {
                         child: Text(
                           '${date[index]}',
                           style: TextStyle(
-                            color: dayWeekColor(index),
+                            color: dayOfWeekColor(index),
                             fontSize: 16,
                           ),
                         ),
