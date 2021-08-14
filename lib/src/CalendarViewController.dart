@@ -13,28 +13,6 @@ class MonthView extends StatefulWidget {
   final DateTime? focusDate;
   
   _MonthView createState() => _MonthView();
-  
-  test1(DateTime start, DateTime end, int index) {
-    start = DateTime(start.year, start.month + index, 1);
-    var startWeekday = start.weekday;
-    if (startWeekday == 7) {
-      startWeekday = 0;
-    }
-    start = DateTime(start.year, start.month, start.day - startWeekday);
-    end = DateTime(end.year, end.month + index + 1, 0);
-    var endWeekday = end.weekday;
-    if (endWeekday == 7) {
-      endWeekday = 0;
-    }
-    end = DateTime(end.year, end.month, end.day + (endWeekday != 6 ? 6 - endWeekday : 0));
-    final dayCount = end.difference(start).inDays + 1;
-    var calendar = [];
-    for (var i = 0; i < dayCount; i++) {
-      var _start = DateTime(start.year, start.month, start.day + i);
-      calendar.add(_start.day);
-    }
-    return calendar;
-  }
 }
 
 class _MonthView extends State<MonthView> {
