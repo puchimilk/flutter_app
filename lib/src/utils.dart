@@ -22,7 +22,7 @@ List<dynamic> day(DateTime date) {
   return calendar;
 }
 
-Color dayOfWeekColor(int index) {
+Color weekdayColor(int index) {
   Color color;
   switch (index % 7) {
     case 0:
@@ -58,7 +58,7 @@ List<dynamic> month(DateTime date) {
   return calendar;
 }
 
-int monthCount(DateTime first, DateTime last) {
+int monthNumber(DateTime first, DateTime last) {
   var year = last.year - first.month;
   var month = last.month - first.month;
   return year * 12 + month;

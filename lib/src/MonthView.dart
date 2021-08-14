@@ -17,35 +17,37 @@ class MonthView extends StatefulWidget {
 
 class _MonthView extends State<MonthView> {
   Widget build(BuildContext context) {
-    final controller = PageController(initialPage: 0);
+    final controller = PageController();
     return Expanded(
       child: PageView.builder(
         controller: controller,
-        itemBuilder: (BuildContext context, int i) {
-          final pageIndex = DateTime(widget.firstDate!.year, widget.firstDate!.month + i);
+        itemBuilder: (BuildContext context, int pageIndex) {
+          final pageDate = DateTime(widget.firstDate!.year, widget.firstDate!.month + pageIndex);
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constrains) {
               Size size = Size(constrains.maxWidth, constrains.maxHeight);
-              final dayLength = day(pageIndex).length;
-              final weekNumber = day(pageIndex).length / 7;
+              final monthGridCount = day(pageDate).length;
+              final weeksNumber = day(pageDate).length / 7;
               return Wrap(
-                children: List.generate(dayLength, (index) {
+                children: List.generate(monthGridCount, (listIndex) {
                   return SizedBox(
                     width: size.width / 7,
-                    height: size.height / weekNumber,
+                    height: size.height / weeksNumber,
                     child: GestureDetector(
                       child: Container(
                         decoration: BoxDecoration(
-                          color: month(pageIndex)[index] == true ? Colors.black12 : Colors.white,
+                          color: month(pageDate)[listIndex] == true
+                              ? Colors.black12
+                              : Colors.white,
                           border: Border.all(
                             color: Colors.black26,
                             width: 0.5,
                           ),
                         ),
                         child: Text(
-                          day(pageIndex)[index].toString(),
+                          day(pageDate)[listIndex].toString(),
                           style: TextStyle(
-                            color: dayOfWeekColor(index),
+                            color: weekdayColor(listIndex),
                           ),
                         ),
                       ),
@@ -57,7 +59,7 @@ class _MonthView extends State<MonthView> {
             },
           );
         },
-        itemCount: monthCount(widget.firstDate!, widget.lastDate!),
+        itemCount: monthNumber(widget.firstDate!, widget.lastDate!),
       ),
     );
   }
