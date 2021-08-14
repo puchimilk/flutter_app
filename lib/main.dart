@@ -7,14 +7,6 @@ import 'src/CalendarViewController.dart';
 
 void main() {
   runApp(MyApp());
-  var first = DateTime(1800, 1);
-  var last = DateTime(2099, 12);
-  int monthCount(DateTime first, DateTime last) {
-    var year = last.year - first.month;
-    var month = last.month - first.month;
-    return year * 12 + month;
-  }
-  print(monthCount(first, last));
 }
 
 class MyApp extends StatelessWidget {
