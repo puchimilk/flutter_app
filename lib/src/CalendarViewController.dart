@@ -37,7 +37,7 @@ class MonthView extends StatefulWidget {
 
 class _MonthView extends State<MonthView> {
   Widget build(BuildContext context) {
-    final controller = PageController();
+    final controller = PageController(initialPage: 0);
     return Expanded(
       child: PageView.builder(
         controller: controller,
