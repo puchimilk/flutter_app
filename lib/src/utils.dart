@@ -58,7 +58,7 @@ List<dynamic> month(DateTime date) {
 }
 
 int monthNumber(DateTime first, DateTime last) {
-  var year = last.year - first.month;
-  var month = last.month - first.month;
-  return year * 12 + month;
+  var yearNumber = last.year - first.month;
+  var monthNumber = last.month - first.month;
+  return yearNumber * 12 + monthNumber;
 }
