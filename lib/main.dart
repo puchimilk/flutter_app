@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'src/utils.dart';
+import 'package:flutter_app/src/Test01.dart';
 import 'src/MonthView.dart';
-
-// import 'package:path/path.dart';
-// import 'package:sqflite/sqflite.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,11 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             //MonthCalendarView(),
-            MonthView(
-              firstDate: DateTime(1800, 1),
-              lastDate: DateTime(2099, 12),
-              focusDate: DateTime.now(),
-            ),
           ],
         ),
       ),
