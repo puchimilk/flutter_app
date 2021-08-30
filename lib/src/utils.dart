@@ -62,3 +62,61 @@ int monthNumber(DateTime first, DateTime last) {
   var monthNumber = last.month - first.month;
   return yearNumber * 12 + monthNumber;
 }
+
+bool? isLeapYear(int year) {
+  if ((year % 4 == 0 && year % 100 == 0) || year % 400 == 0) {
+    // うるう年
+    return true;
+  } else {
+    // 平年
+    return false;
+  }
+}
+
+
+int firstWeekday = 1;
+
+DateTime firstDayOfMonth(DateTime date) {
+  return DateTime(date.year, date.month, 1);
+}
+
+DateTime lastDayOfMonth(DateTime date) {
+  return DateTime(date.year, date.month + 1, 0);
+}
+
+// firstWeekdayで指定した曜日を元に週の始めを求める
+DateTime firstDayOfWeek(DateTime date) {
+  var weekday = DateTime(date.year, date.month, date.day).weekday;
+  var calculate = -(weekday - firstWeekday);
+  if (weekday < firstWeekday) {
+    calculate -= 7;
+  }
+  DateTime firstDayOfWeek = DateTime(date.year, date.month, date.day + calculate);
+  return firstDayOfWeek;
+}
+
+// firstWeekdayで指定した曜日を元に週の終わりを求める
+DateTime lastDayOfWeek(DateTime date) {
+  var weekday = DateTime(date.year, date.month, date.day).weekday;
+  var calculate = -(weekday - firstWeekday) + 6;
+  if (weekday < firstWeekday) {
+    calculate -= 7;
+  }
+  DateTime lastDayOfWeek = DateTime(date.year, date.month, date.day + calculate);
+  return lastDayOfWeek;
+}
+
+// firstWeekdayで指定した曜日を元に週の中心を求める
+DateTime middleDayOfWeek(DateTime date) {
+  var weekday = DateTime(date.year, date.month, date.day).weekday;
+  var calculate = -(weekday - firstWeekday) + 3;
+  if (weekday < firstWeekday) {
+    calculate -= 7;
+  }
+  var middleDayOfWeek = DateTime(date.year, date.month, date.day + calculate);
+  return middleDayOfWeek;
+}
+
+int numberOfDaysInMonth(DateTime date) {
+  return DateUtils.getDaysInMonth(date.year, date.month);
+}
