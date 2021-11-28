@@ -32,24 +32,24 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-    - family: Source Han Sans JP Medium
-      fonts:
-        - asset: assets/fonts/SourceHanSansJP-Medium.otf
-    - family: Source Han Sans JP Regular
-      fonts:
-        - asset: assets/fonts/SourceHanSansJP-Regular.otf
-    - family: Source Han Sans JP Normal
-      fonts:
-        - asset: assets/fonts/SourceHanSansJP-Normal.otf
-    - family: Source Han Sans JP Light
-      fonts:
-        - asset: assets/fonts/SourceHanSansJP-Light.otf
-    - family: Source Han Sans JP Heavy
-      fonts:
-        - asset: assets/fonts/SourceHanSansJP-Heavy.otf
     - family: Source Han Sans JP ExtraLight
       fonts:
         - asset: assets/fonts/SourceHanSansJP-ExtraLight.otf
+    - family: Source Han Sans JP Light
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Light.otf
+    - family: Source Han Sans JP Normal
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Normal.otf
+    - family: Source Han Sans JP Regular
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Regular.otf
+    - family: Source Han Sans JP Medium
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Medium.otf
     - family: Source Han Sans JP Bold
       fonts:
         - asset: assets/fonts/SourceHanSansJP-Bold.otf
+    - family: Source Han Sans JP Heavy
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Heavy.otf
