@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 List<dynamic> day(DateTime date) {
   var first = DateTime(date.year, date.month, 1);
@@ -73,50 +74,40 @@ bool? isLeapYear(int year) {
   }
 }
 
+final firstDayOfWeek = StartingWeekday.sunday;
 
-int firstWeekday = 1;
-
-DateTime firstDayOfMonth(DateTime date) {
-  return DateTime(date.year, date.month, 1);
+enum StartingWeekday {
+  sunday,
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday
 }
 
-DateTime lastDayOfMonth(DateTime date) {
-  return DateTime(date.year, date.month + 1, 0);
+DateTime firstDayOfMonth(DateTime month) {
+  return DateTime.utc(month.year, month.month, 1);
 }
 
-// firstWeekdayで指定した曜日を元に週の始めを求める
-DateTime firstDayOfWeek(DateTime date) {
-  var weekday = DateTime(date.year, date.month, date.day).weekday;
-  var calculate = -(weekday - firstWeekday);
-  if (weekday < firstWeekday) {
-    calculate -= 7;
-  }
-  DateTime firstDayOfWeek = DateTime(date.year, date.month, date.day + calculate);
-  return firstDayOfWeek;
+DateTime lastDayOfMonth(DateTime month) {
+  return DateTime.utc(month.year, month.month + 1, 0);
 }
 
-// firstWeekdayで指定した曜日を元に週の終わりを求める
-DateTime lastDayOfWeek(DateTime date) {
-  var weekday = DateTime(date.year, date.month, date.day).weekday;
-  var calculate = -(weekday - firstWeekday) + 6;
-  if (weekday < firstWeekday) {
-    calculate -= 7;
-  }
-  DateTime lastDayOfWeek = DateTime(date.year, date.month, date.day + calculate);
-  return lastDayOfWeek;
+DateTime getFirstDayOfWeek(DateTime week) {
+  final weekday = week.weekday;
+  final x = weekday - getWeekdayNumber(firstDayOfWeek); 
+  final y = x % 7;
+  return week.subtract(Duration(days: y));
 }
 
-// firstWeekdayで指定した曜日を元に週の中心を求める
-DateTime middleDayOfWeek(DateTime date) {
-  var weekday = DateTime(date.year, date.month, date.day).weekday;
-  var calculate = -(weekday - firstWeekday) + 3;
-  if (weekday < firstWeekday) {
-    calculate -= 7;
-  }
-  var middleDayOfWeek = DateTime(date.year, date.month, date.day + calculate);
-  return middleDayOfWeek;
+DateTime getLastDayOfWeek(DateTime week) {
+  final weekday = week.weekday;
+  final x = 6 - weekday + getWeekdayNumber(firstDayOfWeek);
+  final y = x % 7;
+  return week.add(Duration(days: y));
 }
 
-int numberOfDaysInMonth(DateTime date) {
-  return DateUtils.getDaysInMonth(date.year, date.month);
+int getWeekdayNumber(StartingWeekday weekday) {
+  return StartingWeekday.values.indexOf(weekday);
 }
