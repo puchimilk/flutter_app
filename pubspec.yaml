@@ -23,9 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sqflite:
-  path:
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.4
   
 dev_dependencies:
   flutter_test:
@@ -34,50 +32,24 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-    - family: Source Han Sans
+    - family: Source Han Sans JP Medium
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Medium.otf
+    - family: Source Han Sans JP Regular
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Regular.otf
+    - family: Source Han Sans JP Normal
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Normal.otf
+    - family: Source Han Sans JP Light
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Light.otf
+    - family: Source Han Sans JP Heavy
+      fonts:
+        - asset: assets/fonts/SourceHanSansJP-Heavy.otf
+    - family: Source Han Sans JP ExtraLight
       fonts:
         - asset: assets/fonts/SourceHanSansJP-ExtraLight.otf
-          weight: 100
-        - asset: assets/fonts/SourceHanSansJP-Light.otf
-          weight: 200
-        - asset: assets/fonts/SourceHanSansJP-Normal.otf
-          weight: 300
-        - asset: assets/fonts/SourceHanSansJP-Regular.otf
-          weight: 400
-        - asset: assets/fonts/SourceHanSansJP-Medium.otf
-          weight: 500
+    - family: Source Han Sans JP Bold
+      fonts:
         - asset: assets/fonts/SourceHanSansJP-Bold.otf
-          weight: 700
-        - asset: assets/fonts/SourceHanSansJP-Heavy.otf
-          weight: 900
-    - family: Archivo Black
-      fonts:
-        - asset: assets/fonts/ArchivoBlack-Regular.ttf
-    - family: Noto Sans JP
-      fonts:
-        - asset: assets/fonts/NotoSansJP-Thin.otf
-          weight: 100
-        - asset: assets/fonts/NotoSansJP-Light.otf
-          weight: 300
-        - asset: assets/fonts/NotoSansJP-Regular.otf
-          weight: 400
-        - asset: assets/fonts/NotoSansJP-Medium.otf
-          weight: 500
-        - asset: assets/fonts/NotoSansJP-Bold.otf
-          weight: 700
-        - asset: assets/fonts/NotoSansJP-Black.otf
-          weight: 900
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Thin.ttf
-          weight: 100
-        - asset: assets/fonts/Roboto-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Roboto-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Roboto-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Roboto-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Roboto-Black.ttf
-          weight: 900
