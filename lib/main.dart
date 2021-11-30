@@ -218,6 +218,9 @@ class _MyHomePageState extends State<MyHomePage> {
           highlightColor: Colors.transparent,
           onPressed: () => showModalBottomSheet(
             context: context,
+            constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.945),
+            isScrollControlled: true,
+            enableDrag: false,
             builder: (context) => Navigator(
               onGenerateRoute: (context) => MaterialPageRoute<ModalPage>(
                 builder: (context) => ModalPage(),
