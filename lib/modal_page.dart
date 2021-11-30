@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'setting_page1.dart';
+
 class ModalPage extends StatefulWidget {
   ModalPage();
 
@@ -45,7 +47,7 @@ class _ModalPageState extends State<ModalPage> {
                     ),
                   ),
                   trailing: Icon(Icons.chevron_right),
-                  onTap: () {},
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => TestPage1())),
                 ),
                 ListTile(
                   leading: Icon(Icons.today),
