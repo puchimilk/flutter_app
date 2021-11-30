@@ -1,6 +1,6 @@
 # flutter_app
 
-I creating a calendar application with Flutter.
+I am creating a calendar application with Flutter.
 
 ## Preview
 
