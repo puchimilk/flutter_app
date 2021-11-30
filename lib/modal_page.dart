@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'setting_page1.dart';
 
 class ModalPage extends StatefulWidget {
-  ModalPage();
+  ModalPage({Key? key}) : super(key: key);
 
   State<ModalPage> createState() => _ModalPageState();
 }
