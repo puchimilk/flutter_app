@@ -290,4 +290,17 @@ class Calendar {
 
     return false;
   }
+
+  int locationWeekday(DateTime date) {
+    final week = ((date.day + 6) / 7).floor();
+    return week;
+  }
+
+  anyLocationWeekday(DateTime date, int count, int weekday) {
+    // 第n曜日を求めたい
+    final first = firstDayOfMonth(date);
+    final week = ((first.day + 6) / 7).floor();
+    debugPrint('$week');
+    return DateTime(0);
+  }
 }

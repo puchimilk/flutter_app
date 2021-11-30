@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'calendar.dart';
+import 'modal_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -86,32 +87,44 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      debugPrint('closed');
-                      Navigator.of(context).pop();
-                    },
-                    icon: const Icon(
-                      Icons.close,
-                      size: 24,
-                    ),
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    topRight: Radius.circular(8),
                   ),
-                  const Text(
-                    '設定',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        debugPrint('closed');
+                        Navigator.of(context).pop();
+                      },
+                      icon: const Icon(
+                        Icons.close,
+                        size: 24,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 48,
-                    height: 48,
-                  )
-                ],
+                    const Text(
+                      '設定',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        height: 1.2,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 48,
+                      height: 48,
+                    )
+                  ],
+                ),
               ),
               Column(
                 children: [
@@ -197,7 +210,14 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: IconButton(
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
-          onPressed: () => showSettingBottomSheet(),
+          onPressed: () => showModalBottomSheet(
+            context: context,
+            builder: (context) => Navigator(
+              onGenerateRoute: (context) => MaterialPageRoute<ModalPage>(
+                builder: (context) => ModalPage(),
+              ),
+            ),
+          ),
           padding: const EdgeInsets.all(12),
           icon: const Icon(
             Icons.settings,
