@@ -12,22 +12,67 @@ class _ModalPageState extends State<ModalPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
           icon: Icon(Icons.close),
         ),
         title: Center(
           child: Text('タイトル'),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.close),
-          ),
-        ],
         elevation: 0,
       ),
       body: Container(
-        height: 300,
+        height: MediaQuery.of(context).size.height * 0.945,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              child: Text(
+                '設定',
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+            ListView(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                ListTile(
+                  leading: Icon(Icons.today),
+                  title: Text(
+                    '設定1',
+                    style: TextStyle(
+                      height: 1.2,
+                    ),
+                  ),
+                  trailing: Icon(Icons.chevron_right),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(Icons.today),
+                  title: Text(
+                    '設定2',
+                    style: TextStyle(
+                      height: 1.2,
+                    ),
+                  ),
+                  trailing: Icon(Icons.chevron_right),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(Icons.today),
+                  title: Text(
+                    '設定3',
+                    style: TextStyle(
+                      height: 1.2,
+                    ),
+                  ),
+                  trailing: Icon(Icons.chevron_right),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
