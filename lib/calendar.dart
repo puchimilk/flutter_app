@@ -145,7 +145,7 @@ class Calendar {
     final first = firstDayOfMonth(date);
     final days = beforeDays(first);
     final start = first.subtract(Duration(days: days));
-    var list = <DateTime>[];
+    List<DateTime> list = <DateTime>[];
     for (var i = 0; i < dayCount; i++) {
       final day = start.add(Duration(days: i));
       list.add(day);
@@ -154,7 +154,7 @@ class Calendar {
   }
 
   List<int> days(List<DateTime> dates) {
-    var list = <int>[];
+    List<int> list = <int>[];
     for (var i = 0; i < dates.length; i++) {
       list.add(dates[i].day);
     }

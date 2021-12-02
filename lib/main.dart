@@ -4,11 +4,11 @@ import 'calendar.dart';
 import 'modal_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +24,13 @@ class MyApp extends StatelessWidget {
           },
         ),
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -237,6 +237,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  int _currentIndex = 0;
+  
+  void _onTap(int value) {
+    setState(() {
+      _currentIndex = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     int initialPage = calendar.sample11();
@@ -344,7 +352,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             debugPrint('$sample10');
                             final holiday = calendar.isHoliday(sample10) ? '祝日です' : '祝日ではありません';
                             debugPrint(holiday);
-                            showEventList(sample10);
+                            //showEventList(sample10);
                           },
                         );
                       }),
@@ -361,33 +369,30 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            label: 'MONTH',
-            icon: Icon(Icons.calendar_view_month),
+            label: 'red',
+            icon: Icon(
+              Icons.layers,
+              color: Colors.red,
+            ),
           ),
           BottomNavigationBarItem(
-            label: 'WEEK',
-            icon: Icon(Icons.calendar_view_week),
+            label: 'green',
+            icon: Icon(
+              Icons.layers,
+              color: Colors.green,
+            ),
           ),
           BottomNavigationBarItem(
-            label: 'TODO',
-            icon: Icon(Icons.toc),
+            label: 'blue',
+            icon: Icon(
+              Icons.layers,
+              color: Colors.blue,
+            ),
           ),
         ],
-        onTap: ((int index) {
-          switch (index) {
-            case 0:
-              print('index: 0');
-              break;
-            case 1:
-              print('index: 1');
-              break;
-            case 2:
-              print('index: 2');
-              break;
-            default:
-              break;
-          }
-        }),
+        selectedItemColor: Colors.grey,
+        currentIndex: _currentIndex,
+        onTap: _onTap,
       ),
     );
   }
