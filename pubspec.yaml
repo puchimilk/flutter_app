@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.4
   riverpod: ^1.0.0
+  csv: ^5.0.1
+  charset_converter: ^2.0.0
   
 dev_dependencies:
   flutter_test:
@@ -54,3 +56,6 @@ flutter:
     - family: Source Han Sans JP Heavy
       fonts:
         - asset: assets/fonts/SourceHanSansJP-Heavy.otf
+  
+  assets:
+    - assets/syukujitsu.csv

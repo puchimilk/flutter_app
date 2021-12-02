@@ -4,11 +4,10 @@ import 'calendar.dart';
 import 'modal_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
     int sat = ((index + 1) + calendar.startingWeekdayNumber()) % 7;
     int sun = (index + calendar.startingWeekdayNumber()) % 7;
     if (sun == 0) {
-      return Colors.red;
+      return Color(0xFFe8383d);
     } else if (sat == 0) {
-      return Colors.blue;
+      return Color(0xFF00afcc);
     }
     return Colors.black;
   }
@@ -55,12 +54,19 @@ class _MyHomePageState extends State<MyHomePage> {
     int sun = (grid + calendar.startingWeekdayNumber()) % 7;
     final sample10 = calendar.sample10(page, grid);
     bool holiday = calendar.isHoliday(sample10);
-    if (sun == 0 || holiday) {
-      return Colors.red;
-    } else if (sat == 0) {
-      return Colors.blue;
+    bool thisMonth = calendar.isThisMonth(page, grid);
+    if (thisMonth && sun == 0 || thisMonth && holiday) {
+      return Color(0xFFe8383d);
+    } else if (thisMonth && sat == 0) {
+      return Color(0xFF00afcc);
+    } else if (thisMonth) {
+      return Colors.black;
     }
-    return Colors.black;
+    return Colors.grey;
+    // 土曜日
+    // 日曜日・祝日
+    // 平日
+    // 先月・来月
   }
 
   List<String> weekdays() {
@@ -173,10 +179,13 @@ class _MyHomePageState extends State<MyHomePage> {
     if (result12) {
       return Center(
         child: Container(
-          width: 18,
-          height: 18,
-          decoration: const BoxDecoration(
-            color: Colors.greenAccent,
+          width: 20,
+          height: 20,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.greenAccent,
+              width: 2,
+            ),
             borderRadius: BorderRadius.all(Radius.circular(4)),
           ),
         ),
@@ -187,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Color thisMonth1(int page, int grid) {
-    final result13 = calendar.sample13(page, grid);
+    final result13 = calendar.isThisMonth(page, grid);
     if (result13) {
       return Colors.transparent;
     } else {
@@ -195,13 +204,40 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Color thisMonth2(int page, int grid) {
-    final result13 = calendar.sample13(page, grid);
-    if (result13) {
-      return Colors.transparent;
-    } else {
-      return Colors.black12;
-    }
+  void showEventList(DateTime date) {
+    debugPrint('$dateを受け取りました');
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return Container(
+          height: 300,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(8),
+              topRight: Radius.circular(8),
+            ),
+            border: Border.all(
+              color: Colors.black26,
+            ),
+          ),
+          child: Column(
+            children: [
+              Text(
+                '${date.year}年${date.month}月${date.day}日',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -231,7 +267,7 @@ class _MyHomePageState extends State<MyHomePage> {
             size: 24,
           ),
         ),
-        title: const Center(
+        title: Center(
           child: Text(
             'カレンダー',
             style: TextStyle(fontSize: 18),
@@ -300,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: List.generate(sample5, (gridIndex) {
                         return GestureDetector(
                           child: Container(
-                            color: thisMonth1(pageIndex, gridIndex),
+                            //color: thisMonth1(pageIndex, gridIndex),
                             child: Stack(
                               children: [
                                 today(pageIndex, gridIndex),
@@ -322,6 +358,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             debugPrint('$sample10');
                             final holiday = calendar.isHoliday(sample10) ? '祝日です' : '祝日ではありません';
                             debugPrint(holiday);
+                            showEventList(sample10);
                           },
                         );
                       }),

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'model/holiday_model.dart';
+import 'utils.dart';
 
 enum StartingWeekday {
   sunday,
@@ -179,7 +183,7 @@ class Calendar {
     return false;
   }
 
-  bool sample13(int page, int grid) {
+  bool isThisMonth(int page, int grid) {
     final dateA = sample9(page);
     final p = sample9(page);
     final dateB = dateList(p)[grid];
@@ -190,10 +194,32 @@ class Calendar {
     return false;
   }
 
+  Future<List<HolidayModel>> _loadCSV() async {
+    List<HolidayModel> list = [];
+    final csv = await rootBundle.loadString('assets/syukujitsu.csv');
+    for (String line in csv.split('\r\n')) {
+      List rows = line.split(',');
+      HolidayModel rowData = HolidayModel(
+        date: stringToDate(rows[0]),
+        name: rows[1],
+      );
+
+      list.add(rowData);
+    }
+    return list;
+  }
+
   bool isHoliday(DateTime date) {
     // 1970年以降
     // 振替休日をどうするか
-
+    
+    _loadCSV().then((value) {
+      for (var i = 0; i < value.length; i++) {
+        if (date == value[i].date) return true;
+      }
+    });
+    
+    /*
     // 元日
     if (date.month == 1 && date.day == 1) return true;
     // 成人式
@@ -287,6 +313,7 @@ class Calendar {
     if (date.year >= 1973) {}
     // 国民の休日
     if (date.year >= 1988) {}
+    */
 
     return false;
   }
