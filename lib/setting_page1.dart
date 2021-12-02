@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/calendar.dart';
 
-class TestPage1 extends StatefulWidget {
-  TestPage1({Key? key}) : super(key: key);
+class SettingPage1 extends StatefulWidget {
+  SettingPage1({Key? key}) : super(key: key);
 
-  State<TestPage1> createState() => _TestPage1State();
+  State<SettingPage1> createState() => _SettingPage1State();
 }
 
-class _TestPage1State extends State<TestPage1> {
+class _SettingPage1State extends State<SettingPage1> {
   List<String> weekdays = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
   StartingWeekday startingWeekday = StartingWeekday.sunday;
 
@@ -16,12 +16,11 @@ class _TestPage1State extends State<TestPage1> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.pop(context, startingWeekday),
           icon: Icon(Icons.arrow_back),
         ),
-        title: Center(
-          child: Text('曜日'),
-        ),
+        centerTitle: true,
+        title: Text('曜日'),
         elevation: 0,
       ),
       body: Container(

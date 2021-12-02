@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/calendar.dart';
 
 import 'setting_page1.dart';
 
@@ -9,17 +10,18 @@ class ModalPage extends StatefulWidget {
 }
 
 class _ModalPageState extends State<ModalPage> {
+  StartingWeekday startingWeekday = StartingWeekday.sunday;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(startingWeekday),
           icon: Icon(Icons.close),
         ),
-        title: Center(
-          child: Text('タイトル'),
-        ),
+        centerTitle: true,
+        title: Text('設定一覧'),
         elevation: 0,
       ),
       body: Container(
@@ -47,7 +49,7 @@ class _ModalPageState extends State<ModalPage> {
                     ),
                   ),
                   trailing: Icon(Icons.chevron_right),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => TestPage1())),
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage1())).then((value) => {startingWeekday = value, print(startingWeekday)}),
                 ),
                 ListTile(
                   leading: Icon(Icons.today),

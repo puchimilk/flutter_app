@@ -213,13 +213,6 @@ class Calendar {
     // 1970年以降
     // 振替休日をどうするか
     
-    _loadCSV().then((value) {
-      for (var i = 0; i < value.length; i++) {
-        if (date == value[i].date) return true;
-      }
-    });
-    
-    /*
     // 元日
     if (date.month == 1 && date.day == 1) return true;
     // 成人式
@@ -313,7 +306,6 @@ class Calendar {
     if (date.year >= 1973) {}
     // 国民の休日
     if (date.year >= 1988) {}
-    */
 
     return false;
   }

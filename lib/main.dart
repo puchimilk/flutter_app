@@ -6,6 +6,7 @@ import 'modal_page.dart';
 void main() {
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
@@ -63,10 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
       return Colors.black;
     }
     return Colors.grey;
-    // 土曜日
-    // 日曜日・祝日
-    // 平日
-    // 先月・来月
   }
 
   List<String> weekdays() {
@@ -262,16 +259,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           padding: const EdgeInsets.all(12),
-          icon: const Icon(
-            Icons.settings,
-            size: 24,
-          ),
+          icon: const Icon(Icons.settings),
         ),
-        title: Center(
-          child: Text(
-            'カレンダー',
-            style: TextStyle(fontSize: 18),
-          ),
+        centerTitle: true,
+        title: Text(
+          'カレンダー',
+          style: TextStyle(fontSize: 18),
         ),
         actions: [
           IconButton(
@@ -279,10 +272,7 @@ class _MyHomePageState extends State<MyHomePage> {
             highlightColor: Colors.transparent,
             onPressed: () => controller.jumpToPage(initialPage),
             padding: const EdgeInsets.all(12),
-            icon: const Icon(
-              Icons.today,
-              size: 24,
-            ),
+            icon: const Icon(Icons.today),
           ),
         ],
         elevation: 0,
@@ -369,6 +359,7 @@ class _MyHomePageState extends State<MyHomePage> {
               itemCount: calendar.monthCount(),
             ),
           ),
+          Text('n曜日'),
         ],
       ),
     );
