@@ -44,6 +44,7 @@ class Calendar {
     return date.add(Duration(days: days));
   }
 
+  /*
   int abc(int page) {
     var baseDate = DateTime(startDate.year, startDate.month + page, 1);
     var first = (firstDayOf(baseDate).weekday + 7) % 7;
@@ -54,7 +55,9 @@ class Calendar {
       return 35;
     }
   }
+  */
 
+  /*
   List<int> bcd(int page) {
     var list = <int>[];
 
@@ -82,6 +85,7 @@ class Calendar {
 
     return list;
   }
+  */
 
   int monthCount() {
     return DateUtils.monthDelta(startDate, endDate);
