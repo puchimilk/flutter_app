@@ -275,7 +275,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: const Icon(Icons.today),
           ),
         ],
-        elevation: 0,
+        elevation: 1,
         toolbarHeight: 48,
         leadingWidth: 48,
       ),

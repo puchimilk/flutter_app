@@ -22,7 +22,9 @@ class _ModalPageState extends State<ModalPage> {
         ),
         centerTitle: true,
         title: Text('設定一覧'),
-        elevation: 0,
+        elevation: 1,
+        toolbarHeight: 48,
+        leadingWidth: 48,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height * 0.945,

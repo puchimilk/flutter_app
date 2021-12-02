@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 
-import 'model/holiday_model.dart';
-import 'utils.dart';
+//import 'model/holiday_model.dart';
+//import 'utils.dart';
 
 enum StartingWeekday {
   sunday,
@@ -194,6 +194,7 @@ class Calendar {
     return false;
   }
 
+  /*
   Future<List<HolidayModel>> _loadCSV() async {
     List<HolidayModel> list = [];
     final csv = await rootBundle.loadString('assets/syukujitsu.csv');
@@ -208,6 +209,7 @@ class Calendar {
     }
     return list;
   }
+  */
 
   bool isHoliday(DateTime date) {
     // 1970年以降
