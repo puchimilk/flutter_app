@@ -19,9 +19,13 @@ class _ModalPageState extends State<ModalPage> {
         leading: IconButton(
           onPressed: () => Navigator.of(context, rootNavigator: true).pop(startingWeekday),
           icon: Icon(Icons.close),
+          padding: EdgeInsets.all(12),
         ),
         centerTitle: true,
-        title: Text('設定一覧'),
+        title: Text(
+          '設定',
+          style: TextStyle(fontSize: 18),
+        ),
         elevation: 1,
         toolbarHeight: 48,
         leadingWidth: 48,

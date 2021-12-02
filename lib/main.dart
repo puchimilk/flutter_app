@@ -245,8 +245,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
           onPressed: () => showModalBottomSheet(
             context: context,
             constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.945),
@@ -268,8 +266,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         actions: [
           IconButton(
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
             onPressed: () => controller.jumpToPage(initialPage),
             padding: const EdgeInsets.all(12),
             icon: const Icon(Icons.today),
@@ -361,6 +357,37 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Text('n曜日'),
         ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            label: 'MONTH',
+            icon: Icon(Icons.calendar_view_month),
+          ),
+          BottomNavigationBarItem(
+            label: 'WEEK',
+            icon: Icon(Icons.calendar_view_week),
+          ),
+          BottomNavigationBarItem(
+            label: 'TODO',
+            icon: Icon(Icons.toc),
+          ),
+        ],
+        onTap: ((int index) {
+          switch (index) {
+            case 0:
+              print('index: 0');
+              break;
+            case 1:
+              print('index: 1');
+              break;
+            case 2:
+              print('index: 2');
+              break;
+            default:
+              break;
+          }
+        }),
       ),
     );
   }

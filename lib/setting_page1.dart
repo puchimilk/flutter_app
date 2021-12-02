@@ -21,7 +21,9 @@ class _SettingPage1State extends State<SettingPage1> {
         ),
         centerTitle: true,
         title: Text('曜日'),
-        elevation: 0,
+        elevation: 1,
+        toolbarHeight: 48,
+        leadingWidth: 48,
       ),
       body: Container(
         child: Column(
