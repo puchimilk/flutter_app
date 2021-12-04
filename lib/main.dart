@@ -1,11 +1,32 @@
+import 'dart:typed_data';
+
+import 'package:charset_converter/charset_converter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/monthly_page.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 import 'modal_page.dart';
-import 'package:riverpod/riverpod.dart';
+import 'model/holiday_model.dart';
+import 'monthly_page.dart';
+import 'utils.dart';
 
 void main() {
   runApp(const MyApp());
+}
+
+Future<List<HolidayModel>> loadAsset() async {
+  ByteData byteData = await rootBundle.load('assets/syukujitsu.csv');
+  Uint8List uint8list = byteData.buffer.asUint8List();
+  String? decode = await CharsetConverter.decode('cp932', uint8list);
+  String trim = decode!.trim();
+  List<HolidayModel> list = [];
+  for (String line in trim.split('\r\n')) {
+    List<String> rows = line.split(',');
+    if (rows[0] == '国民の祝日・休日月日' && rows[1] == '国民の祝日・休日名称') continue;
+    DateTime date = stringToDate(rows[0]);
+    HolidayModel holidayModel = HolidayModel(date: date, name: rows[1]);
+    list.add(holidayModel);
+  }
+  return list;
 }
 
 class MyApp extends StatelessWidget {
