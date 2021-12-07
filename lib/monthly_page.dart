@@ -287,7 +287,6 @@ class _MonthlyPageState extends State<MonthlyPage> {
                         onTap: () {
                           final sample10 = calendar.sample10(pageIndex, gridIndex);
                           debugPrint('$sample10');
-
                           calendar.isHoliday(sample10).then((value) {
                             final holiday = value ? '祝日です' : '祝日ではありません';
                             debugPrint('$holiday');
@@ -302,7 +301,6 @@ class _MonthlyPageState extends State<MonthlyPage> {
             itemCount: calendar.monthCount(),
           ),
         ),
-        Text('n曜日'),
       ],
     );
   }
