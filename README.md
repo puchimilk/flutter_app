@@ -9,4 +9,4 @@ I am creating a calendar application with Flutter.
 
 ## Preview
 
-<img src="https://user-images.githubusercontent.com/50408066/144003005-2e2f7da0-c5b6-422e-8ebc-2df27b7f5d34.png" width="320px">
+<img src="https://user-images.githubusercontent.com/50408066/145006584-ecb67036-96ab-4b09-8af2-219d81f181eb.png" width="320px">
