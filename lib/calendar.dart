@@ -199,23 +199,6 @@ class Calendar {
     return false;
   }
 
-  /*
-  Future<List<HolidayModel>> _loadCSV() async {
-    List<HolidayModel> list = [];
-    final csv = await rootBundle.loadString('assets/syukujitsu.csv');
-    for (String line in csv.split('\r\n')) {
-      List rows = line.split(',');
-      HolidayModel rowData = HolidayModel(
-        date: stringToDate(rows[0]),
-        name: rows[1],
-      );
-
-      list.add(rowData);
-    }
-    return list;
-  }
-  */
-
   int locationWeekday(DateTime date) {
     final week = ((date.day + 6) / 7).floor();
     return week;
@@ -229,7 +212,7 @@ class Calendar {
     return DateTime(0);
   }
   
-  Future<List<DateTime>> loadAsset() async {
+  Future<List<DateTime>> loadCsv() async {
     ByteData byteData = await rootBundle.load('assets/syukujitsu.csv');
     Uint8List uint8list = byteData.buffer.asUint8List();
     String? decode = await CharsetConverter.decode('cp932', uint8list);
@@ -245,7 +228,7 @@ class Calendar {
   }
   
   Future<bool> isHoliday(DateTime date) async {
-    var result = await loadAsset();
+    var result = await loadCsv();
     for (var i = 0; i < result.length; i++) {
       if (DateUtils.isSameDay(result[i], date)) {
         return true;
