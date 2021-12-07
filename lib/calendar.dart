@@ -216,107 +216,6 @@ class Calendar {
   }
   */
 
-  bool isHoliday(DateTime date) {
-    // 1970年以降
-    // 振替休日をどうするか
-    
-    // 元日
-    if (date.month == 1 && date.day == 1) return true;
-    // 成人式
-    if (date.year <= 1999) {
-      // 1999年以前
-      if (date.month == 1 && date.day == 15) return true;
-    } else if (date.year >= 2000) {
-      // 2000年以降
-      // 1月の第2月曜日
-    }
-    // 建国記念日
-    if (date.year >= 1967 && date.month == 2 && date.day == 11) return true;
-    // 天皇誕生日
-    if (date.year <= 1989 && date.month == 4 && date.day == 29) {
-      // 1989年以前
-      return true;
-    } else if (date.year <= 2019 && date.month == 12 && date.day == 23) {
-      // 2019年以前
-      return true;
-    } else if (date.year >= 2020 && date.month == 2 && date.day == 23) {
-      // 2020年以前
-      return true;
-    }
-    // 春分の日
-
-    // みどりの日
-    // 1989年以降
-    if (date.year >= 1989) {
-      // 2006年以前
-      if (date.year <= 2006) {
-        if (date.month == 4 && date.day == 29) return true;
-      }
-      // 2007年以降
-      if (date.year >= 2007) {
-        if (date.month == 5 && date.day == 4) return true;
-      }
-    }
-    // 昭和の日
-    if (date.year >= 2007 && date.month == 4 && date.day == 29) return true;
-    // 憲法記念日
-    if (date.month == 5 && date.day == 3) return true;
-    // こどもの日
-    if (date.month == 5 && date.day == 5) return true;
-    // 海の日
-    // 1996年以降
-    if (date.year >= 1996) {
-      if (date.year <= 2002) {
-        if (date.month == 7 && date.day == 20) return true;
-      }
-      if (date.year >= 2003) {
-        // 7月第3月曜日
-      }
-    }
-    // 山の日
-    if (date.year >= 2016 && date.month == 8 && date.day == 11) return true;
-    // 敬老の日
-    if (date.year >= 1966) {
-      if (date.year <= 2002) {
-        if (date.month == 9 && date.day == 15) return true;
-      }
-      if (date.year >= 2003) {
-        // 9月の第3月曜日
-      }
-    }
-    // 秋分の日
-
-    // 体育の日・スポーツの日
-    // 1966年以降
-    if (date.year >= 1966) {
-      // 1999年以前
-      if (date.year <= 1999) {
-        if (date.month == 10 && date.day == 10) return true;
-      }
-      // 2000年以降
-      if (date.year >= 2000) {
-        // 2019年以前
-        if (date.year <= 2019) {
-          // 10月の第2月曜日
-        }
-      }
-      // スポーツの日
-      if (date.year >= 2020) {
-        // 10月の第2月曜日
-      }
-    }
-    // 文化の日
-    if (date.month == 11 && date.day == 3) return true;
-    // 勤労感謝の日
-    if (date.month == 11 && date.day == 23) return true;
-    // 振替休日
-    if (date.year >= 1973) {}
-    // 国民の休日
-    if (date.year >= 1988) {}
-
-    return false;
-  }
-
   int locationWeekday(DateTime date) {
     final week = ((date.day + 6) / 7).floor();
     return week;
@@ -345,16 +244,16 @@ class Calendar {
     return list;
   }
   
-  bool isHolidays(DateTime date) {
-    loadAsset().then((value) async {
-      debugPrint('value: ${value.toString()}');
-      for (DateTime line in value) {
-        debugPrint('line: $line');
-        if (DateUtils.isSameDay(date, line)) {
-          return true;
-        }
+  Future<bool> isHoliday(DateTime date) async {
+    var result = await loadAsset();
+    for (var i = 0; i < result.length; i++) {
+      if (DateUtils.isSameDay(result[i], date)) {
+        return true;
+      } else {
+        continue;
       }
-    });
+    }
+    
     return false;
   }
 }

@@ -23,11 +23,11 @@ class _MonthlyPageState extends State<MonthlyPage> {
     return Colors.black;
   }
 
-  Color holidayColor(int page, int grid) {
+  Future<Color> holidayColor(int page, int grid) async {
     int sat = ((grid + 1) + calendar.startingWeekdayNumber()) % 7;
     int sun = (grid + calendar.startingWeekdayNumber()) % 7;
     final sample10 = calendar.sample10(page, grid);
-    bool holiday = calendar.isHoliday(sample10);
+    final holiday = await calendar.isHoliday(sample10);
     bool thisMonth = calendar.isThisMonth(page, grid);
     if (thisMonth && sun == 0 || thisMonth && holiday) {
       return Color(0xFFe8383d);
@@ -267,13 +267,18 @@ class _MonthlyPageState extends State<MonthlyPage> {
                             children: [
                               today(pageIndex, gridIndex),
                               Center(
-                                child: Text(
-                                  sample8[gridIndex].toString(),
-                                  style: TextStyle(
-                                    color: holidayColor(pageIndex, gridIndex),
-                                    fontSize: 12,
-                                    height: 1.1,
-                                  ),
+                                child: FutureBuilder(
+                                  future: holidayColor(pageIndex, gridIndex),
+                                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                    return Text(
+                                      sample8[gridIndex].toString(),
+                                      style: TextStyle(
+                                        color: snapshot.data,
+                                        height: 1.2,
+                                        fontSize: 12,
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                             ],
@@ -282,9 +287,11 @@ class _MonthlyPageState extends State<MonthlyPage> {
                         onTap: () {
                           final sample10 = calendar.sample10(pageIndex, gridIndex);
                           debugPrint('$sample10');
-                          final holiday = calendar.isHoliday(sample10) ? '祝日です' : '祝日ではありません';
-                          debugPrint(holiday);
-                          //showEventList(sample10);
+
+                          calendar.isHoliday(sample10).then((value) {
+                            final holiday = value ? '祝日です' : '祝日ではありません';
+                            debugPrint('$holiday');
+                          });
                         },
                       );
                     }),

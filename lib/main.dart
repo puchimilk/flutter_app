@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/calendar.dart';
+import 'package:flutter_app/monthly_page.dart';
 
 import 'modal_page.dart';
 
 void main() {
   runApp(const MyApp());
+  DateTime date = DateTime(1970, 1, 2);
+  Calendar().isHoliday(date).then((value) {
+    debugPrint('$value');
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -80,6 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
         toolbarHeight: 48,
         leadingWidth: 48,
       ),
+      body: MonthlyPage(),
+      /*
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           final double width = 24;
@@ -170,6 +178,7 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         },
       ),
+      */
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
