@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:charset_converter/charset_converter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'utils.dart';
 
 enum StartingWeekday {
@@ -211,12 +212,13 @@ class Calendar {
     debugPrint('$week');
     return DateTime(0);
   }
-  
+
   Future<List<DateTime>> loadCsv() async {
-    ByteData byteData = await rootBundle.load('assets/syukujitsu.csv');
-    Uint8List uint8list = byteData.buffer.asUint8List();
-    String? decode = await CharsetConverter.decode('cp932', uint8list);
-    String trim = decode!.trim();
+    final ByteData byteData = await rootBundle.load('assets/syukujitsu.csv');
+    final Uint8List uint8list = byteData.buffer.asUint8List();
+    final String? decode = await CharsetConverter.decode('cp932', uint8list);
+    final String trim = decode!.trim();
+
     List<DateTime> list = [];
     for (String line in trim.split('\r\n')) {
       List<String> rows = line.split(',');
@@ -226,7 +228,7 @@ class Calendar {
     }
     return list;
   }
-  
+
   Future<bool> isHoliday(DateTime date) async {
     var result = await loadCsv();
     for (var i = 0; i < result.length; i++) {
@@ -236,7 +238,6 @@ class Calendar {
         continue;
       }
     }
-    
     return false;
   }
 }
