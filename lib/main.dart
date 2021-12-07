@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/utils.dart';
 
 import 'modal_page.dart';
 
@@ -83,66 +84,95 @@ class _MyHomePageState extends State<MyHomePage> {
         toolbarHeight: 48,
         leadingWidth: 48,
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 50 * 24,
-          child: Stack(
-            children: [
-              Positioned(
-                top: 0,
-                left: 0,
-                width: MediaQuery.of(context).size.width,
-                height: 50 * 24,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: List.generate(24, (index) {
-                      return Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(color: Colors.black12),
-                          ),
-                        ),
-                        child: Text('$index hour'),
-                      );
-                    }),
-                  ),
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          final double width = 24;
+          final double height = 80;
+          final int min = 60;
+          final double min15 = (height / min) * 15;
+          final double min30 = (height / min) * 30;
+          final double min45 = (height / min) * 45;
+          final double min60 = (height / min) * 60;
+          final TextStyle textStyle = TextStyle(
+            height: 1.2,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          );
+          return SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Row(
+              children: [
+                Column(
+                  children: List.generate(24, (index) {
+                    return Container(
+                      width: width,
+                      height: height,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black12),
+                      ),
+                      child: Text('$index'),
+                    );
+                  }),
                 ),
-              ),
-              SingleChildScrollView(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height - 58 - 72,
+                SizedBox(
+                  width: constraints.maxWidth - width,
+                  height: height * 24,
                   child: Stack(
                     children: [
-                      Positioned(
-                        top: 8,
-                        child: Container(
-                          color: Colors.red,
-                          width: MediaQuery.of(context).size.width,
-                          height: 80,
-                          child: Text('Event 1'),
+                      Column(
+                        children: List.generate(24, (index) {
+                          return Container(
+                            width: constraints.maxWidth - width,
+                            height: height,
+                            decoration: BoxDecoration(
+                              border: Border(bottom: BorderSide(color: Colors.black12)),
+                            ),
+                          );
+                        }),
+                      ),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: SizedBox(
+                          width: constraints.maxWidth - width,
+                          height: height * 24,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                top: height * 0,
+                                child: Container(
+                                  color: Colors.red,
+                                  width: constraints.maxWidth - width,
+                                  height: min15,
+                                  child: Text(
+                                    'イベント 1',
+                                    style: textStyle,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: height * 15,
+                                child: Container(
+                                  color: Colors.amber,
+                                  width: constraints.maxWidth - width,
+                                  height: min45,
+                                  child: Text(
+                                    'イベント 2',
+                                    style: textStyle,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Positioned(
-                        top: 150,
-                        child: Container(
-                          color: Colors.amber,
-                          width: MediaQuery.of(context).size.width,
-                          height: 40,
-                          child: Text('Event 2'),
-                        ),
-                      )
                     ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
+              ],
+            ),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
