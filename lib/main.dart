@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils.dart';
 
 import 'modal_page.dart';
 

@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 DateTime stringToDate(String str) {
   List<String> splitDate = str.split('/');
   int year = int.parse(splitDate[0]);
