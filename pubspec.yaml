@@ -23,10 +23,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
   cupertino_icons: ^1.0.4
-  csv: ^5.0.1
   charset_converter: ^2.0.0
   flutter_riverpod: ^1.0.1
+  
+  # firebase
   firebase_core: ^1.10.2
   firebase_analytics: ^8.3.4
   firebase_auth: ^3.3.0

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/calendar.dart';
-import 'package:flutter_app/monthly_page.dart';
 
 import 'modal_page.dart';
+import 'monthly_page.dart';
 
 void main() {
   runApp(const MyApp());
-  DateTime date = DateTime(1970, 1, 2);
-  Calendar().isHoliday(date).then((value) {
-    debugPrint('$value');
-  });
 }
 
 class MyApp extends StatelessWidget {
