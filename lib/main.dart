@@ -4,9 +4,6 @@ import 'modal_page.dart';
 
 void main() {
   runApp(const MyApp());
-  //var date = DateTime(1955, 1, 1);
-  //var calendar = Calendar().isHolidays(date);
-  //debugPrint('$calendar');
 }
 
 class MyApp extends StatelessWidget {
