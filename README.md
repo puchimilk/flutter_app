@@ -1,6 +1,8 @@
 # flutter_app
 
-![Source Code Size](https://img.shields.io/github/languages/code-size/puchimilk/flutter_app)
+<!-- Shields.io -->
+<!-- ![Source Code Size](https://img.shields.io/github/languages/code-size/puchimilk/flutter_app) -->
+![Flutter Badge](https://img.shields.io/badge/-Flutter-02569B?logo=flutter&logoColor=white&style=flat)
 
 I am creating a calendar application with Flutter.
 
