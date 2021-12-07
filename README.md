@@ -1,6 +1,7 @@
 # flutter_app
 
 ![Source Code Size](https://img.shields.io/github/languages/code-size/puchimilk/flutter_app)
+
 I am creating a calendar application with Flutter.
 
 ## Preview
