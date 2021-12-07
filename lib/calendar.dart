@@ -4,7 +4,7 @@ import 'package:charset_converter/charset_converter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'utils.dart';
+import 'utils/utils.dart';
 
 enum StartingWeekday {
   sunday,
