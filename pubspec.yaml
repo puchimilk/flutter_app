@@ -62,6 +62,21 @@ flutter:
     - family: Source Han Sans JP Heavy
       fonts:
         - asset: assets/fonts/SourceHanSansJP-Heavy.otf
+    - family: Zen Kaku Gothic Antique Light
+      fonts:
+        - asset: assets/fonts/ZenKakuGothicAntique-Light.ttf
+    - family: Zen Kaku Gothic Antique Regular
+      fonts:
+        - asset: assets/fonts/ZenKakuGothicAntique-Regular.ttf
+    - family: Zen Kaku Gothic Antique Medium
+      fonts:
+        - asset: assets/fonts/ZenKakuGothicAntique-Medium.ttf
+    - family: Zen Kaku Gothic Antique Bold
+      fonts:
+        - asset: assets/fonts/ZenKakuGothicAntique-Bold.ttf
+    - family: Zen Kaku Gothic Antique Black
+      fonts:
+        - asset: assets/fonts/ZenKakuGothicAntique-Black.ttf
   
   assets:
     - assets/syukujitsu.csv

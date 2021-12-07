@@ -10,62 +10,138 @@ class DaylyPage extends StatefulWidget {
 class _DaylyPageState extends State<DaylyPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height - kToolbarHeight - kBottomNavigationBarHeight,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: List.generate(24, (index) {
-                      return Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(color: Colors.black26),
-                          ),
-                        ),
-                        child: Text('index $index'),
-                      );
-                    }),
-                  ),
-                ),
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        final double width = 24;
+        final double height = 88;
+        final int min = 60;
+        final double min15 = (height / min) * 15;
+        final double min30 = (height / min) * 30;
+        final double min45 = (height / min) * 45;
+        final double min60 = (height / min) * 60;
+        return SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Row(
+            children: [
+              Column(
+                children: List.generate(24, (index) {
+                  return Container(
+                    width: width,
+                    height: height,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black12),
+                    ),
+                    child: Text('$index'),
+                  );
+                }),
               ),
-            ),
-            /*
-              SingleChildScrollView(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height - (MediaQuery.of(context).padding.top) - kToolbarHeight - kBottomNavigationBarHeight,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: Container(
-                          color: Colors.red,
-                          width: 80,
-                          height: 80,
+              SizedBox(
+                width: constraints.maxWidth - width,
+                height: height * 24,
+                child: Stack(
+                  children: [
+                    Column(
+                      children: List.generate(24, (index) {
+                        return Container(
+                          width: constraints.maxWidth - width,
+                          height: height,
+                          decoration: BoxDecoration(
+                            border: Border(bottom: BorderSide(color: Colors.black12)),
+                          ),
+                        );
+                      }),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: SizedBox(
+                        width: constraints.maxWidth - width,
+                        height: height * 24,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              top: height * 0,
+                              child: Container(
+                                color: Colors.red,
+                                width: constraints.maxWidth - width,
+                                height: 22,
+                                padding: EdgeInsets.all(4),
+                                alignment: Alignment.centerLeft,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Event1',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        height: 1.2,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: height * 1,
+                              child: Container(
+                                color: Colors.amber,
+                                width: constraints.maxWidth - width,
+                                height: 22,
+                                padding: EdgeInsets.all(4),
+                                alignment: Alignment.centerLeft,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Event 2',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        height: 1.2,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: height * 15,
+                              child: Container(
+                                color: Colors.blue,
+                                width: constraints.maxWidth - width,
+                                height: min45,
+                                padding: EdgeInsets.all(4),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Event 3',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        height: 1.2,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              */
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
