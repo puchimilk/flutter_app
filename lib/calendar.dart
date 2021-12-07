@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
+import 'dart:typed_data';
 
-//import 'model/holiday_model.dart';
-//import 'utils.dart';
+import 'package:charset_converter/charset_converter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'utils.dart';
 
 enum StartingWeekday {
   sunday,
@@ -327,5 +328,33 @@ class Calendar {
     final week = ((first.day + 6) / 7).floor();
     debugPrint('$week');
     return DateTime(0);
+  }
+  
+  Future<List<DateTime>> loadAsset() async {
+    ByteData byteData = await rootBundle.load('assets/syukujitsu.csv');
+    Uint8List uint8list = byteData.buffer.asUint8List();
+    String? decode = await CharsetConverter.decode('cp932', uint8list);
+    String trim = decode!.trim();
+    List<DateTime> list = [];
+    for (String line in trim.split('\r\n')) {
+      List<String> rows = line.split(',');
+      if (rows[0] == '国民の祝日・休日月日' && rows[1] == '国民の祝日・休日名称') continue;
+      DateTime date = stringToDate(rows[0]);
+      list.add(date);
+    }
+    return list;
+  }
+  
+  bool isHolidays(DateTime date) {
+    loadAsset().then((value) async {
+      debugPrint('value: ${value.toString()}');
+      for (DateTime line in value) {
+        debugPrint('line: $line');
+        if (DateUtils.isSameDay(date, line)) {
+          return true;
+        }
+      }
+    });
+    return false;
   }
 }

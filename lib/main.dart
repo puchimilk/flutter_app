@@ -1,32 +1,12 @@
-import 'dart:typed_data';
-
-import 'package:charset_converter/charset_converter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 import 'modal_page.dart';
-import 'model/holiday_model.dart';
-import 'monthly_page.dart';
-import 'utils.dart';
 
 void main() {
   runApp(const MyApp());
-}
-
-Future<List<HolidayModel>> loadAsset() async {
-  ByteData byteData = await rootBundle.load('assets/syukujitsu.csv');
-  Uint8List uint8list = byteData.buffer.asUint8List();
-  String? decode = await CharsetConverter.decode('cp932', uint8list);
-  String trim = decode!.trim();
-  List<HolidayModel> list = [];
-  for (String line in trim.split('\r\n')) {
-    List<String> rows = line.split(',');
-    if (rows[0] == '国民の祝日・休日月日' && rows[1] == '国民の祝日・休日名称') continue;
-    DateTime date = stringToDate(rows[0]);
-    HolidayModel holidayModel = HolidayModel(date: date, name: rows[1]);
-    list.add(holidayModel);
-  }
-  return list;
+  //var date = DateTime(1955, 1, 1);
+  //var calendar = Calendar().isHolidays(date);
+  //debugPrint('$calendar');
 }
 
 class MyApp extends StatelessWidget {
@@ -103,7 +83,67 @@ class _MyHomePageState extends State<MyHomePage> {
         toolbarHeight: 48,
         leadingWidth: 48,
       ),
-      body: MonthlyPage(),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 50 * 24,
+          child: Stack(
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                width: MediaQuery.of(context).size.width,
+                height: 50 * 24,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: List.generate(24, (index) {
+                      return Container(
+                        width: double.infinity,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(color: Colors.black12),
+                          ),
+                        ),
+                        child: Text('$index hour'),
+                      );
+                    }),
+                  ),
+                ),
+              ),
+              SingleChildScrollView(
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height - 58 - 72,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 8,
+                        child: Container(
+                          color: Colors.red,
+                          width: MediaQuery.of(context).size.width,
+                          height: 80,
+                          child: Text('Event 1'),
+                        ),
+                      ),
+                      Positioned(
+                        top: 150,
+                        child: Container(
+                          color: Colors.amber,
+                          width: MediaQuery.of(context).size.width,
+                          height: 40,
+                          child: Text('Event 2'),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
