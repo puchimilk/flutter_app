@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/calendar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'setting_page1.dart';
 
@@ -9,8 +10,14 @@ class ModalPage extends StatefulWidget {
   State<ModalPage> createState() => _ModalPageState();
 }
 
+_saveBool(String key, bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setBool(key, value);
+}
+
 class _ModalPageState extends State<ModalPage> {
   StartingWeekday startingWeekday = StartingWeekday.sunday;
+  bool _giveVerse = false;
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +92,24 @@ class _ModalPageState extends State<ModalPage> {
                   ),
                   trailing: Icon(Icons.chevron_right),
                   onTap: () {},
+                ),
+                ListTile(
+                  leading: Icon(Icons.today),
+                  title: Text(
+                    '六曜',
+                    style: TextStyle(
+                      height: 1.2,
+                    ),
+                  ),
+                  trailing: Switch(
+                    value: _giveVerse,
+                    onChanged: (bool newValue) {
+                      setState(() {
+                        _giveVerse = newValue;
+                        _saveBool('rokuyou', _giveVerse);
+                      });
+                    },
+                  ),
                 ),
               ],
             ),
