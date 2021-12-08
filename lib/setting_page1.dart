@@ -17,13 +17,20 @@ class _SettingPage1State extends State<SettingPage1> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.pop(context, startingWeekday),
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
         centerTitle: true,
-        title: Text('曜日'),
+        title: Text(
+          '曜日',
+          style: TextStyle(color: Colors.black),
+        ),
         elevation: 1,
         toolbarHeight: 48,
         leadingWidth: 48,
+        backgroundColor: Colors.white,
       ),
       body: Container(
         child: Column(

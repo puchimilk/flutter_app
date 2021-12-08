@@ -18,17 +18,24 @@ class _ModalPageState extends State<ModalPage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context, rootNavigator: true).pop(startingWeekday),
-          icon: Icon(Icons.close),
+          icon: Icon(
+            Icons.close,
+            color: Colors.black,
+          ),
           padding: EdgeInsets.all(12),
         ),
         centerTitle: true,
         title: Text(
           '設定',
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+          ),
         ),
         elevation: 1,
         toolbarHeight: 48,
         leadingWidth: 48,
+        backgroundColor: Colors.white,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height * 0.945,

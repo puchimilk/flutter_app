@@ -118,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         selectedItemColor: Colors.grey,
+        elevation: 1,
         currentIndex: _currentIndex,
         onTap: _onTap,
       ),
