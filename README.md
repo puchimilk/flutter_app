@@ -9,4 +9,5 @@ I am creating a calendar application with Flutter.
 
 ## Preview
 
-<img src="https://user-images.githubusercontent.com/50408066/145006584-ecb67036-96ab-4b09-8af2-219d81f181eb.png" width="320px">
+<img src="https://user-images.githubusercontent.com/50408066/145006584-ecb67036-96ab-4b09-8af2-219d81f181eb.png" width="320px" />
+<img src="https://user-images.githubusercontent.com/50408066/145139612-6eefe4f8-688f-4973-af2f-32d40a954c57.png" width="320px" />
