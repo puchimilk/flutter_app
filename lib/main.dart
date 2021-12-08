@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/dayly_page.dart';
+import 'package:flutter_app/monthly_page.dart';
 
 import 'modal_page.dart';
 
@@ -92,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leadingWidth: 48,
         backgroundColor: Colors.white,
       ),
-      body: DaylyPage(),
+      body: MonthlyPage(),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
