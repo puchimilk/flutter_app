@@ -21,96 +21,37 @@ class Calendar {
     this.startWeekday = StartingWeekday.sunday,
   });
 
-  DateTime startDate = DateTime(1970, 01, 01);
-  DateTime endDate = DateTime(2099, 12, 31);
-  DateTime currentDate = DateTime.now();
+  final DateTime startDate = DateTime(1970, 01, 01);
+  final DateTime endDate = DateTime(2099, 12, 31);
+  final DateTime currentDate = DateTime.now();
   StartingWeekday startWeekday;
 
-  DateTime firstDayOf(DateTime date) {
+  static DateTime firstDayOfMonth(DateTime date) {
     return DateTime(date.year, date.month, 1);
   }
 
-  DateTime lastDayOfM(DateTime date) {
+  static DateTime lastDayOfMonth(DateTime date) {
     return DateTime(date.year, date.month + 1, 0);
   }
 
   DateTime firstDayOfWeek(DateTime date) {
-    var weekday = date.weekday;
-    var days = ((7 + weekday) - startWeekday.index) % 7;
+    final int weekday = date.weekday;
+    final int days = ((7 + weekday) - startWeekday.index) % 7;
     return date.subtract(Duration(days: days));
   }
 
   DateTime lastDayOfWeek(DateTime date) {
-    var weekday = date.weekday;
-    var days = ((7 + weekday) + startWeekday.index) % 7;
+    final int weekday = date.weekday;
+    final int days = ((7 + weekday) + startWeekday.index) % 7;
     return date.add(Duration(days: days));
   }
-
-  /*
-  int abc(int page) {
-    var baseDate = DateTime(startDate.year, startDate.month + page, 1);
-    var first = (firstDayOf(baseDate).weekday + 7) % 7;
-    var last = lastDayOfM(baseDate).day;
-    if (first + last > 35) {
-      return 42;
-    } else {
-      return 35;
-    }
-  }
-  */
-
-  /*
-  List<int> bcd(int page) {
-    var list = <int>[];
-
-    var before = DateTime(startDate.year, startDate.month + page, 1);
-    var beforeWeekday = before.weekday;
-    if (beforeWeekday == 7) beforeWeekday = 0;
-    for (var i = 0; i < beforeWeekday; i++) {
-      var base = before.subtract(Duration(days: beforeWeekday));
-      list.add(base.day + i);
-    }
-
-    var dayCount = DateUtils.getDaysInMonth(before.year, before.month);
-
-    for (var i = 0; i < dayCount; i++) {
-      list.add(1 + i);
-    }
-
-    var after = DateTime(before.year, before.month + 1, 1);
-    var afterWeekday = after.weekday;
-    if (afterWeekday == 7) afterWeekday = 0;
-    for (var i = 0; i < afterWeekday; i++) {
-      var base = DateTime(after.year, after.month, after.day + i);
-      list.add(base.day);
-    }
-
-    return list;
-  }
-  */
 
   int monthCount() {
     return DateUtils.monthDelta(startDate, endDate);
   }
 
-  // 表示するカレンダーの最初の日と最後の日
-  /*
-  var a = DateTime(2021, 11, 1);
-  var b = DateTime(2021, 12, 5);
-  var c = b.difference(a).inDays + 1;
-  var d = c / 7;
-  */
-
   int startingWeekdayNumber() {
     return startWeekday.index;
-  }
-
-  DateTime firstDayOfMonth(DateTime date) {
-    return DateTime(date.year, date.month, 1);
-  }
-
-  DateTime lastDayOfMonth(DateTime date) {
-    return DateTime(date.year, date.month + 1, 0);
   }
 
   int beforeDays(DateTime date) {
@@ -200,20 +141,7 @@ class Calendar {
     return false;
   }
 
-  int locationWeekday(DateTime date) {
-    final week = ((date.day + 6) / 7).floor();
-    return week;
-  }
-
-  anyLocationWeekday(DateTime date, int count, int weekday) {
-    // 第n曜日を求めたい
-    final first = firstDayOfMonth(date);
-    final week = ((first.day + 6) / 7).floor();
-    debugPrint('$week');
-    return DateTime(0);
-  }
-
-  Future<List<DateTime>> loadCsv() async {
+  Future<List<DateTime>> _loadCsv() async {
     final ByteData byteData = await rootBundle.load('assets/syukujitsu.csv');
     final Uint8List uint8list = byteData.buffer.asUint8List();
     final String? decode = await CharsetConverter.decode('cp932', uint8list);
@@ -230,7 +158,7 @@ class Calendar {
   }
 
   Future<bool> isHoliday(DateTime date) async {
-    var result = await loadCsv();
+    final List<DateTime> result = await _loadCsv();
     for (var i = 0; i < result.length; i++) {
       if (DateUtils.isSameDay(result[i], date)) {
         return true;

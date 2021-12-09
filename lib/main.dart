@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/dayly_page.dart';
-import 'package:flutter_app/monthly_page.dart';
 
+import 'calendar.dart';
 import 'modal_page.dart';
+import 'monthly_page.dart';
 
 void main() {
   runApp(const MyApp());
+  debugPrint('${Calendar.lastDayOfMonth(DateTime(1970, 1))}');
 }
 
 class MyApp extends StatelessWidget {
