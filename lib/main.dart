@@ -1,12 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-import 'calendar.dart';
-import 'modal_page.dart';
-import 'monthly_page.dart';
-
-void main() {
+void main() async {
+  //WidgetsFlutterBinding.ensureInitialized();
+  //await Firebase.initializeApp();
   runApp(const MyApp());
-  debugPrint('${Calendar.lastDayOfMonth(DateTime(1970, 1))}');
 }
 
 class MyApp extends StatelessWidget {
@@ -14,17 +14,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const _pageTransitionTheme = PageTransitionsTheme(
+      builders: <TargetPlatform, PageTransitionsBuilder>{
+        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      },
+    );
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'Source Han Sans JP Regular',
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: <TargetPlatform, PageTransitionsBuilder>{
-            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          },
-        ),
+        fontFamily: 'Source Han Sans JP',
+        pageTransitionsTheme: _pageTransitionTheme,
       ),
       home: const MyHomePage(),
     );
@@ -39,6 +41,35 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    //FirebaseDatabase database = FirebaseDatabase.instance;
+    //DatabaseReference ref = FirebaseDatabase.instance.ref("users/123");
+    //DatabaseReference child = ref.child("name");
+
+    //print(ref.key);
+    //print(ref.parent!.key);
+    
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter Demo'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              child: Text('Hello World'),
+              onPressed: () async {
+                
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  /*
   int _currentIndex = 0;
 
   void _onTap(int value) {
@@ -126,4 +157,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+  */
 }
