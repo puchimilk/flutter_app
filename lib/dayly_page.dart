@@ -10,14 +10,6 @@ class DaylyPage extends StatefulWidget {
 class _DaylyPageState extends State<DaylyPage> {
   @override
   Widget build(BuildContext context) {
-    final double width = 24;
-    final double height = 88;
-    final int min = 60;
-    final double min15 = (height / min) * 15;
-    final double min30 = (height / min) * 30;
-    final double min45 = (height / min) * 45;
-    final double min60 = (height / min) * 60;
-
     return Column(
       children: [
         Container(

@@ -27,6 +27,7 @@ dependencies:
   cupertino_icons: ^1.0.4
   charset_converter: ^2.0.0
   flutter_riverpod: ^1.0.1
+  hooks_riverpod: ^1.0.2
   shared_preferences: ^2.0.9
   
   # firebase
@@ -42,42 +43,34 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   fonts:
-    - family: Source Han Sans JP ExtraLight
+    - family: Source Han Sans JP
       fonts:
         - asset: assets/fonts/SourceHanSansJP-ExtraLight.otf
-    - family: Source Han Sans JP Light
-      fonts:
+          weight: 100
         - asset: assets/fonts/SourceHanSansJP-Light.otf
-    - family: Source Han Sans JP Normal
-      fonts:
+          weight: 200
         - asset: assets/fonts/SourceHanSansJP-Normal.otf
-    - family: Source Han Sans JP Regular
-      fonts:
+          weight: 300
         - asset: assets/fonts/SourceHanSansJP-Regular.otf
-    - family: Source Han Sans JP Medium
-      fonts:
+          weight: 400
         - asset: assets/fonts/SourceHanSansJP-Medium.otf
-    - family: Source Han Sans JP Bold
-      fonts:
+          weight: 500
         - asset: assets/fonts/SourceHanSansJP-Bold.otf
-    - family: Source Han Sans JP Heavy
-      fonts:
+          weight: 700
         - asset: assets/fonts/SourceHanSansJP-Heavy.otf
-    - family: Zen Kaku Gothic Antique Light
+          weight: 800
+    - family: Zen Kaku Gothic Antique
       fonts:
         - asset: assets/fonts/ZenKakuGothicAntique-Light.ttf
-    - family: Zen Kaku Gothic Antique Regular
-      fonts:
+          weight: 300
         - asset: assets/fonts/ZenKakuGothicAntique-Regular.ttf
-    - family: Zen Kaku Gothic Antique Medium
-      fonts:
+          weight: 400
         - asset: assets/fonts/ZenKakuGothicAntique-Medium.ttf
-    - family: Zen Kaku Gothic Antique Bold
-      fonts:
+          weight: 500
         - asset: assets/fonts/ZenKakuGothicAntique-Bold.ttf
-    - family: Zen Kaku Gothic Antique Black
-      fonts:
+          weight: 700
         - asset: assets/fonts/ZenKakuGothicAntique-Black.ttf
+          weight: 900
   
   assets:
     - assets/syukujitsu.csv
