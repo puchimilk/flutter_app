@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bottom_navigation.dart';
 
 import 'modal_page.dart';
 import 'monthly_page.dart';
@@ -42,12 +43,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
-
-  void _onTap(int value) {
-    setState(() {
-      _currentIndex = value;
-    });
+  void _onPressedShowModalBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.945),
+      isScrollControlled: true,
+      enableDrag: false,
+      builder: (context) => Navigator(
+        onGenerateRoute: (context) => MaterialPageRoute<ModalPage>(
+          builder: (context) => ModalPage(),
+        ),
+      ),
+    );
   }
 
   @override
@@ -55,22 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => showModalBottomSheet(
-            context: context,
-            constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.945),
-            isScrollControlled: true,
-            enableDrag: false,
-            builder: (context) => Navigator(
-              onGenerateRoute: (context) => MaterialPageRoute<ModalPage>(
-                builder: (context) => ModalPage(),
-              ),
-            ),
-          ),
-          padding: const EdgeInsets.all(12),
           icon: const Icon(
             Icons.menu,
             color: Colors.black,
           ),
+          padding: const EdgeInsets.all(12),
+          onPressed: _onPressedShowModalBottomSheet,
         ),
         centerTitle: true,
         title: Text(
@@ -83,13 +80,21 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         actions: [
           IconButton(
-            //onPressed: () => controller.jumpToPage(initialPage),
-            onPressed: () {},
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
             padding: const EdgeInsets.all(12),
+            onPressed: () {},
+          ),
+          IconButton(
+            //onPressed: () => controller.jumpToPage(initialPage),
             icon: const Icon(
               Icons.today,
               color: Colors.black,
             ),
+            padding: const EdgeInsets.all(12),
+            onPressed: () {},
           ),
         ],
         elevation: 1,
@@ -98,35 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.white,
       ),
       body: MonthlyPage(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            label: 'red',
-            icon: Icon(
-              Icons.layers,
-              color: Colors.red,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: 'green',
-            icon: Icon(
-              Icons.layers,
-              color: Colors.green,
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: 'blue',
-            icon: Icon(
-              Icons.layers,
-              color: Colors.blue,
-            ),
-          ),
-        ],
-        selectedItemColor: Colors.grey,
-        elevation: 1,
-        currentIndex: _currentIndex,
-        onTap: _onTap,
-      ),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }

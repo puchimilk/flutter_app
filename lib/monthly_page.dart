@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/weekday_row.dart';
 
 import 'calendar.dart';
 
@@ -217,31 +218,7 @@ class _MonthlyPageState extends State<MonthlyPage> {
 
     return Column(
       children: [
-        SizedBox(
-          height: 24,
-          child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-              Size size = Size(constraints.maxWidth / 7, constraints.maxHeight);
-              return Wrap(
-                children: List.generate(7, (index) {
-                  return Container(
-                    width: size.width,
-                    height: size.height,
-                    alignment: Alignment.center,
-                    child: Text(
-                      weekdays()[index],
-                      style: TextStyle(
-                        fontSize: 12,
-                        height: 1.2,
-                        color: weekdayColor(index),
-                      ),
-                    ),
-                  );
-                }),
-              );
-            },
-          ),
-        ),
+        const WeekdayRow(),
         Expanded(
           child: PageView.builder(
             controller: controller,
