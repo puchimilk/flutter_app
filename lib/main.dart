@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -52,7 +53,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               child: Text('Hello World'),
               onPressed: () async {
-                
+                await FirebaseFirestore.instance
+                  .collection('users')
+                  .doc('id_123')
+                  .set({'name' : '山田', 'age': 28});
               },
             ),
           ],
