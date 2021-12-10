@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bottom_navigation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'calendar.dart';
 import 'modal_page.dart';
 import 'monthly_page.dart';
 
@@ -39,6 +40,8 @@ class MyApp extends ConsumerWidget {
         ),
       );
     }
+    
+    final PageController controller = ref.watch(pageControllerProvider);
     
     return MaterialApp(
       title: 'Flutter Demo',
@@ -82,7 +85,7 @@ class MyApp extends ConsumerWidget {
               ),
               padding: const EdgeInsets.all(12),
               //onPressed: () => controller.jumpToPage(initialPage),
-              onPressed: () {},
+              onPressed: () => controller.jumpToPage(Calendar().sample11()),
             ),
           ],
           elevation: 1,
