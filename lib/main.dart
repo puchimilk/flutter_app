@@ -1,6 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'modal_page.dart';
+import 'monthly_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,31 +42,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Demo'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-              child: Text('Hello World'),
-              onPressed: () async {
-                await FirebaseFirestore.instance
-                  .collection('users')
-                  .doc('id_123')
-                  .set({'name' : '山田', 'age': 28});
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  /*
   int _currentIndex = 0;
 
   void _onTap(int value) {
@@ -152,5 +129,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-  */
 }
