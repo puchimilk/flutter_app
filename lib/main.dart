@@ -74,9 +74,62 @@ class MyHomePage extends StatelessWidget {
           ),
           body: Container(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('テキスト１'),
-                Text('テキスト２'),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text('テキスト１'),
+                ),
+                ListView(
+                  shrinkWrap: true,
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.ac_unit),
+                      title: Text(
+                        'タイル１',
+                        style: TextStyle(height: 1.2),
+                      ),
+                      trailing: Icon(Icons.chevron_right),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.ac_unit),
+                      title: Text(
+                        'タイル２',
+                        style: TextStyle(height: 1.2),
+                      ),
+                      trailing: Icon(Icons.chevron_right),
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text('テキスト２'),
+                ),
+                ListView(
+                  shrinkWrap: true,
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.ac_unit),
+                      title: Text(
+                        'タイル１',
+                        style: TextStyle(height: 1.2),
+                      ),
+                      trailing: Icon(Icons.chevron_right),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.ac_unit),
+                      title: Text(
+                        'タイル２',
+                        style: TextStyle(height: 1.2),
+                      ),
+                      trailing: Icon(Icons.chevron_right),
+                      onTap: () {},
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
