@@ -19,9 +19,9 @@ class WeekdayRow extends StatelessWidget {
       }
       return Colors.black;
     }
-    
+
     List<String> _weekdays() {
-      List<String> weekday = ['日', '月', '火', '水', '木', '金', '土'];
+      const List<String> weekday = ['日', '月', '火', '水', '木', '金', '土'];
       for (var i = 0; i < _calendar.startingWeekdayNumber(); i++) {
         String value = weekday[0];
         weekday.removeAt(0);
@@ -29,8 +29,8 @@ class WeekdayRow extends StatelessWidget {
       }
       return weekday;
     }
-    
-    return Container(
+
+    return ConstrainedBox(
       constraints: BoxConstraints.expand(height: 24),
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {

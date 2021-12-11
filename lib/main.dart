@@ -49,15 +49,19 @@ class MyHomePage extends StatelessWidget {
         ),
         title: Text('タイトル'),
         actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            padding: EdgeInsets.all(12),
-            onPressed: () {},
+          SizedBox(
+            width: 56,
+            child: IconButton(
+              icon: const Icon(Icons.search),
+              onPressed: () {},
+            ),
           ),
-          IconButton(
-            icon: Icon(Icons.today),
-            padding: EdgeInsets.all(12),
-            onPressed: () {},
+          SizedBox(
+            width: 56,
+            child: IconButton(
+              icon: const Icon(Icons.today),
+              onPressed: () {},
+            ),
           ),
         ],
       ),
@@ -80,8 +84,9 @@ class MyHomePage extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      enableDrag: false,
       constraints: constraints,
-      builder: (context) => ModalPage(),
+      builder: (context) => const ModalPage(),
     );
   }
 
@@ -93,7 +98,7 @@ class MyHomePage extends StatelessWidget {
       isScrollControlled: true,
       enableDrag: false,
       constraints: constraints,
-      builder: (context) => AddEventPage(),
+      builder: (context) => const AddEventPage(),
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'setting_page1.dart';
 
 class ModalPage extends StatelessWidget {
+  const ModalPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
