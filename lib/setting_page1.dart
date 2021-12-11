@@ -16,16 +16,16 @@ class _SettingPage1State extends State<SettingPage1> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
         ),
-        title: Text('曜日'),
+        title: const Text('タイトル'),
       ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
+          children: <Widget>[
+            const Padding(
               padding: EdgeInsets.all(8),
               child: Text(
                 'テキスト１',

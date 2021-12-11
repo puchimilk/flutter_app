@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'setting_page1.dart';
+import 'package:flutter_app/setting_page1.dart';
 
 class ModalPage extends StatelessWidget {
   const ModalPage({Key? key}) : super(key: key);
@@ -32,7 +31,7 @@ class ModalPage extends StatelessWidget {
                     style: TextStyle(height: 1.2),
                   ),
                   trailing: const Icon(Icons.chevron_right),
-                  onTap: () => Navigator.of(context, rootNavigator: true).push(
+                  onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const SettingPage1(),
                     ),
