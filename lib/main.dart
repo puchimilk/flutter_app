@@ -1,11 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/bottom_navigation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'calendar.dart';
-import 'modal_page.dart';
-import 'monthly_page.dart';
+import 'bottom_navigation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,23 +23,7 @@ class MyApp extends ConsumerWidget {
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
       },
     );
-    
-    void _onPressedShowModalBottomSheet() {
-      showModalBottomSheet(
-        context: context,
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.945),
-        isScrollControlled: true,
-        enableDrag: false,
-        builder: (context) => Navigator(
-          onGenerateRoute: (context) => MaterialPageRoute<ModalPage>(
-            builder: (context) => ModalPage(),
-          ),
-        ),
-      );
-    }
-    
-    final PageController controller = ref.watch(pageControllerProvider);
-    
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -50,52 +31,57 @@ class MyApp extends ConsumerWidget {
         fontFamily: 'Source Han Sans JP',
         pageTransitionsTheme: _pageTransitionTheme,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-            padding: const EdgeInsets.all(12),
-            onPressed: _onPressedShowModalBottomSheet,
-          ),
-          title: const Text(
-            '2021年12月',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              //fontWeight: FontWeight.bold,
-            ),
-          ),
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              padding: const EdgeInsets.all(12),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.today,
-                color: Colors.black,
-              ),
-              padding: const EdgeInsets.all(12),
-              //onPressed: () => controller.jumpToPage(initialPage),
-              onPressed: () => controller.jumpToPage(Calendar().sample11()),
-            ),
-          ],
-          elevation: 1,
-          toolbarHeight: 48,
-          leadingWidth: 48,
-          backgroundColor: Colors.white,
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () => _shomModalBottomSheet(context),
         ),
-        body: MonthlyPage(),
-        bottomNavigationBar: const BottomNavigation(),
+        title: Text('タイトル'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.today),
+            onPressed: () {},
+          ),
+        ],
       ),
+      body: Container(),
+      bottomNavigationBar: const BottomNavigation(),
+    );
+  }
+
+  void _shomModalBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height * 0.95),
+      builder: (BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('タイトル'),
+          ),
+          body: Container(
+            child: Column(
+              children: [
+                Text('テキスト１'),
+                Text('テキスト２'),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

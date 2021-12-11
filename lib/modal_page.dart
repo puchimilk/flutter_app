@@ -1,30 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/calendar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'setting_page1.dart';
 
-class ModalPage extends StatefulWidget {
-  ModalPage({Key? key}) : super(key: key);
-
-  State<ModalPage> createState() => _ModalPageState();
-}
-
-_saveBool(String key, bool value) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  await prefs.setBool(key, value);
-}
-
-class _ModalPageState extends State<ModalPage> {
-  StartingWeekday startingWeekday = StartingWeekday.sunday;
-  bool _giveVerse = false;
-
+class ModalPage extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    debugPrint('ModalPage');
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.of(context, rootNavigator: true).pop(startingWeekday),
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
           icon: Icon(
             Icons.close,
             color: Colors.black,
@@ -69,7 +55,7 @@ class _ModalPageState extends State<ModalPage> {
                     ),
                   ),
                   trailing: Icon(Icons.chevron_right),
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage1())).then((value) => {startingWeekday = value, print(startingWeekday)}),
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage1())),
                 ),
                 ListTile(
                   leading: Icon(Icons.today),
@@ -100,15 +86,6 @@ class _ModalPageState extends State<ModalPage> {
                     style: TextStyle(
                       height: 1.2,
                     ),
-                  ),
-                  trailing: Switch(
-                    value: _giveVerse,
-                    onChanged: (bool newValue) {
-                      setState(() {
-                        _giveVerse = newValue;
-                        _saveBool('rokuyou', _giveVerse);
-                      });
-                    },
                   ),
                 ),
               ],
