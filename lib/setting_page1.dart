@@ -36,7 +36,10 @@ class _SettingPage1State extends State<SettingPage1> {
               shrinkWrap: true,
               children: List.generate(weekdays.length, (index) {
                 return RadioListTile(
-                  title: Text(weekdays[index]),
+                  title: Text(
+                    weekdays[index],
+                    style: TextStyle(height: 1.2),
+                  ),
                   value: StartingWeekday.values[index],
                   groupValue: startingWeekday,
                   onChanged: (StartingWeekday? value) {
