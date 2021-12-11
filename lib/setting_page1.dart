@@ -16,33 +16,24 @@ class _SettingPage1State extends State<SettingPage1> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.pop(context, startingWeekday),
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
         ),
-        centerTitle: true,
-        title: Text(
-          '曜日',
-          style: TextStyle(color: Colors.black),
-        ),
-        elevation: 1,
-        toolbarHeight: 48,
-        leadingWidth: 48,
-        backgroundColor: Colors.white,
+        title: Text('曜日'),
       ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-              child: Text('設定1'),
+              padding: EdgeInsets.all(8),
+              child: Text(
+                'テキスト１',
+                style: TextStyle(height: 1.2),
+              ),
             ),
             ListView(
               shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
               children: List.generate(weekdays.length, (index) {
                 return RadioListTile(
                   title: Text(weekdays[index]),

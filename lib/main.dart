@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/add_event_page.dart';
+import 'package:flutter_app/modal_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'bottom_navigation.dart';
@@ -43,98 +45,55 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.menu),
-          onPressed: () => _shomModalBottomSheet(context),
+          onPressed: () => _shomModalPage(context),
         ),
         title: Text('タイトル'),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
+            padding: EdgeInsets.all(12),
             onPressed: () {},
           ),
           IconButton(
             icon: Icon(Icons.today),
+            padding: EdgeInsets.all(12),
             onPressed: () {},
           ),
         ],
       ),
-      body: Container(),
+      body: Container(
+        child: Column(
+          children: [],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _showAddEventPage(context),
+      ),
       bottomNavigationBar: const BottomNavigation(),
     );
   }
 
-  void _shomModalBottomSheet(BuildContext context) {
+  void _shomModalPage(BuildContext context) {
+    double height = MediaQuery.of(context).size.height * 0.95;
+    BoxConstraints constraints = BoxConstraints.expand(height: height);
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      constraints: BoxConstraints.expand(height: MediaQuery.of(context).size.height * 0.95),
-      builder: (BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('タイトル'),
-          ),
-          body: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Text('テキスト１'),
-                ),
-                ListView(
-                  shrinkWrap: true,
-                  children: [
-                    ListTile(
-                      leading: Icon(Icons.ac_unit),
-                      title: Text(
-                        'タイル１',
-                        style: TextStyle(height: 1.2),
-                      ),
-                      trailing: Icon(Icons.chevron_right),
-                      onTap: () {},
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.ac_unit),
-                      title: Text(
-                        'タイル２',
-                        style: TextStyle(height: 1.2),
-                      ),
-                      trailing: Icon(Icons.chevron_right),
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8),
-                  child: Text('テキスト２'),
-                ),
-                ListView(
-                  shrinkWrap: true,
-                  children: [
-                    ListTile(
-                      leading: Icon(Icons.ac_unit),
-                      title: Text(
-                        'タイル１',
-                        style: TextStyle(height: 1.2),
-                      ),
-                      trailing: Icon(Icons.chevron_right),
-                      onTap: () {},
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.ac_unit),
-                      title: Text(
-                        'タイル２',
-                        style: TextStyle(height: 1.2),
-                      ),
-                      trailing: Icon(Icons.chevron_right),
-                      onTap: () {},
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
+      constraints: constraints,
+      builder: (context) => ModalPage(),
+    );
+  }
+
+  void _showAddEventPage(BuildContext context) {
+    double height = MediaQuery.of(context).size.height * 0.95;
+    BoxConstraints constraints = BoxConstraints.expand(height: height);
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      enableDrag: false,
+      constraints: constraints,
+      builder: (context) => AddEventPage(),
     );
   }
 }
