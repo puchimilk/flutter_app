@@ -10,13 +10,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    ProviderScope(
-      child: MyApp(),
+    const ProviderScope(
+      child: const MyApp(),
     ),
   );
 }
 
 class MyApp extends ConsumerWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const _pageTransitionTheme = PageTransitionsTheme(
@@ -33,21 +35,23 @@ class MyApp extends ConsumerWidget {
         fontFamily: 'Source Han Sans JP',
         pageTransitionsTheme: _pageTransitionTheme,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.menu),
+          icon: const Icon(Icons.menu),
           onPressed: () => _shomModalPage(context),
         ),
-        title: Text('タイトル'),
+        title: const Text('タイトル'),
         actions: [
           SizedBox(
             width: 56,
@@ -71,7 +75,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () => _showAddEventPage(context),
       ),
       bottomNavigationBar: const BottomNavigation(),
