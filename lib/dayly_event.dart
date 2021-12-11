@@ -19,7 +19,7 @@ class _DaylyEventState extends State<DaylyEvent> {
   Widget build(BuildContext context) {
     return Positioned(
       child: Container(
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         color: widget.backgroudColor,
         child: Text(
           widget.title,

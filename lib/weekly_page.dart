@@ -27,13 +27,11 @@ class _WeeklyPageState extends State<WeeklyPage> {
               return Container(
                 width: size.width,
                 height: size.height,
-                //alignment: Alignment.center,
-                //padding: EdgeInsets.symmetric(horizontal: 12),
                 child: Center(
                   child: Card(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Text(
                           'Dec',
                           style: TextStyle(fontSize: 12),

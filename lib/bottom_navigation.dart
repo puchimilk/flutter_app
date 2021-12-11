@@ -22,21 +22,21 @@ class _BottomNavigationState extends State<BottomNavigation> {
       items: [
         BottomNavigationBarItem(
           label: 'red',
-          icon: Icon(
+          icon: const Icon(
             Icons.layers,
             color: Colors.red,
           ),
         ),
         BottomNavigationBarItem(
           label: 'green',
-          icon: Icon(
+          icon: const Icon(
             Icons.layers,
             color: Colors.green,
           ),
         ),
         BottomNavigationBarItem(
           label: 'blue',
-          icon: Icon(
+          icon: const Icon(
             Icons.layers,
             color: Colors.blue,
           ),

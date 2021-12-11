@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class AddEventPage extends StatelessWidget {
   const AddEventPage({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
         ),
-        title: Text('タイトル'),
-        actions: [
+        title: const Text('タイトル'),
+        actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
             onPressed: () {
               Navigator.of(context, rootNavigator: true).pop();
             },
@@ -27,9 +27,9 @@ class AddEventPage extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(minHeight: constraints.maxHeight),
               child: Container(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Column(
-                  children: [
+                  children: <Widget>[
                     const TextField(
                       obscureText: false,
                       decoration: InputDecoration(
@@ -46,24 +46,24 @@ class AddEventPage extends StatelessWidget {
                       shrinkWrap: true,
                       children: [
                         ListTile(
-                          title: Text('終日'),
+                          title: const Text('終日'),
                           trailing: Switch(
                             value: false,
                             onChanged: (bool value) {},
                           ),
                         ),
                         ListTile(
-                          title: Text('繰り返し'),
+                          title: const Text('繰り返し'),
                           trailing: Icon(Icons.chevron_right),
                           onTap: () {},
                         ),
                         ListTile(
-                          title: Text('カレンダー'),
+                          title: const Text('カレンダー'),
                           trailing: Icon(Icons.chevron_right),
                           onTap: () {},
                         ),
                         ListTile(
-                          title: Text('通知'),
+                          title: const Text('通知'),
                           trailing: Icon(Icons.chevron_right),
                           onTap: () {},
                         ),

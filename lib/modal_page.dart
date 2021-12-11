@@ -9,13 +9,13 @@ class ModalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('タイトル'),
+        title: const Text('タイトル'),
       ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
+          children: <Widget>[
+            const Padding(
               padding: EdgeInsets.all(8),
               child: Text(
                 'テキスト１',
@@ -24,32 +24,32 @@ class ModalPage extends StatelessWidget {
             ),
             ListView(
               shrinkWrap: true,
-              children: [
+              children: <Widget>[
                 ListTile(
-                  leading: Icon(Icons.today),
-                  title: Text(
+                  leading: const Icon(Icons.today),
+                  title: const Text(
                     'テキスト１',
                     style: TextStyle(height: 1.2),
                   ),
-                  trailing: Icon(Icons.chevron_right),
+                  trailing: const Icon(Icons.chevron_right),
                   onTap: () => Navigator.of(context, rootNavigator: true).push(
                     MaterialPageRoute(
-                      builder: (context) => SettingPage1(),
+                      builder: (context) => const SettingPage1(),
                     ),
                   ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.today),
-                  title: Text(
+                  leading: const Icon(Icons.today),
+                  title: const Text(
                     'テキスト２',
                     style: TextStyle(height: 1.2),
                   ),
-                  trailing: Icon(Icons.chevron_right),
+                  trailing: const Icon(Icons.chevron_right),
                   onTap: () {},
                 ),
               ],
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(8),
               child: Text(
                 'テキスト２',
@@ -58,23 +58,23 @@ class ModalPage extends StatelessWidget {
             ),
             ListView(
               shrinkWrap: true,
-              children: [
+              children: <Widget>[
                 ListTile(
-                  leading: Icon(Icons.today),
-                  title: Text(
+                  leading: const Icon(Icons.today),
+                  title: const Text(
                     'テキスト３',
                     style: TextStyle(height: 1.2),
                   ),
-                  trailing: Icon(Icons.chevron_right),
+                  trailing: const Icon(Icons.chevron_right),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.today),
-                  title: Text(
+                  leading: const Icon(Icons.today),
+                  title: const Text(
                     'テキスト４',
                     style: TextStyle(height: 1.2),
                   ),
-                  trailing: Icon(Icons.chevron_right),
+                  trailing: const Icon(Icons.chevron_right),
                   onTap: () {},
                 ),
               ],

@@ -71,7 +71,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Container(
         child: Column(
-          children: [],
+          children: <Widget>[],
         ),
       ),
       floatingActionButton: FloatingActionButton(

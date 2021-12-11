@@ -31,7 +31,7 @@ class WeekdayRow extends StatelessWidget {
     }
 
     return ConstrainedBox(
-      constraints: BoxConstraints.expand(height: 24),
+      constraints: const BoxConstraints.expand(height: 24),
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           final Size size = Size(constraints.maxWidth / 7, constraints.maxHeight);
