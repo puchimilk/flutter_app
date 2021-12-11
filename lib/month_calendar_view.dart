@@ -6,7 +6,7 @@ import 'calendar.dart';
 
 final pageControllerProvider = Provider((_) => PageController(initialPage: Calendar().sample11()));
 
-class MonthlyPage extends ConsumerWidget {
+class MonthCalendarView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final PageController _controller = ref.watch(pageControllerProvider);

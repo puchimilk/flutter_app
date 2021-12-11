@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class WeeklyPage extends StatefulWidget {
-  const WeeklyPage({Key? key}) : super(key: key);
+class WeekCalendarView extends StatefulWidget {
+  const WeekCalendarView({Key? key}) : super(key: key);
 
   @override
-  State<WeeklyPage> createState() => _WeeklyPageState();
+  State<WeekCalendarView> createState() => _WeekCalendarViewState();
 }
 
-class _WeeklyPageState extends State<WeeklyPage> {
+class _WeekCalendarViewState extends State<WeekCalendarView> {
   final ScrollController _controller = ScrollController();
 
   @override

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class DaylyPage extends StatefulWidget {
-  DaylyPage({Key? key}) : super(key: key);
+class DayCalendarView extends StatefulWidget {
+  DayCalendarView({Key? key}) : super(key: key);
 
   @override
-  State<DaylyPage> createState() => _DaylyPageState();
+  State<DayCalendarView> createState() => _DayCalendarViewState();
 }
 
-class _DaylyPageState extends State<DaylyPage> {
+class _DayCalendarViewState extends State<DayCalendarView> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: <Widget>[
         Container(
           decoration: const BoxDecoration(
             border: Border(
