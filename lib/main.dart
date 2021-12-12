@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/add_event_page.dart';
+import 'package:flutter_app/day_calendar_view.dart';
 import 'package:flutter_app/modal_page.dart';
 import 'package:flutter_app/month_calendar_view.dart';
 import 'package:flutter_app/weekday_row.dart';
@@ -83,12 +84,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          const WeekdayRow(),
-          const MonthCalendarView(),
-        ],
-      ),
+      body: const DayCalendarView(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _showAddEventPage(context),

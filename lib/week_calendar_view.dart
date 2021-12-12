@@ -8,8 +8,6 @@ class WeekCalendarView extends StatefulWidget {
 }
 
 class _WeekCalendarViewState extends State<WeekCalendarView> {
-  final ScrollController _controller = ScrollController();
-
   @override
   Widget build(BuildContext context) {
     return Container(
