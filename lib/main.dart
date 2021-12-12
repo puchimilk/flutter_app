@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/add_event_page.dart';
 import 'package:flutter_app/modal_page.dart';
+import 'package:flutter_app/month_calendar_view.dart';
+import 'package:flutter_app/weekday_row.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'bottom_navigation.dart';
@@ -53,6 +55,8 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double f1 = 16;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -79,10 +83,11 @@ class MyHomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[],
-        ),
+      body: Column(
+        children: <Widget>[
+          const WeekdayRow(),
+          const MonthCalendarView(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/weekday_row.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'calendar.dart';
@@ -7,6 +6,8 @@ import 'calendar.dart';
 final pageControllerProvider = Provider((_) => PageController(initialPage: Calendar().sample11()));
 
 class MonthCalendarView extends ConsumerWidget {
+  const MonthCalendarView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final PageController _controller = ref.watch(pageControllerProvider);
@@ -211,69 +212,64 @@ class MonthCalendarView extends ConsumerWidget {
       );
     }
 
-    return Column(
-      children: <Widget>[
-        const WeekdayRow(),
-        Expanded(
-          child: PageView.builder(
-            controller: _controller,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (BuildContext context, int pageIndex) {
-              final sample9 = _calendar.sample9(pageIndex);
-              final sample5 = _calendar.gridCount(sample9);
-              //final sample6 = calendar.sample6(sample5);
-              final sample7 = _calendar.dateList(sample9);
-              final sample8 = _calendar.days(sample7);
-              return LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  //Size size = Size(constraints.maxWidth / 7, constraints.maxHeight / sample6);
-                  return GridView.count(
-                    crossAxisCount: 7,
-                    //childAspectRatio: size.width / size.height,
-                    physics: const BouncingScrollPhysics(),
-                    children: List.generate(sample5, (gridIndex) {
-                      return GestureDetector(
-                        child: Container(
-                          //color: thisMonth1(pageIndex, gridIndex),
-                          child: Stack(
-                            children: <Widget>[
-                              _today(pageIndex, gridIndex),
-                              Center(
-                                child: FutureBuilder(
-                                  future: _holidayColor(pageIndex, gridIndex),
-                                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                                    return Text(
-                                      sample8[gridIndex].toString(),
-                                      style: TextStyle(
-                                        color: snapshot.data,
-                                        height: 1.2,
-                                        fontSize: 12,
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
+    return Expanded(
+      child: PageView.builder(
+        controller: _controller,
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (BuildContext context, int pageIndex) {
+          final sample9 = _calendar.sample9(pageIndex);
+          final sample5 = _calendar.gridCount(sample9);
+          //final sample6 = calendar.sample6(sample5);
+          final sample7 = _calendar.dateList(sample9);
+          final sample8 = _calendar.days(sample7);
+          return LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              //Size size = Size(constraints.maxWidth / 7, constraints.maxHeight / sample6);
+              return GridView.count(
+                crossAxisCount: 7,
+                //childAspectRatio: size.width / size.height,
+                physics: const BouncingScrollPhysics(),
+                children: List.generate(sample5, (gridIndex) {
+                  return GestureDetector(
+                    child: Container(
+                      //color: thisMonth1(pageIndex, gridIndex),
+                      child: Stack(
+                        children: <Widget>[
+                          _today(pageIndex, gridIndex),
+                          Center(
+                            child: FutureBuilder(
+                              future: _holidayColor(pageIndex, gridIndex),
+                              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                                return Text(
+                                  sample8[gridIndex].toString(),
+                                  style: TextStyle(
+                                    color: snapshot.data,
+                                    height: 1.2,
+                                    fontSize: 12,
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                        onTap: () {
-                          final sample10 = _calendar.sample10(pageIndex, gridIndex);
-                          debugPrint('$sample10');
-                          _calendar.isHoliday(sample10).then((value) {
-                            final holiday = value ? '祝日です' : '祝日ではありません';
-                            debugPrint('$holiday');
-                          });
-                        },
-                      );
-                    }),
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      final sample10 = _calendar.sample10(pageIndex, gridIndex);
+                      debugPrint('$sample10');
+                      _calendar.isHoliday(sample10).then((value) {
+                        final holiday = value ? '祝日です' : '祝日ではありません';
+                        debugPrint('$holiday');
+                      });
+                    },
                   );
-                },
+                }),
               );
             },
-            itemCount: _calendar.monthCount(),
-          ),
-        ),
-      ],
+          );
+        },
+        itemCount: _calendar.monthCount(),
+      ),
     );
   }
 }
