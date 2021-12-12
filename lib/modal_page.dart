@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/add_event_page.dart';
+import 'package:flutter_app/widgets/modal_page_list_tile.dart';
 
 class ModalPage extends StatelessWidget {
   const ModalPage({Key? key}) : super(key: key);
@@ -27,34 +28,11 @@ class ModalPage extends StatelessWidget {
           ListView(
             shrinkWrap: true,
             children: <Widget>[
-              ListTile(
-                title: const Text(
-                  'テキスト１',
-                  style: TextStyle(height: 1.2),
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => Navigator(
-                  onGenerateRoute: (context) => MaterialPageRoute<Scaffold>(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(
-                        title: const Text('タイトル'),
-                      ),
-                      body: Column(
-                        children: [
-                          const Text('テキスト１'),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+              const ModalPageListTile(
+                title: 'テキスト１',
               ),
-              ListTile(
-                title: const Text(
-                  'テキスト２',
-                  style: TextStyle(height: 1.2),
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {},
+              const ModalPageListTile(
+                title: 'テキスト２',
               ),
             ],
           ),
@@ -72,21 +50,11 @@ class ModalPage extends StatelessWidget {
           ListView(
             shrinkWrap: true,
             children: <Widget>[
-              ListTile(
-                title: const Text(
-                  'テキスト３',
-                  style: TextStyle(height: 1.2),
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {},
+              const ModalPageListTile(
+                title: 'テキスト３',
               ),
-              ListTile(
-                title: const Text(
-                  'テキスト４',
-                  style: TextStyle(height: 1.2),
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {},
+              const ModalPageListTile(
+                title: 'テキスト４',
               ),
             ],
           ),
@@ -104,21 +72,11 @@ class ModalPage extends StatelessWidget {
           ListView(
             shrinkWrap: true,
             children: <Widget>[
-              ListTile(
-                title: const Text(
-                  'テキスト５',
-                  style: TextStyle(height: 1.2),
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {},
+              const ModalPageListTile(
+                title: 'テキスト５',
               ),
-              ListTile(
-                title: const Text(
-                  'テキスト６',
-                  style: TextStyle(height: 1.2),
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {},
+              const ModalPageListTile(
+                title: 'テキスト６',
               ),
             ],
           ),

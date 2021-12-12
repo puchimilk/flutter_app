@@ -30,31 +30,70 @@ class AddEventPage extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(minHeight: constraints.maxHeight),
               child: Container(
-                padding: const EdgeInsets.all(12),
                 child: Column(
                   children: <Widget>[
-                    const TextField(
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: 'タイトル',
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: TextField(
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'タイトル',
+                        ),
                       ),
                     ),
-                    const TextField(
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: '場所',
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16, right: 16),
+                      child: TextField(
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: '場所',
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                      title: const Text('終日'),
+                      trailing: Switch(
+                        value: false,
+                        onChanged: (bool value) {},
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.ac_unit),
+                      title: Text(
+                        '2021/12/13',
+                        style: TextStyle(
+                          height: 1.2,
+                          fontSize: 16,
+                        ),
+                      ),
+                      trailing: Text(
+                        '12:00 AM',
+                        style: TextStyle(
+                          height: 1.2,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.ac_unit),
+                      title: Text(
+                        '2021/12/13',
+                        style: TextStyle(
+                          height: 1.2,
+                          fontSize: 16,
+                        ),
+                      ),
+                      trailing: Text(
+                        '13:00 AM',
+                        style: TextStyle(
+                          height: 1.2,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                     ListView(
                       shrinkWrap: true,
                       children: <Widget>[
-                        ListTile(
-                          title: const Text('終日'),
-                          trailing: Switch(
-                            value: false,
-                            onChanged: (bool value) {},
-                          ),
-                        ),
                         ListTile(
                           title: const Text('繰り返し'),
                           trailing: Icon(Icons.chevron_right),
