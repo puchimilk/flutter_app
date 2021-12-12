@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/add_event_page.dart';
 import 'package:flutter_app/widgets/modal_page_list_tile.dart';
 
 class ModalPage extends StatelessWidget {
@@ -82,19 +81,6 @@ class ModalPage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  void _showAddEventPage(BuildContext context) {
-    final MediaQueryData data = MediaQuery.of(context);
-    final double height = data.size.height - data.padding.top;
-    final BoxConstraints constraints = BoxConstraints(maxHeight: height);
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      enableDrag: false,
-      constraints: constraints,
-      builder: (context) => const AddEventPage(),
     );
   }
 }
