@@ -78,7 +78,7 @@ class MonthCalendarView extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 Container(
                   decoration: const BoxDecoration(
                     color: Colors.black,
@@ -90,7 +90,7 @@ class MonthCalendarView extends ConsumerWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children: <Widget>[
                       IconButton(
                         onPressed: () {
                           debugPrint('closed');
@@ -119,7 +119,7 @@ class MonthCalendarView extends ConsumerWidget {
                   ),
                 ),
                 Column(
-                  children: [
+                  children: <Widget>[
                     Container(
                       height: 32,
                       alignment: Alignment.centerLeft,
@@ -196,7 +196,7 @@ class MonthCalendarView extends ConsumerWidget {
               ),
             ),
             child: Column(
-              children: [
+              children: <Widget>[
                 Text(
                   '${date.year}年${date.month}月${date.day}日',
                   style: TextStyle(
@@ -212,7 +212,7 @@ class MonthCalendarView extends ConsumerWidget {
     }
 
     return Column(
-      children: [
+      children: <Widget>[
         const WeekdayRow(),
         Expanded(
           child: PageView.builder(

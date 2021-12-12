@@ -19,7 +19,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
             ),
           ),
           child: Column(
-            children: [
+            children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 4, top: 4, bottom: 2, right: 4),
                 child: Container(
@@ -94,7 +94,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                     }),
                   ),
                   Stack(
-                    children: [
+                    children: <Widget>[
                       Column(
                         children: List.generate(24, (index) {
                           return Container(
@@ -157,7 +157,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Column(
-          children: [
+          children: <Widget>[
             Container(
               height: 48,
             ),
@@ -168,7 +168,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                   minHeight: constraints.maxHeight,
                 ),
                 child: Row(
-                  children: [
+                  children: <Widget>[
                     Column(
                       children: List.generate(24, (index) {
                         return Container(
@@ -186,7 +186,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                       width: constraints.maxWidth - width,
                       height: height * 24,
                       child: Stack(
-                        children: [
+                        children: <Widget>[
                           Column(
                             children: List.generate(24, (index) {
                               return Container(
@@ -204,7 +204,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                               width: constraints.maxWidth - width,
                               height: height * 24,
                               child: Stack(
-                                children: [
+                                children: <Widget>[
                                   Positioned(
                                     top: height * 0,
                                     child: Container(
@@ -214,7 +214,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                                       padding: EdgeInsets.all(4),
                                       alignment: Alignment.centerLeft,
                                       child: Row(
-                                        children: [
+                                        children: <Widget>[
                                           Text(
                                             'Event1',
                                             style: TextStyle(
@@ -238,7 +238,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                                       padding: EdgeInsets.all(4),
                                       alignment: Alignment.centerLeft,
                                       child: Row(
-                                        children: [
+                                        children: <Widget>[
                                           Text(
                                             'Event 2',
                                             style: TextStyle(
@@ -262,7 +262,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                                       padding: EdgeInsets.all(4),
                                       child: Row(
                                         crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
+                                        children: <Widget>[
                                           Text(
                                             'Event 3',
                                             style: TextStyle(

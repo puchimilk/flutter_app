@@ -44,7 +44,7 @@ class AddEventPage extends StatelessWidget {
                     ),
                     ListView(
                       shrinkWrap: true,
-                      children: [
+                      children: <Widget>[
                         ListTile(
                           title: const Text('終日'),
                           trailing: Switch(
