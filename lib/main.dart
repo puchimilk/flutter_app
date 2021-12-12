@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/add_event_page.dart';
-import 'package:flutter_app/day_calendar_view.dart';
-import 'package:flutter_app/modal_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'add_event_page.dart';
 import 'bottom_navigation.dart';
+import 'day_calendar_view.dart';
+import 'modal_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
