@@ -22,7 +22,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     print('MyApp build()');
-    
+
     const _pageTransitionTheme = PageTransitionsTheme(
       builders: <TargetPlatform, PageTransitionsBuilder>{
         TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -85,8 +85,9 @@ class MyHomePage extends StatelessWidget {
   }
 
   void _shomModalPage(BuildContext context) {
-    double height = MediaQuery.of(context).size.height * 0.95;
-    BoxConstraints constraints = BoxConstraints.expand(height: height);
+    final MediaQueryData data = MediaQuery.of(context);
+    final double height = data.size.height - data.padding.top;
+    final BoxConstraints constraints = BoxConstraints(maxHeight: height);
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -97,8 +98,9 @@ class MyHomePage extends StatelessWidget {
   }
 
   void _showAddEventPage(BuildContext context) {
-    double height = MediaQuery.of(context).size.height * 0.95;
-    BoxConstraints constraints = BoxConstraints.expand(height: height);
+    final MediaQueryData data = MediaQuery.of(context);
+    final double height = data.size.height - data.padding.top;
+    final BoxConstraints constraints = BoxConstraints(maxHeight: height);
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,

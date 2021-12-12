@@ -8,17 +8,20 @@ class AddEventPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
           icon: const Icon(Icons.close),
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
         ),
         title: const Text('タイトル'),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: () {
-              Navigator.of(context, rootNavigator: true).pop();
-            },
-          )
+          SizedBox(
+            width: 56,
+            child: IconButton(
+              icon: const Icon(Icons.save),
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop();
+              },
+            ),
+          ),
         ],
       ),
       body: LayoutBuilder(
