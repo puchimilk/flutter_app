@@ -19,6 +19,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
@@ -31,9 +32,12 @@ dependencies:
   
   cupertino_icons: ^1.0.4
   charset_converter: ^2.0.0
-  flutter_riverpod: ^1.0.1
-  hooks_riverpod: ^1.0.2
   shared_preferences: ^2.0.11
+  
+  # riverpod
+  #flutter_riverpod: ^1.0.1
+  flutter_hooks: ^0.18.1
+  hooks_riverpod: ^1.0.2
   
   # firebase
   firebase_core: ^1.10.2
