@@ -24,8 +24,8 @@ jobs:
       
       - run: flutter pub get
       
-      - name: unit test
+      - name: Run unit tests
         run: flutter test test/unit_test.dart
       
-      - name: widget test
+      - name: Run widget tests
         run: flutter test test/widget_test.dart
