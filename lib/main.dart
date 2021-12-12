@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/add_event_page.dart';
 import 'package:flutter_app/modal_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,9 +35,12 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Colors.blue,
+        brightness: Brightness.light,
         fontFamily: 'Source Han Sans JP',
-        pageTransitionsTheme: _pageTransitionTheme,
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        fontFamily: 'Source Han Sans JP',
       ),
       home: const MyHomePage(),
     );
@@ -59,7 +64,9 @@ class MyHomePage extends StatelessWidget {
             width: 56,
             child: IconButton(
               icon: const Icon(Icons.search),
-              onPressed: () {},
+              onPressed: () {
+                fetchEvent();
+              },
             ),
           ),
           SizedBox(
@@ -108,5 +115,10 @@ class MyHomePage extends StatelessWidget {
       constraints: constraints,
       builder: (context) => const AddEventPage(),
     );
+  }
+
+  void fetchEvent() async {
+    final x = await FirebaseFirestore.instance.collection('users').doc('12345').get();
+    print(x.data());
   }
 }

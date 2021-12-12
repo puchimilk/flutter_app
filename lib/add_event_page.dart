@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class AddEventPage extends StatelessWidget {
@@ -17,8 +18,9 @@ class AddEventPage extends StatelessWidget {
             width: 56,
             child: IconButton(
               icon: const Icon(Icons.save),
-              onPressed: () {
+              onPressed: () async {
                 Navigator.of(context, rootNavigator: true).pop();
+                addEvent();
               },
             ),
           ),
@@ -125,5 +127,23 @@ class AddEventPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void addEvent() async {
+    await FirebaseFirestore.instance.collection('users').doc('12345').set({
+      'id': 'ca8f7f',
+      'created': DateTime(2021, 12, 15),
+      'updated': DateTime(2021, 12, 21),
+      'summary': '映画', // タイトル
+      'description': '騙し絵の牙', // メモ
+      'location': 'TOHOシネマ なんば', // 場所
+      'start': {
+        'date': DateTime(2021, 12, 17, 13, 30),
+      }, // 開始日時
+      'end': {
+        'date': DateTime(2021, 12, 17, 15, 30),
+      }, // 終了日時
+      'endTimeUnspecified': false, // 終了時刻が指定してされているか
+    });
   }
 }
