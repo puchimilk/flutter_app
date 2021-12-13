@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/calendar.dart';
+
+import 'calendar.dart';
 
 class SettingPage1 extends StatefulWidget {
   const SettingPage1({Key? key}) : super(key: key);

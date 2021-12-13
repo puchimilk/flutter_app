@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/modal_page_list_tile.dart';
+
+import 'widgets/modal_page_list_tile.dart';
 
 class ModalPage extends StatelessWidget {
   const ModalPage({Key? key}) : super(key: key);
