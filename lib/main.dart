@@ -3,9 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'event_add_page.dart';
 import 'bottom_navigation.dart';
 import 'day_calendar_view.dart';
+import 'event_add_page.dart';
 import 'modal_page.dart';
 import 'month_calendar_view.dart';
 import 'week_calendar_view.dart';
@@ -44,6 +44,7 @@ class MyApp extends ConsumerWidget {
         primaryTextTheme: ThemeData.light().textTheme.apply(
               fontFamily: 'Source Han Sans JP',
             ),
+        pageTransitionsTheme: _pageTransitionTheme,
       ),
       darkTheme: ThemeData.dark().copyWith(
         textTheme: ThemeData.dark().textTheme.apply(
@@ -52,6 +53,7 @@ class MyApp extends ConsumerWidget {
         primaryTextTheme: ThemeData.dark().textTheme.apply(
               fontFamily: 'Source Han Sans JP',
             ),
+        pageTransitionsTheme: _pageTransitionTheme,
       ),
       home: const MyHomePage(),
     );
