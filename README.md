@@ -9,8 +9,22 @@ I am creating a calendar application with Flutter.
 
 ## Preview
 
+### MonthView
+
 <img src="https://user-images.githubusercontent.com/50408066/145904295-85200af8-a021-414e-b35a-77a05442a64e.png" width="320px" />
+
+### WeekView
+
 <img src="https://user-images.githubusercontent.com/50408066/145904292-6371797e-1735-474b-a3ad-0746bbd28381.png" width="320px" />
+
+### DayView
+
 <img src="https://user-images.githubusercontent.com/50408066/145904290-1d6a6744-18c1-418c-b5bc-20ebff8725c4.png" width="320px" />
+
+### SettingPage
+
 <img src="https://user-images.githubusercontent.com/50408066/145904285-4248f16e-aaec-46d0-9804-4ae99fb2443b.png" width="320px" />
+
+### EventAddPage
+
 <img src="https://user-images.githubusercontent.com/50408066/145904297-6046ab4d-74b9-4e92-a322-4d0f780f72a0.png" width="320px" />
