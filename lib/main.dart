@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/day_calendar_view.dart';
-import 'package:flutter_app/month_calendar_view.dart';
-import 'package:flutter_app/week_calendar_view.dart';
-import 'package:flutter_app/weekday_row.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'add_event_page.dart';
 import 'bottom_navigation.dart';
+import 'day_calendar_view.dart';
 import 'modal_page.dart';
+import 'month_calendar_view.dart';
+import 'week_calendar_view.dart';
+import 'weekday_row.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
