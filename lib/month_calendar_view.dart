@@ -242,7 +242,7 @@ class MonthCalendarView extends ConsumerWidget {
                                   days[gridIndex].toString(),
                                   style: TextStyle(
                                     color: snapshot.data,
-                                    height: 1.1,
+                                    height: 1.4,
                                     fontSize: 12,
                                   ),
                                 );

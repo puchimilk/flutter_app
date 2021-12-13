@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class AddEventPage extends StatelessWidget {
-  const AddEventPage({Key? key}) : super(key: key);
+class EventAddPage extends StatelessWidget {
+  const EventAddPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,7 @@ class AddEventPage extends StatelessWidget {
             ),
           ),
         ],
+        elevation: 0,
       ),
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {

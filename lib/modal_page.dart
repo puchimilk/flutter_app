@@ -9,6 +9,7 @@ class ModalPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('タイトル'),
+        elevation: 0,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'add_event_page.dart';
+import 'event_add_page.dart';
 import 'bottom_navigation.dart';
 import 'day_calendar_view.dart';
 import 'modal_page.dart';
@@ -37,15 +37,21 @@ class MyApp extends ConsumerWidget {
 
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        fontFamily: 'Source Han Sans JP',
-        pageTransitionsTheme: _pageTransitionTheme,
+      theme: ThemeData.light().copyWith(
+        textTheme: ThemeData.light().textTheme.apply(
+              fontFamily: 'Source Han Sans JP',
+            ),
+        primaryTextTheme: ThemeData.light().textTheme.apply(
+              fontFamily: 'Source Han Sans JP',
+            ),
       ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: 'Source Han Sans JP',
-        pageTransitionsTheme: _pageTransitionTheme,
+      darkTheme: ThemeData.dark().copyWith(
+        textTheme: ThemeData.dark().textTheme.apply(
+              fontFamily: 'Source Han Sans JP',
+            ),
+        primaryTextTheme: ThemeData.dark().textTheme.apply(
+              fontFamily: 'Source Han Sans JP',
+            ),
       ),
       home: const MyHomePage(),
     );
@@ -95,6 +101,7 @@ class MyHomePage extends ConsumerWidget {
             ),
           ),
         ],
+        elevation: 0,
       ),
       body: _children[ref.watch(bottomNavigationProvider)],
       floatingActionButton: FloatingActionButton(
@@ -127,7 +134,7 @@ class MyHomePage extends ConsumerWidget {
       isScrollControlled: true,
       enableDrag: false,
       constraints: constraints,
-      builder: (context) => const AddEventPage(),
+      builder: (context) => const EventAddPage(),
     );
   }
 

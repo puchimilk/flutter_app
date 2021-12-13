@@ -8,6 +8,7 @@ class WeekdayRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Calendar _calendar = Calendar();
+    final ThemeData theme = Theme.of(context);
 
     Color _weekdayColor(int index) {
       int sat = ((index + 1) + _calendar.startingWeekdayNumber()) % 7;
@@ -17,7 +18,7 @@ class WeekdayRow extends StatelessWidget {
       } else if (sat == 0) {
         return Color(0xFF00afcc);
       }
-      return Colors.black;
+      return theme.textTheme.bodyText1!.color!;
     }
 
     List<String> _weekdays() {
