@@ -1,51 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BottomNavigation extends StatefulWidget {
+final bottomNavigationProvider = StateProvider<int>((ref) => 0);
+
+class BottomNavigation extends ConsumerWidget {
   const BottomNavigation({Key? key}) : super(key: key);
-  
-  @override
-  State<BottomNavigation> createState() => _BottomNavigationState();
-}
 
-class _BottomNavigationState extends State<BottomNavigation> {
-  int _currentIndex = 0;
-
-  void _onTap(int value) {
-    setState(() {
-      _currentIndex = value;
-    });
-  }
-  
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return BottomNavigationBar(
-      items: [
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          label: 'red',
-          icon: const Icon(
+          icon: Icon(
             Icons.layers,
             color: Colors.red,
           ),
+          label: 'month',
         ),
         BottomNavigationBarItem(
-          label: 'green',
-          icon: const Icon(
-            Icons.layers,
-            color: Colors.green,
-          ),
-        ),
-        BottomNavigationBarItem(
-          label: 'blue',
-          icon: const Icon(
+          icon: Icon(
             Icons.layers,
             color: Colors.blue,
           ),
+          label: 'week',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.layers,
+            color: Colors.green,
+          ),
+          label: 'day',
         ),
       ],
       selectedItemColor: Colors.grey,
-      elevation: 1,
-      currentIndex: _currentIndex,
-      onTap: _onTap,
+      currentIndex: ref.watch(bottomNavigationProvider),
+      onTap: (int index) {
+        print('onTap');
+        ref.read(bottomNavigationProvider.notifier).state = index;
+      },
     );
   }
 }

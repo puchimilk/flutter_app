@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/day_calendar_view.dart';
+import 'package:flutter_app/month_calendar_view.dart';
+import 'package:flutter_app/week_calendar_view.dart';
+import 'package:flutter_app/weekday_row.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'add_event_page.dart';
 import 'bottom_navigation.dart';
-import 'day_calendar_view.dart';
 import 'modal_page.dart';
 
 void main() async {
@@ -49,11 +52,22 @@ class MyApp extends ConsumerWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    List<Widget> _children = <Widget>[
+      Column(
+        children: [
+          const WeekdayRow(),
+          const MonthCalendarView(),
+        ],
+      ),
+      const WeekCalendarView(),
+      const DayCalendarView(),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -75,12 +89,12 @@ class MyHomePage extends StatelessWidget {
             width: 56,
             child: IconButton(
               icon: const Icon(Icons.today),
-              onPressed: () {},
+              onPressed: () => ref.watch(pageControllerProvider),
             ),
           ),
         ],
       ),
-      body: const DayCalendarView(),
+      body: _children[ref.watch(bottomNavigationProvider)],
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _showAddEventPage(context),

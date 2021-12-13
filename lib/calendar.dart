@@ -105,34 +105,35 @@ class Calendar {
   }
 
   // ページの位置から月を割り出す
-  DateTime sample9(int page) {
+  DateTime monthPosition(int page) {
     return DateTime(startDate.year, startDate.month + page);
   }
 
   // 月のマスから日にちを割り出す
-  DateTime sample10(int page, int grid) {
-    final p = sample9(page);
+  DateTime dayPosition(int page, int grid) {
+    final p = monthPosition(page);
     return dateList(p)[grid];
   }
 
-  int sample11() {
+  int currentMonth() {
     final year = (currentDate.year - 1970) * 12;
     final month = currentDate.month;
     return (year + month) - 1;
   }
 
-  bool sample12(int page, int grid) {
-    final dateB = sample10(page, grid);
-    final isToday = DateUtils.isSameDay(currentDate, dateB);
-    if (isToday) {
+  bool isToday(int page, int grid) {
+    final dateB = dayPosition(page, grid);
+    final isSameToday = DateUtils.isSameDay(currentDate, dateB);
+    if (isSameToday) {
       return true;
     }
+    
     return false;
   }
 
   bool isThisMonth(int page, int grid) {
-    final dateA = sample9(page);
-    final p = sample9(page);
+    final dateA = monthPosition(page);
+    final p = monthPosition(page);
     final dateB = dateList(p)[grid];
     final isMonth = DateUtils.isSameMonth(dateA, dateB);
     if (isMonth) {

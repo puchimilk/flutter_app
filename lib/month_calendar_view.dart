@@ -3,14 +3,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'calendar.dart';
 
-final pageControllerProvider = Provider((_) => PageController(initialPage: Calendar().sample11()));
+final pageControllerProvider = Provider<PageController>((ref) {
+  final int initialPage = Calendar().currentMonth();
+  return PageController(initialPage: initialPage);
+});
 
 class MonthCalendarView extends ConsumerWidget {
   const MonthCalendarView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final PageController _controller = ref.watch(pageControllerProvider);
+    final ThemeData theme = Theme.of(context);
 
     Calendar _calendar = Calendar();
 
@@ -28,7 +31,7 @@ class MonthCalendarView extends ConsumerWidget {
     Future<Color> _holidayColor(int page, int grid) async {
       int sat = ((grid + 1) + _calendar.startingWeekdayNumber()) % 7;
       int sun = (grid + _calendar.startingWeekdayNumber()) % 7;
-      final sample10 = _calendar.sample10(page, grid);
+      final sample10 = _calendar.dayPosition(page, grid);
       final holiday = await _calendar.isHoliday(sample10);
       bool thisMonth = _calendar.isThisMonth(page, grid);
       if (thisMonth && sun == 0 || thisMonth && holiday) {
@@ -36,7 +39,7 @@ class MonthCalendarView extends ConsumerWidget {
       } else if (thisMonth && sat == 0) {
         return Color(0xFF00afcc);
       } else if (thisMonth) {
-        return Colors.black;
+        return theme.textTheme.bodyText1!.color!;
       }
       return Colors.grey;
     }
@@ -147,12 +150,12 @@ class MonthCalendarView extends ConsumerWidget {
     }
 
     Widget _today(int page, int grid) {
-      final result12 = _calendar.sample12(page, grid);
+      final result12 = _calendar.isToday(page, grid);
       if (result12) {
         return Center(
           child: Container(
-            width: 20,
-            height: 20,
+            width: 24,
+            height: 24,
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.greenAccent,
@@ -214,25 +217,20 @@ class MonthCalendarView extends ConsumerWidget {
 
     return Expanded(
       child: PageView.builder(
-        controller: _controller,
-        physics: const BouncingScrollPhysics(),
+        controller: ref.watch(pageControllerProvider),
         itemBuilder: (BuildContext context, int pageIndex) {
-          final sample9 = _calendar.sample9(pageIndex);
-          final sample5 = _calendar.gridCount(sample9);
-          //final sample6 = calendar.sample6(sample5);
-          final sample7 = _calendar.dateList(sample9);
-          final sample8 = _calendar.days(sample7);
+          final DateTime monthPosition = _calendar.monthPosition(pageIndex);
+          final int gridCount = _calendar.gridCount(monthPosition);
+          final List<DateTime> dateList = _calendar.dateList(monthPosition);
+          final List<int> days = _calendar.days(dateList);
+          
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
-              //Size size = Size(constraints.maxWidth / 7, constraints.maxHeight / sample6);
               return GridView.count(
                 crossAxisCount: 7,
-                //childAspectRatio: size.width / size.height,
-                physics: const BouncingScrollPhysics(),
-                children: List.generate(sample5, (gridIndex) {
+                children: List.generate(gridCount, (gridIndex) {
                   return GestureDetector(
                     child: Container(
-                      //color: thisMonth1(pageIndex, gridIndex),
                       child: Stack(
                         children: <Widget>[
                           _today(pageIndex, gridIndex),
@@ -241,10 +239,10 @@ class MonthCalendarView extends ConsumerWidget {
                               future: _holidayColor(pageIndex, gridIndex),
                               builder: (BuildContext context, AsyncSnapshot snapshot) {
                                 return Text(
-                                  sample8[gridIndex].toString(),
+                                  days[gridIndex].toString(),
                                   style: TextStyle(
                                     color: snapshot.data,
-                                    height: 1.2,
+                                    height: 1.1,
                                     fontSize: 12,
                                   ),
                                 );
@@ -255,7 +253,7 @@ class MonthCalendarView extends ConsumerWidget {
                       ),
                     ),
                     onTap: () {
-                      final sample10 = _calendar.sample10(pageIndex, gridIndex);
+                      final sample10 = _calendar.dayPosition(pageIndex, gridIndex);
                       debugPrint('$sample10');
                       _calendar.isHoliday(sample10).then((value) {
                         final holiday = value ? '祝日です' : '祝日ではありません';
