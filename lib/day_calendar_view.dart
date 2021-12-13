@@ -10,6 +10,8 @@ class DayCalendarView extends StatefulWidget {
 class _DayCalendarViewState extends State<DayCalendarView> {
   @override
   Widget build(BuildContext context) {
+    bool _value = false;
+
     return Column(
       children: <Widget>[
         Container(
@@ -141,6 +143,66 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                               fontSize: 12,
                               height: 1.2,
                             ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 88 * 14,
+                        child: Container(
+                          width: constraints.maxWidth - 28,
+                          height: 88 * 0.25,
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.orange[200],
+                            border: Border(
+                              left: BorderSide(
+                                color: Colors.orange,
+                                width: 6,
+                              ),
+                            ),
+                          ),
+                          child: const Text(
+                            'Event 2',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              height: 1.2,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 88 * 15,
+                        child: Container(
+                          width: constraints.maxWidth - 28,
+                          height: 88 * 0.25,
+                          padding: const EdgeInsets.all(4),
+                          color: Colors.orange,
+                          child: Row(
+                            children: [
+                              Transform.scale(
+                                scale: 1,
+                                child: Checkbox(
+                                  value: _value,
+                                  activeColor: Colors.transparent,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      _value = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                              const Text(
+                                'Event 2',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.2,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

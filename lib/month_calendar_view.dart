@@ -66,7 +66,7 @@ class MonthCalendarView extends ConsumerWidget {
     ];
 
     void _showSettingBottomSheet() {
-      showModalBottomSheet<void>(
+      showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         builder: (BuildContext context) {
@@ -223,7 +223,7 @@ class MonthCalendarView extends ConsumerWidget {
           final int gridCount = _calendar.gridCount(monthPosition);
           final List<DateTime> dateList = _calendar.dateList(monthPosition);
           final List<int> days = _calendar.days(dateList);
-          
+
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               return GridView.count(
@@ -259,6 +259,7 @@ class MonthCalendarView extends ConsumerWidget {
                         final holiday = value ? '祝日です' : '祝日ではありません';
                         debugPrint('$holiday');
                       });
+                      _showBottomSheet(context);
                     },
                   );
                 }),
@@ -268,6 +269,135 @@ class MonthCalendarView extends ConsumerWidget {
         },
         itemCount: _calendar.monthCount(),
       ),
+    );
+  }
+
+  void _showBottomSheet(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
+    showModalBottomSheet(
+      context: context,
+      constraints: BoxConstraints.expand(height: 300),
+      backgroundColor: theme.primaryColor,
+      barrierColor: Colors.transparent,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+      ),
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '0000年00月00日 月曜日',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              Text(
+                '大安',
+                style: TextStyle(
+                  fontSize: 12,
+                ),
+              ),
+              ListView(
+                padding: EdgeInsets.only(top: 16),
+                shrinkWrap: true,
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 48,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text('12:00', style: TextStyle(fontSize: 12)),
+                              Text('13:00', style: TextStyle(fontSize: 12)),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(top: 4, bottom: 4, left: 12),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                left: BorderSide(
+                                  color: Colors.amber,
+                                  width: 6,
+                                ),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '映画',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                Text(
+                                  'TOHOシネマ なんば',
+                                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 48,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text('終日', style: TextStyle(fontSize: 12)),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(top: 4, bottom: 4, left: 12),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                left: BorderSide(
+                                  color: Colors.pink,
+                                  width: 6,
+                                ),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '映画',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                Text(
+                                  'TOHOシネマ なんば',
+                                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
