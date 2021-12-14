@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/test_page.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'bottom_navigation.dart';
@@ -28,33 +30,19 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     print('MyApp build()');
 
+    /*
     const _pageTransitionTheme = PageTransitionsTheme(
       builders: <TargetPlatform, PageTransitionsBuilder>{
         TargetPlatform.android: CupertinoPageTransitionsBuilder(),
         TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
       },
     );
+    */
 
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData.light().copyWith(
-        textTheme: ThemeData.light().textTheme.apply(
-              fontFamily: 'Source Han Sans JP',
-            ),
-        primaryTextTheme: ThemeData.light().textTheme.apply(
-              fontFamily: 'Source Han Sans JP',
-            ),
-        pageTransitionsTheme: _pageTransitionTheme,
-      ),
-      darkTheme: ThemeData.dark().copyWith(
-        textTheme: ThemeData.dark().textTheme.apply(
-              fontFamily: 'Source Han Sans JP',
-            ),
-        primaryTextTheme: ThemeData.dark().textTheme.apply(
-              fontFamily: 'Source Han Sans JP',
-            ),
-        pageTransitionsTheme: _pageTransitionTheme,
-      ),
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
       home: const MyHomePage(),
     );
   }
@@ -69,7 +57,7 @@ class MyHomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     List<Widget> _children = <Widget>[
       Column(
-        children: [
+        children: const <Widget>[
           const WeekdayRow(),
           const MonthCalendarView(),
         ],
@@ -105,7 +93,8 @@ class MyHomePage extends ConsumerWidget {
         ],
         elevation: 0,
       ),
-      body: _children[ref.watch(bottomNavigationProvider)],
+      //body: _children[ref.watch(bottomNavigationProvider)],
+      body: TestPage(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _showAddEventPage(context),
@@ -114,28 +103,28 @@ class MyHomePage extends ConsumerWidget {
     );
   }
 
-  void _shomModalPage(BuildContext context) {
+  BoxConstraints _constraints(BuildContext context) {
     final MediaQueryData data = MediaQuery.of(context);
     final double height = data.size.height - data.padding.top;
-    final BoxConstraints constraints = BoxConstraints(maxHeight: height);
+    return BoxConstraints(maxHeight: height);
+  }
+
+  void _shomModalPage(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       enableDrag: false,
-      constraints: constraints,
+      constraints: _constraints(context),
       builder: (context) => const ModalPage(),
     );
   }
 
   void _showAddEventPage(BuildContext context) {
-    final MediaQueryData data = MediaQuery.of(context);
-    final double height = data.size.height - data.padding.top;
-    final BoxConstraints constraints = BoxConstraints(maxHeight: height);
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       enableDrag: false,
-      constraints: constraints,
+      constraints: _constraints(context),
       builder: (context) => const EventAddPage(),
     );
   }

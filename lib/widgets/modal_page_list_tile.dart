@@ -12,12 +12,22 @@ class ModalPageListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(
-        title,
-        style: TextStyle(height: 1.2),
+    return InkWell(
+      child: Container(
+        constraints: BoxConstraints.expand(height: 56),
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(Icons.ac_unit),
+            Text(
+              'てきすと',
+              style: TextStyle(),
+            ),
+            Icon(Icons.chevron_right),
+          ],
+        ),
       ),
-      trailing: const Icon(Icons.chevron_right),
       onTap: onTap,
     );
   }

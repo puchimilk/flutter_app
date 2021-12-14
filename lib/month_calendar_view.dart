@@ -13,6 +13,7 @@ class MonthCalendarView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('build is MonthCalendarView');
     final ThemeData theme = Theme.of(context);
 
     Calendar _calendar = Calendar();
