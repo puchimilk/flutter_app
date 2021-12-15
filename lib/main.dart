@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/test_page.dart';
+import 'package:flutter_app/utils/japanese_holidays.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,15 +30,6 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     print('MyApp build()');
 
-    /*
-    const _pageTransitionTheme = PageTransitionsTheme(
-      builders: <TargetPlatform, PageTransitionsBuilder>{
-        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      },
-    );
-    */
-
     return MaterialApp(
       title: 'Flutter Demo',
       theme: lightTheme(),
@@ -52,6 +43,7 @@ class MyHomePage extends ConsumerWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   // TODO: Todayページ実装
+  // TODO:  祝日判定の処理の重さ問題
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -94,7 +86,15 @@ class MyHomePage extends ConsumerWidget {
         elevation: 0,
       ),
       //body: _children[ref.watch(bottomNavigationProvider)],
-      body: TestPage(),
+      /*
+      body: Column(
+        children: [
+          const WeekdayRow(),
+          MonthCalendarView(),
+        ],
+      ),
+      */
+      body: Container(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _showAddEventPage(context),
