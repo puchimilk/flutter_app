@@ -11,6 +11,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('MyApp()', (WidgetTester tester) async {
-    await tester.pumpWidget(ProviderScope(child: MyApp()));
+    await tester.pumpWidget(const ProviderScope(child: const MyApp()));
   });
 }
