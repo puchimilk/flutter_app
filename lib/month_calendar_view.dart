@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'calendar.dart';
 
-final pageControllerProvider = Provider<PageController>((ref) {
+final pageControllerProvider = StateProvider.autoDispose((ref) {
   final int initialPage = Calendar().currentMonth();
   return PageController(initialPage: initialPage);
 });
@@ -15,12 +15,14 @@ class MonthCalendarView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     print('build is MonthCalendarView');
     final ThemeData theme = Theme.of(context);
-
-    Calendar _calendar = Calendar();
+    final Calendar calendar = Calendar();
+    final int itemCount = Calendar().monthCount();
+    final PageController controller = ref.watch(pageControllerProvider);
+    final ValueNotifier<int> onPageChanged = ValueNotifier<int>(0);
 
     Color _weekdayColor(int index) {
-      int sat = ((index + 1) + _calendar.startingWeekdayNumber()) % 7;
-      int sun = (index + _calendar.startingWeekdayNumber()) % 7;
+      int sat = ((index + 1) + calendar.startingWeekdayNumber()) % 7;
+      int sun = (index + calendar.startingWeekdayNumber()) % 7;
       if (sun == 0) {
         return Color(0xFFe8383d);
       } else if (sat == 0) {
@@ -30,11 +32,11 @@ class MonthCalendarView extends ConsumerWidget {
     }
 
     Future<Color> _holidayColor(int page, int grid) async {
-      int sat = ((grid + 1) + _calendar.startingWeekdayNumber()) % 7;
-      int sun = (grid + _calendar.startingWeekdayNumber()) % 7;
-      final sample10 = _calendar.dayPosition(page, grid);
-      final holiday = await _calendar.isHoliday(sample10);
-      bool thisMonth = _calendar.isThisMonth(page, grid);
+      int sat = ((grid + 1) + calendar.startingWeekdayNumber()) % 7;
+      int sun = (grid + calendar.startingWeekdayNumber()) % 7;
+      final sample10 = calendar.dayPosition(page, grid);
+      final holiday = await calendar.isHoliday(sample10);
+      bool thisMonth = calendar.isThisMonth(page, grid);
       if (thisMonth && sun == 0 || thisMonth && holiday) {
         return Color(0xFFe8383d);
       } else if (thisMonth && sat == 0) {
@@ -47,7 +49,7 @@ class MonthCalendarView extends ConsumerWidget {
 
     List<String> _weekdays() {
       List<String> weekday = ['日', '月', '火', '水', '木', '金', '土'];
-      for (var i = 0; i < _calendar.startingWeekdayNumber(); i++) {
+      for (var i = 0; i < calendar.startingWeekdayNumber(); i++) {
         String value = weekday[0];
         weekday.removeAt(0);
         weekday.add(value);
@@ -151,7 +153,7 @@ class MonthCalendarView extends ConsumerWidget {
     }
 
     Widget _today(int page, int grid) {
-      final result12 = _calendar.isToday(page, grid);
+      final result12 = calendar.isToday(page, grid);
       if (result12) {
         return Center(
           child: Container(
@@ -172,7 +174,7 @@ class MonthCalendarView extends ConsumerWidget {
     }
 
     Color _thisMonth1(int page, int grid) {
-      final result13 = _calendar.isThisMonth(page, grid);
+      final result13 = calendar.isThisMonth(page, grid);
       if (result13) {
         return Colors.transparent;
       } else {
@@ -218,24 +220,45 @@ class MonthCalendarView extends ConsumerWidget {
 
     return Expanded(
       child: PageView.builder(
-        controller: ref.watch(pageControllerProvider),
+        itemCount: itemCount,
+        controller: controller,
+        onPageChanged: (value) => onPageChanged.value++,
         itemBuilder: (BuildContext context, int pageIndex) {
-          final DateTime monthPosition = _calendar.monthPosition(pageIndex);
-          final int gridCount = _calendar.gridCount(monthPosition);
-          final List<DateTime> dateList = _calendar.dateList(monthPosition);
-          final List<int> days = _calendar.days(dateList);
+          final DateTime monthPosition = calendar.monthPosition(pageIndex);
+          final int gridCount = calendar.gridCount(monthPosition);
+          final List<DateTime> dateList = calendar.dateList(monthPosition);
+          final List<int> days = calendar.days(dateList);
+          
+          Color color(int index) {
+            if (index % 7 == 0) {
+              return Colors.red;
+            } else if (index % 7 == 6) {
+              return Colors.blue;
+            }
+            
+            return theme.textTheme.bodyText1!.color!;
+          }
 
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               return GridView.count(
                 crossAxisCount: 7,
                 children: List.generate(gridCount, (gridIndex) {
+                  final String data = days[gridIndex].toString();
+
                   return GestureDetector(
                     child: Container(
                       child: Stack(
                         children: <Widget>[
                           _today(pageIndex, gridIndex),
                           Center(
+                            child: Text(
+                              data,
+                              style: TextStyle(
+                                color: color(gridIndex),
+                              ),
+                            ),
+                            /*
                             child: FutureBuilder(
                               future: _holidayColor(pageIndex, gridIndex),
                               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -249,14 +272,15 @@ class MonthCalendarView extends ConsumerWidget {
                                 );
                               },
                             ),
+                            */
                           ),
                         ],
                       ),
                     ),
                     onTap: () {
-                      final sample10 = _calendar.dayPosition(pageIndex, gridIndex);
+                      final sample10 = calendar.dayPosition(pageIndex, gridIndex);
                       debugPrint('$sample10');
-                      _calendar.isHoliday(sample10).then((value) {
+                      calendar.isHoliday(sample10).then((value) {
                         final holiday = value ? '祝日です' : '祝日ではありません';
                         debugPrint('$holiday');
                       });
@@ -268,7 +292,6 @@ class MonthCalendarView extends ConsumerWidget {
             },
           );
         },
-        itemCount: _calendar.monthCount(),
       ),
     );
   }

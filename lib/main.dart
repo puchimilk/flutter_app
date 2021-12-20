@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/japanese_holidays.dart';
-import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'bottom_navigation.dart';
@@ -10,6 +8,7 @@ import 'day_calendar_view.dart';
 import 'event_add_page.dart';
 import 'modal_page.dart';
 import 'month_calendar_view.dart';
+import 'utils/utils.dart';
 import 'week_calendar_view.dart';
 import 'weekday_row.dart';
 
