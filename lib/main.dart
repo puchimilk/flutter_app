@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/test_month_calendar_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'bottom_navigation.dart';
@@ -50,7 +51,8 @@ class MyHomePage extends ConsumerWidget {
       Column(
         children: const <Widget>[
           const WeekdayRow(),
-          const MonthCalendarView(),
+          //const MonthCalendarView(),
+          const TestMonthCalendarView(),
         ],
       ),
       const WeekCalendarView(),
@@ -84,7 +86,7 @@ class MyHomePage extends ConsumerWidget {
         ],
         elevation: 0,
       ),
-      //body: _children[ref.watch(bottomNavigationProvider)],
+      body: _children[ref.watch(bottomNavigationProvider)],
       /*
       body: Column(
         children: [
@@ -93,7 +95,7 @@ class MyHomePage extends ConsumerWidget {
         ],
       ),
       */
-      body: Container(),
+      //body: Container(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _showAddEventPage(context),

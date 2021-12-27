@@ -38,9 +38,9 @@ class MonthCalendarView extends ConsumerWidget {
       final holiday = await calendar.isHoliday(sample10);
       bool thisMonth = calendar.isThisMonth(page, grid);
       if (thisMonth && sun == 0 || thisMonth && holiday) {
-        return Color(0xFFe8383d);
+        return Colors.red;
       } else if (thisMonth && sat == 0) {
-        return Color(0xFF00afcc);
+        return Colors.blue;
       } else if (thisMonth) {
         return theme.textTheme.bodyText1!.color!;
       }
