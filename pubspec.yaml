@@ -24,28 +24,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+
   # $ flutter pub get 未取得のパッケージを取得
   # $ flutter pub upgrade 最新版のパッケージを取得
   # $ flutter pub outdated 更新可能なパッケージのチェック
   # $ flutter pub deps 依存関係のチェック
-  
+
   cupertino_icons: ^1.0.4
-  charset_converter: ^2.0.0
-  shared_preferences: ^2.0.11
-  
-  # riverpod
-  #flutter_riverpod: ^1.0.1
-  flutter_hooks: ^0.18.1
-  hooks_riverpod: ^1.0.2
-  
-  # firebase
-  firebase_core: ^1.10.2
-  firebase_analytics: ^9.0.3
-  firebase_auth: ^3.3.0
-  cloud_firestore: ^3.1.1
-  firebase_database: ^9.0.3
-  
+  charset_converter: ^2.1.0
+  shared_preferences: ^2.0.13
+  flutter_hooks: ^0.18.2+1
+  hooks_riverpod: ^1.0.3
+  firebase_core: ^1.13.1
+  firebase_analytics: ^9.1.2
+  firebase_auth: ^3.3.11
+  cloud_firestore: ^3.1.10
+  firebase_database: ^9.0.8
+  provider: ^6.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,6 +77,6 @@ flutter:
           weight: 700
         - asset: assets/fonts/ZenKakuGothicAntique-Black.ttf
           weight: 900
-  
+
   assets:
     - assets/syukujitsu.csv
