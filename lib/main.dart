@@ -63,7 +63,7 @@ class MyHomePage extends ConsumerWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.menu),
-          onPressed: () => _shomModalPage(context),
+          onPressed: () => _showModalPage(context),
         ),
         title: const Text('タイトル'),
         actions: [
@@ -110,7 +110,7 @@ class MyHomePage extends ConsumerWidget {
     return BoxConstraints(maxHeight: height);
   }
 
-  void _shomModalPage(BuildContext context) {
+  void _showModalPage(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
