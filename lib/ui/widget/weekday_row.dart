@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'calendar.dart';
+import '/importer.dart';
 
 class WeekdayRow extends StatelessWidget {
   const WeekdayRow({Key? key}) : super(key: key);

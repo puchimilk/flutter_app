@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '/importer.dart';
 
-final controller = StateProvider.autoDispose((ref) => PageController(initialPage: 500));
+// final controller = StateProvider.autoDispose((ref) => PageController(initialPage: 500));
 
-class TestPage extends ConsumerWidget {
+class TestPage extends StatelessWidget {
   final int itemCount = DateUtils.monthDelta(DateTime(1970, 1), DateTime(2099, 12));
   //final PageController controller = PageController(initialPage: 500);
   final ValueNotifier<int> onPageChanged = ValueNotifier<int>(0);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     print('build is TestPage');
     Color color(int index) {
       if (index % 7 == 0) {
@@ -22,7 +21,7 @@ class TestPage extends ConsumerWidget {
 
     return PageView.builder(
       itemCount: itemCount,
-      controller: ref.watch(controller),
+      // controller: ref.watch(controller),
       onPageChanged: (value) => onPageChanged.value++,
       itemBuilder: (BuildContext context, int index) {
         return GridView.count(

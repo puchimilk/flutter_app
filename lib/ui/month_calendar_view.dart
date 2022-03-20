@@ -1,23 +1,20 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '/importer.dart';
 
-import 'calendar.dart';
+// final pageControllerProvider = StateProvider.autoDispose((ref) {
+//   final int initialPage = Calendar().currentMonth();
+//   return PageController(initialPage: initialPage);
+// });
 
-final pageControllerProvider = StateProvider.autoDispose((ref) {
-  final int initialPage = Calendar().currentMonth();
-  return PageController(initialPage: initialPage);
-});
-
-class MonthCalendarView extends ConsumerWidget {
+class MonthCalendarView extends StatelessWidget {
   const MonthCalendarView({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     print('build is MonthCalendarView');
     final ThemeData theme = Theme.of(context);
     final Calendar calendar = Calendar();
     final int itemCount = Calendar().monthCount();
-    final PageController controller = ref.watch(pageControllerProvider);
+    // final PageController controller = ref.watch(pageControllerProvider);
     final ValueNotifier<int> onPageChanged = ValueNotifier<int>(0);
 
     Color _weekdayColor(int index) {
@@ -221,21 +218,21 @@ class MonthCalendarView extends ConsumerWidget {
     return Expanded(
       child: PageView.builder(
         itemCount: itemCount,
-        controller: controller,
+        // controller: controller,
         onPageChanged: (value) => onPageChanged.value++,
         itemBuilder: (BuildContext context, int pageIndex) {
           final DateTime monthPosition = calendar.monthPosition(pageIndex);
           final int gridCount = calendar.gridCount(monthPosition);
           final List<DateTime> dateList = calendar.dateList(monthPosition);
           final List<int> days = calendar.days(dateList);
-          
+
           Color color(int index) {
             if (index % 7 == 0) {
               return Colors.red;
             } else if (index % 7 == 6) {
               return Colors.blue;
             }
-            
+
             return theme.textTheme.bodyText1!.color!;
           }
 

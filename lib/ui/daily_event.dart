@@ -1,26 +1,26 @@
-import 'package:flutter/material.dart';
+import '/importer.dart';
 
-class DaylyEvent extends StatefulWidget {
-  const DaylyEvent({
+class DailyEvent extends StatefulWidget {
+  const DailyEvent({
     Key? key,
     required this.title,
-    this.backgroudColor = Colors.red,
+    this.backgroundColor = Colors.red,
   }) : super(key: key);
 
   final String title;
-  final Color backgroudColor;
+  final Color backgroundColor;
 
   @override
-  State<DaylyEvent> createState() => _DaylyEventState();
+  State<DailyEvent> createState() => _DailyEventState();
 }
 
-class _DaylyEventState extends State<DaylyEvent> {
+class _DailyEventState extends State<DailyEvent> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
       child: Container(
         padding: const EdgeInsets.all(4),
-        color: widget.backgroudColor,
+        color: widget.backgroundColor,
         child: Text(
           widget.title,
           style: TextStyle(

@@ -1,52 +1,40 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_app/test_month_calendar_view.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '/importer.dart';
 
-import 'bottom_navigation.dart';
-import 'day_calendar_view.dart';
-import 'event_add_page.dart';
-import 'modal_page.dart';
-import 'month_calendar_view.dart';
-import 'utils/utils.dart';
-import 'week_calendar_view.dart';
-import 'weekday_row.dart';
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(
-    const ProviderScope(
-      child: const MyApp(),
-    ),
-  );
+void main() {
+  runApp(const MyApp());
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    print('MyApp build()');
-
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: lightTheme(),
-      darkTheme: darkTheme(),
+      theme: ThemeData(
+        primaryColor: AppColors.primary,
+        textTheme: TextTheme(
+          bodyText1: TextStyle(color: AppColors.darkGrey),
+        ),
+      ),
       home: const MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends ConsumerWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   // TODO: Todayページ実装
   // TODO:  祝日判定の処理の重さ問題
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     List<Widget> _children = <Widget>[
       Column(
         children: const <Widget>[
@@ -72,7 +60,7 @@ class MyHomePage extends ConsumerWidget {
             child: IconButton(
               icon: const Icon(Icons.search),
               onPressed: () {
-                fetchEvent();
+                // fetchEvent();
               },
             ),
           ),
@@ -80,13 +68,15 @@ class MyHomePage extends ConsumerWidget {
             width: 56,
             child: IconButton(
               icon: const Icon(Icons.today),
-              onPressed: () => ref.watch(pageControllerProvider),
+              // onPressed: () => ref.watch(pageControllerProvider),
+              onPressed: () {},
             ),
           ),
         ],
         elevation: 0,
       ),
-      body: _children[ref.watch(bottomNavigationProvider)],
+      body: Container(),
+      // body: _children[ref.watch(bottomNavigationProvider)],
       /*
       body: Column(
         children: [
@@ -95,7 +85,6 @@ class MyHomePage extends ConsumerWidget {
         ],
       ),
       */
-      //body: Container(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => _showAddEventPage(context),
@@ -130,8 +119,8 @@ class MyHomePage extends ConsumerWidget {
     );
   }
 
-  void fetchEvent() async {
-    final x = await FirebaseFirestore.instance.collection('users').doc('12345').get();
-    print(x.data());
-  }
+  // void fetchEvent() async {
+  //   final x = await FirebaseFirestore.instance.collection('users').doc('12345').get();
+  //   print(x.data());
+  // }
 }

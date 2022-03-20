@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '/importer.dart';
 
-final bottomNavigationProvider = StateProvider<int>((ref) => 0);
+// final bottomNavigationProvider = StateProvider<int>((ref) => 0);
 
-class BottomNavigation extends ConsumerWidget {
+class BottomNavigation extends StatelessWidget {
   const BottomNavigation({Key? key}) : super(key: key);
 
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
@@ -32,10 +31,9 @@ class BottomNavigation extends ConsumerWidget {
         ),
       ],
       selectedItemColor: Colors.grey,
-      currentIndex: ref.watch(bottomNavigationProvider),
+      // currentIndex: ref.watch(bottomNavigationProvider),
       onTap: (int index) {
-        print('onTap');
-        ref.read(bottomNavigationProvider.notifier).state = index;
+        // ref.read(bottomNavigationProvider.notifier).state = index;
       },
     );
   }

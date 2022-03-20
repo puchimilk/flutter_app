@@ -1,12 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '/importer.dart';
 
-class EventAddPage extends ConsumerWidget {
+class EventAddPage extends StatelessWidget {
   const EventAddPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -21,7 +19,7 @@ class EventAddPage extends ConsumerWidget {
               icon: const Icon(Icons.save),
               onPressed: () async {
                 Navigator.of(context, rootNavigator: true).pop();
-                addEvent();
+                // addEvent();
               },
             ),
           ),
@@ -131,21 +129,21 @@ class EventAddPage extends ConsumerWidget {
     );
   }
 
-  void addEvent() async {
-    await FirebaseFirestore.instance.collection('users').doc('12345').set({
-      'id': 'ca8f7f',
-      'created': DateTime(2021, 12, 15),
-      'updated': DateTime(2021, 12, 21),
-      'summary': '映画', // タイトル
-      'description': '騙し絵の牙', // メモ
-      'location': 'TOHOシネマ なんば', // 場所
-      'start': {
-        'date': DateTime(2021, 12, 17, 13, 30),
-      }, // 開始日時
-      'end': {
-        'date': DateTime(2021, 12, 17, 15, 30),
-      }, // 終了日時
-      'endTimeUnspecified': false, // 終了時刻が指定してされているか
-    });
-  }
+  // void addEvent() async {
+  //   await FirebaseFirestore.instance.collection('users').doc('12345').set({
+  //     'id': 'ca8f7f',
+  //     'created': DateTime(2021, 12, 15),
+  //     'updated': DateTime(2021, 12, 21),
+  //     'summary': '映画', // タイトル
+  //     'description': '騙し絵の牙', // メモ
+  //     'location': 'TOHOシネマ なんば', // 場所
+  //     'start': {
+  //       'date': DateTime(2021, 12, 17, 13, 30),
+  //     }, // 開始日時
+  //     'end': {
+  //       'date': DateTime(2021, 12, 17, 15, 30),
+  //     }, // 終了日時
+  //     'endTimeUnspecified': false, // 終了時刻が指定してされているか
+  //   });
+  // }
 }
