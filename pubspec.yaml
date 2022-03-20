@@ -30,17 +30,23 @@ dependencies:
   # $ flutter pub outdated 更新可能なパッケージのチェック
   # $ flutter pub deps 依存関係のチェック
 
-  cupertino_icons: ^1.0.4
   charset_converter: ^2.1.0
-  shared_preferences: ^2.0.13
-  flutter_hooks: ^0.18.2+1
-  hooks_riverpod: ^1.0.3
-  firebase_core: ^1.13.1
-  firebase_analytics: ^9.1.2
-  firebase_auth: ^3.3.11
-  cloud_firestore: ^3.1.10
-  firebase_database: ^9.0.8
+  cupertino_icons: ^1.0.4
   provider: ^6.0.2
+  riverpod: ^1.0.3
+  routemaster: ^0.9.5
+  shared_preferences: ^2.0.13
+
+  # TODO: 導入検討
+  # flutter_hooks: ^0.18.2+1
+  # hooks_riverpod: ^1.0.3
+
+  # TODO: Dartのバージョン問題
+  # cloud_firestore: ^3.1.10
+  # firebase_core: ^1.13.1
+  # firebase_analytics: ^9.1.2
+  # firebase_auth: ^3.3.11
+  # firebase_database: ^9.0.8
 
 dev_dependencies:
   flutter_test:
