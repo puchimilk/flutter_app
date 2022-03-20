@@ -1,0 +1,12 @@
+name: Pull requestがmergeされたときに、Issueをcloseにする
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
