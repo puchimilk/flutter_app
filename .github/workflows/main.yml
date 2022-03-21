@@ -2,10 +2,11 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  workflow_dispatch:
+    branches:
+      - master
+      - 'feat/**'
+      - 'style/**'
+      - 'fix/**'
 
 jobs:
   build:
@@ -20,7 +21,3 @@ jobs:
         with:
           flutter-version: '2.8.0'
       - run: flutter pub get
-      - name: Run unit tests
-        run: flutter test test/unit_test.dart
-      - name: Run widget tests
-        run: flutter test test/widget_test.dart
