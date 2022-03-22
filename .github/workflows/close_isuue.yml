@@ -4,8 +4,13 @@ on:
   pull_request:
     branches:
       - 'feat/**'
-      - 'style/**'
       - 'fix/**'
+      - 'doc/**'
+      - 'style/**'
+      - 'refactor/**'
+      - 'pref/**'
+      - 'test/**'
+      - 'chore/**'
     types: closed
 
 jobs:
