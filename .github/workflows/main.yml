@@ -7,6 +7,8 @@ on:
       - 'feat/**'
       - 'style/**'
       - 'fix/**'
+    paths-ignore:
+      - '.github/workflows/**'
 
 jobs:
   build:
