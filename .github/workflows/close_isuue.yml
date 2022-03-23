@@ -5,6 +5,9 @@ on:
     branches:
       - 'feat/**'
 
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,11 +15,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ env.BRANCH_NAME }}
       
       - name: Create Pull Request
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: 'master'
-          destination_branch: 'feat/test'
+          source_branch: 'feat/test'
+          destination_branch: 'master'
           pr_title: 'テストPR'
           github_token: ${{ secrets.GITHUB_TOKEN }}
