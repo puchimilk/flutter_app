@@ -15,13 +15,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: echo Checkout with $BRANCH_NAME
       
       - name: Create Pull Request
+        id: open-pr
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: 'feat/test'
+          source_branch: ${{ env.BRANCH_NAME }}
           destination_branch: 'master'
           pr_title: ${{ env.BRANCH_NAME }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo Create Pull Request
+      
+      - name: output-url
+        run: echo ${{steps.open-pr.outputs.pr_url}}
+      
+      - name: output-number
+        run: echo ${{steps.open-pr.outputs.pr_number}}
+      
+      - name: output-has-changed-files
+        run: echo ${{steps.open-pr.outputs.has_changed_files}}
