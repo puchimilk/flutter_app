@@ -16,7 +16,7 @@ jobs:
       - name: Create Pull Request
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: 'feat/test'
-          destination_branch: 'master'
+          source_branch: 'master'
+          destination_branch: 'feat/test'
           pr_title: 'テストPR'
           github_token: ${{ secrets.GITHUB_TOKEN }}
