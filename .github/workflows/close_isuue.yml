@@ -5,9 +5,6 @@ on:
     branches:
       - 'feat/**'
 
-env:
-  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
       
       - name: Create Pull Request
         id: open-pr
