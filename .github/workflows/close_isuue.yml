@@ -16,13 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       
-      - name: banch name
+      - name: Branch Name
         run: echo Checkout with $BRANCH_NAME
       
       - name: Create Pull Request
         uses: repo-sync/pull-request@v2
         with:
-          source_branch: $BRANCH_NAME
+          source_branch: '$BRANCH_NAME'
           destination_branch: 'master'
-          pr_title: $BRANCH_NAME
+          pr_title: '$BRANCH_NAME'
           github_token: ${{ secrets.GITHUB_TOKEN }}
