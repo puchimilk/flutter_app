@@ -1,0 +1,30 @@
+analyzer:
+  exclude:
+    # 解析から除外
+    - build/**
+  strong-mode:
+    implicit-casts: false # 暗黙的型変換の実装を禁止
+    implicit-dynamic: false # 動的な型宣言で使用するdynamic型の使用を禁止
+
+linter:
+  rules:
+    - always_use_package_imports
+    - avoid_dynamic_calls
+    - avoid_empty_else # 空のelse文を避ける
+    # - avoid_print
+    - avoid_relative_lib_imports
+    - avoid_returning_null_for_future # Futureにnullを返さない
+    - avoid_slow_async_io # dart:ioを避ける
+    - avoid_type_to_string
+    - avoid_types_as_parameter_names # パラメータ名に型を使用しない
+    - avoid_web_libraries_in_flutter
+    - cancel_subscriptions
+    - close_sinks
+    - comment_references
+    - control_flow_in_finally
+    # - diagnostic_describe_all_properties
+    - empty_statements
+    - hash_and_equals
+    - invariant_booleans
+    - camel_case_types
+    - prefer_const_constructors
