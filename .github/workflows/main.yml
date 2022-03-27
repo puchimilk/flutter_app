@@ -14,12 +14,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
       - uses: actions/checkout@v2
+      
+      - name: Setup Java
       - uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
           java-version: '11'
+      
+      - name: flutter pub get
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.8.0'
+          flutter-version: '2.10.3'
       - run: flutter pub get
