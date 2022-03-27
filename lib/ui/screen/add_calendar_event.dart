@@ -1,7 +1,7 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class AddCalendarEventScreen extends StatefulWidget {
-  AddCalendarEventScreen({Key? key}) : super(key: key);
+  const AddCalendarEventScreen({Key? key}) : super(key: key);
 
   @override
   State<AddCalendarEventScreen> createState() => _AddCalendarEventScreenState();
@@ -18,7 +18,7 @@ class _AddCalendarEventScreenState extends State<AddCalendarEventScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Calendar Event'),
+        title: const Text('Create Calendar Event'),
         actions: [
           IconButton(
             onPressed: () {
@@ -35,7 +35,7 @@ class _AddCalendarEventScreenState extends State<AddCalendarEventScreen> {
 
               Routemaster.of(context).pop();
             },
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
           ),
         ],
       ),
@@ -45,44 +45,42 @@ class _AddCalendarEventScreenState extends State<AddCalendarEventScreen> {
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('タイトル'),
+                    const Text('タイトル'),
                     TextField(
                       controller: summaryController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    const Text('開始日時'),
+                    const TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    Text('開始日時'),
-                    TextField(
+                    const Text('終了日時'),
+                    const TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    Text('終了日時'),
-                    TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    Text('終日'),
+                    const Text('終日'),
                     TextButton(
-                      onPressed: () async {
-                        _showDatePicker(context);
-                      },
-                      child: Text('Start'),
+                      onPressed: () {},
+                      child: const Text('Start'),
                     ),
                     Switch(
                       value: _value,
                       onChanged: (bool newValue) => _onChanged(newValue),
                     ),
-                    Text('詳細'),
+                    const Text('詳細'),
                     TextField(
                       controller: descriptionController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -115,7 +113,7 @@ class _AddCalendarEventScreenState extends State<AddCalendarEventScreen> {
     );
   }
 
-  Future<dynamic> _showDatePicker(BuildContext context) async {
+  Future<DateTime> _showDatePicker(BuildContext context) async {
     return showDatePicker(
       context: context,
       initialDate: DateTime.now(),

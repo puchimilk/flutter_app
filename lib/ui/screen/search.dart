@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -7,9 +7,9 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: const Text('Search'),
       ),
-      body: Center(child: Text('Search Screen')),
+      body: const Center(child: Text('Search Screen')),
     );
   }
 }

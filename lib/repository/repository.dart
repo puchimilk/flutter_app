@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class Repository {
   Stream<List<Todo>> fetchTodo() async* {
@@ -17,10 +17,10 @@ class Repository {
 
     yield List.generate(maps.length, (i) {
       return Todo(
-        id: maps[i]['id'],
-        title: maps[i]['title'] ?? 'null',
+        id: maps[i]['id'] as int,
+        title: maps[i]['title'] as String,
         updated: DateTime(2021, 01, 01),
-        note: maps[i]['note'] ?? 'null',
+        note: maps[i]['note'] as String,
       );
     });
   }
@@ -41,16 +41,16 @@ class Repository {
 
     return List.generate(maps.length, (i) {
       return Event(
-        id: maps[i]['id'],
-        summary: maps[i]['summary'],
-        description: maps[i]['description'],
-        created: maps[i]['created'],
-        updated: maps[i]['updated'],
-        location: maps[i]['location'],
-        colorId: maps[i]['colorId'],
-        startDate: maps[i]['startDate'],
-        endDate: maps[i]['endDate'],
-        isAllDay: maps[i]['isAllDay'],
+        id: maps[i]['id'] as int,
+        summary: maps[i]['summary'] as String,
+        description: maps[i]['description'] as String,
+        created: maps[i]['created'] as DateTime,
+        updated: maps[i]['updated'] as DateTime,
+        location: maps[i]['location'] as String,
+        colorId: maps[i]['colorId'] as int,
+        startDate: maps[i]['startDate'] as DateTime,
+        endDate: maps[i]['endDate'] as DateTime,
+        isAllDay: maps[i]['isAllDay'] as bool,
       );
     });
   }

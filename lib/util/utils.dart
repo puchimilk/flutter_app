@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 DateTime stringToDate(String str) {
   List<String> splitDate = str.split('/');
@@ -40,3 +40,16 @@ ThemeData darkTheme() {
     pageTransitionsTheme: pageTransitionTheme,
   );
 }
+
+const br4 = BorderRadius.all(Radius.circular(4));
+const br6 = BorderRadius.all(Radius.circular(6));
+const br8 = BorderRadius.all(Radius.circular(8));
+
+const pt4 = Padding(padding: EdgeInsets.only(top: 4));
+const pt8 = Padding(padding: EdgeInsets.only(top: 8));
+const pt12 = Padding(padding: EdgeInsets.only(top: 12));
+const pt16 = Padding(padding: EdgeInsets.only(top: 16));
+const pt20 = Padding(padding: EdgeInsets.only(top: 20));
+const pt24 = Padding(padding: EdgeInsets.only(top: 24));
+const pt28 = Padding(padding: EdgeInsets.only(top: 28));
+const pt32 = Padding(padding: EdgeInsets.only(top: 32));

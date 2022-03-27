@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 // final pageControllerProvider = StateProvider.autoDispose((ref) {
 //   final int initialPage = Calendar().currentMonth();
@@ -21,9 +21,9 @@ class MonthCalendarView extends StatelessWidget {
       int sat = ((index + 1) + calendar.startingWeekdayNumber()) % 7;
       int sun = (index + calendar.startingWeekdayNumber()) % 7;
       if (sun == 0) {
-        return Color(0xFFe8383d);
+        return const Color(0xFFe8383d);
       } else if (sat == 0) {
-        return Color(0xFF00afcc);
+        return const Color(0xFF00afcc);
       }
       return Colors.black;
     }
@@ -66,7 +66,7 @@ class MonthCalendarView extends StatelessWidget {
     ];
 
     void _showSettingBottomSheet() {
-      showModalBottomSheet(
+      showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
         builder: (BuildContext context) {
@@ -79,7 +79,7 @@ class MonthCalendarView extends StatelessWidget {
                 topRight: Radius.circular(8),
               ),
             ),
-            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+            padding: EdgeInsets.zero,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -127,9 +127,7 @@ class MonthCalendarView extends StatelessWidget {
                     Container(
                       height: 32,
                       alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: const Text(
                         '設定',
                         style: TextStyle(fontSize: 14),
@@ -161,7 +159,7 @@ class MonthCalendarView extends StatelessWidget {
                 color: Colors.greenAccent,
                 width: 2,
               ),
-              borderRadius: BorderRadius.all(Radius.circular(4)),
+              borderRadius: br4,
             ),
           ),
         );
@@ -181,7 +179,7 @@ class MonthCalendarView extends StatelessWidget {
 
     void _showEventList(DateTime date) {
       debugPrint('$dateを受け取りました');
-      showModalBottomSheet(
+      showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
@@ -191,19 +189,17 @@ class MonthCalendarView extends StatelessWidget {
             height: 300,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),
               ),
-              border: Border.all(
-                color: Colors.black26,
-              ),
+              border: Border.all(color: Colors.black26),
             ),
             child: Column(
               children: <Widget>[
                 Text(
                   '${date.year}年${date.month}月${date.day}日',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -296,13 +292,13 @@ class MonthCalendarView extends StatelessWidget {
   void _showBottomSheet(BuildContext context) {
     final ThemeData theme = Theme.of(context);
 
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
-      constraints: BoxConstraints.expand(height: 300),
+      constraints: const BoxConstraints.expand(height: 300),
       backgroundColor: theme.primaryColor,
       barrierColor: Colors.transparent,
       isScrollControlled: true,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
@@ -310,24 +306,24 @@ class MonthCalendarView extends StatelessWidget {
       ),
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 '0000年00月00日 月曜日',
                 style: TextStyle(
                   fontSize: 16,
                 ),
               ),
-              Text(
+              const Text(
                 '大安',
                 style: TextStyle(
                   fontSize: 12,
                 ),
               ),
               ListView(
-                padding: EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.only(top: 16),
                 shrinkWrap: true,
                 children: [
                   Container(
@@ -338,15 +334,21 @@ class MonthCalendarView extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text('12:00', style: TextStyle(fontSize: 12)),
-                              Text('13:00', style: TextStyle(fontSize: 12)),
+                              const Text(
+                                '12:00',
+                                style: TextStyle(fontSize: 12),
+                              ),
+                              const Text(
+                                '13:00',
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                         ),
                         Expanded(
                           child: Container(
-                            padding: EdgeInsets.only(top: 4, bottom: 4, left: 12),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.only(left: 12, top: 4, right: 0, bottom: 4),
+                            decoration: const BoxDecoration(
                               border: Border(
                                 left: BorderSide(
                                   color: Colors.amber,
@@ -357,13 +359,16 @@ class MonthCalendarView extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   '映画',
                                   style: TextStyle(fontSize: 14),
                                 ),
-                                Text(
+                                const Text(
                                   'TOHOシネマ なんば',
-                                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),
@@ -380,14 +385,17 @@ class MonthCalendarView extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Text('終日', style: TextStyle(fontSize: 12)),
+                              const Text(
+                                '終日',
+                                style: TextStyle(fontSize: 12),
+                              ),
                             ],
                           ),
                         ),
                         Expanded(
                           child: Container(
-                            padding: EdgeInsets.only(top: 4, bottom: 4, left: 12),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.only(left: 12, top: 4, right: 0, bottom: 4),
+                            decoration: const BoxDecoration(
                               border: Border(
                                 left: BorderSide(
                                   color: Colors.pink,
@@ -398,13 +406,16 @@ class MonthCalendarView extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   '映画',
                                   style: TextStyle(fontSize: 14),
                                 ),
-                                Text(
+                                const Text(
                                   'TOHOシネマ なんば',
-                                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ],
                             ),

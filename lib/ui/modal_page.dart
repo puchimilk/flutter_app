@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class ModalPage extends StatelessWidget {
   const ModalPage({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class ModalPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ListTile(
+                  const ListTile(
                     leading: Icon(Icons.access_alarm),
                     title: Text('テキスト'),
                     trailing: Icon(Icons.ac_unit),

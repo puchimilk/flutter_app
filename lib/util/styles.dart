@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class ButtonStyles {
   static ButtonStyle get filledPrimary {
@@ -12,7 +12,9 @@ class ButtonStyles {
     return ButtonStyle(
       backgroundColor: MaterialStateProperty.all(Colors.white),
       foregroundColor: MaterialStateProperty.all(AppColors.primary),
-      side: MaterialStateProperty.all(BorderSide(color: AppColors.primary)),
+      side: MaterialStateProperty.all(
+        const BorderSide(color: AppColors.primary),
+      ),
     );
   }
 }

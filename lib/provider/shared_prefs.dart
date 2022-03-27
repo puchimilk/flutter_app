@@ -1,9 +1,14 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class SharedPrefs extends ChangeNotifier {
-  SharedPrefs();
+  bool _x = false;
 
-  static Future<SharedPreferences> getInstance() async {
-    return await SharedPreferences.getInstance();
+  bool get x => _x;
+
+  void setX() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("x", _x);
+
+    notifyListeners();
   }
 }

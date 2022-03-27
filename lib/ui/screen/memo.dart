@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class MemoScreen extends StatelessWidget {
   const MemoScreen({Key? key}) : super(key: key);
@@ -7,9 +7,9 @@ class MemoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Memo'),
+        title: const Text('Memo'),
       ),
-      body: Center(child: Text('Memo Screen')),
+      body: const Center(child: Text('Memo Screen')),
     );
   }
 }

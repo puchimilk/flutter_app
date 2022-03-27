@@ -1,8 +1,8 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 Future<void> main() async {
   runApp(
-    ProviderScope(
+    const ProviderScope(
       child: MyApp(),
     ),
   );
@@ -15,29 +15,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final routes = RouteMap(
       routes: {
-        '/': (_) => TabPage(
+        '/': (_) => const TabPage(
               child: BaseScreen(),
               paths: ['/calendar', '/todo', '/memo', '/search', '/setting'],
             ),
-        '/calendar': (_) => MaterialPage<dynamic>(
+        '/calendar': (_) => const MaterialPage<dynamic>(
               child: CalendarScreen(),
             ),
-        '/calendar/new': (_) => MaterialPage<dynamic>(
+        '/calendar/new': (_) => const MaterialPage<dynamic>(
               child: AddCalendarEventScreen(),
             ),
-        '/todo': (_) => MaterialPage<dynamic>(
+        '/todo': (_) => const MaterialPage<dynamic>(
               child: TodoScreen(),
             ),
-        '/todo/new': (_) => MaterialPage<dynamic>(
+        '/todo/new': (_) => const MaterialPage<dynamic>(
               child: AddTodoScreen(),
             ),
-        '/memo': (_) => MaterialPage<dynamic>(
+        '/memo': (_) => const MaterialPage<dynamic>(
               child: MemoScreen(),
             ),
-        '/search': (_) => MaterialPage<dynamic>(
+        '/search': (_) => const MaterialPage<dynamic>(
               child: SearchScreen(),
             ),
-        '/setting': (_) => MaterialPage<dynamic>(
+        '/setting': (_) => const MaterialPage<dynamic>(
               child: SettingScreen(),
             ),
       },
@@ -47,20 +47,20 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: AppColors.primary,
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyText1: TextStyle(color: AppColors.darkGrey),
         ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           elevation: 0,
         ),
-        tabBarTheme: TabBarTheme(
+        tabBarTheme: const TabBarTheme(
           labelColor: AppColors.darkGrey,
           labelPadding: EdgeInsets.zero,
           unselectedLabelColor: AppColors.grey,
         ),
         fontFamily: 'Zen Kaku Gothic Antique',
       ),
-      routeInformationParser: RoutemasterParser(),
+      routeInformationParser: const RoutemasterParser(),
       routerDelegate: RoutemasterDelegate(routesBuilder: (context) => routes),
     );
   }

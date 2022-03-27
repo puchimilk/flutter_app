@@ -1,11 +1,11 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 Future<bool> showMessageDialog(
   BuildContext context, {
     required String message,
     String? title,
   }) async {
-  return showDialog(
+  return showDialog<bool>(
     context: context,
     builder: (context) {
       return Dialog(
@@ -15,10 +15,10 @@ Future<bool> showMessageDialog(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(message),
-              Padding(padding: EdgeInsets.only(top: 32)),
+              pt32,
               if (title != null) ...[
                 Text(title),
-                Padding(padding: EdgeInsets.only(top: 32)),
+                pt32,
               ],
               SizedBox(
                 height: 36,
@@ -29,12 +29,12 @@ Future<bool> showMessageDialog(
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(true),
                       style: ButtonStyles.filledPrimary,
-                      child: Text('OK'),
+                      child: const Text('OK'),
                     ),
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(false),
                       style: ButtonStyles.outlinedPrimary,
-                      child: Text('キャンセル'),
+                      child: const Text('キャンセル'),
                     ),
                   ],
                 ),

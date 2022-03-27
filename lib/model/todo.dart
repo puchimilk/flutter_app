@@ -11,7 +11,7 @@ class Todo {
   final DateTime updated;
   final String? note;
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     'title': title,
     'updated': updated.toString(),
     'note': note,

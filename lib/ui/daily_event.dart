@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class DailyEvent extends StatefulWidget {
   const DailyEvent({
@@ -23,7 +23,7 @@ class _DailyEventState extends State<DailyEvent> {
         color: widget.backgroundColor,
         child: Text(
           widget.title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 12,
             fontWeight: FontWeight.bold,

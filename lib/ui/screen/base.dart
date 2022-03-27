@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class BaseScreen extends StatelessWidget {
   const BaseScreen({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class BaseScreen extends StatelessWidget {
     return Scaffold(
       body: TabBarView(
         controller: tabPage.controller,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         children: [
           for (final stack in tabPage.stacks)
             PageStackNavigator(stack: stack),
@@ -18,7 +18,7 @@ class BaseScreen extends StatelessWidget {
       ),
       bottomNavigationBar: TabBar(
         controller: tabPage.controller,
-        tabs: [
+        tabs: const [
           Tab(
             text: 'Calendar',
             icon: Icon(Icons.calendar_today),

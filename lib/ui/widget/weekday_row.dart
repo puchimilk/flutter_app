@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class WeekdayRow extends StatelessWidget {
   const WeekdayRow({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class WeekdayRow extends StatelessWidget {
     }
 
     return Container(
-      constraints: BoxConstraints.expand(height: 24),
+      constraints: const BoxConstraints.expand(height: 24),
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           final Size size = Size(constraints.maxWidth / 7, constraints.maxHeight);

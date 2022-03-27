@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class TestMonthCalendarView extends StatefulWidget {
   const TestMonthCalendarView({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _TestMonthCalendarViewState extends State<TestMonthCalendarView> {
       }
       return Colors.grey;
     }
-    
+
     return Expanded(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -48,7 +48,7 @@ class _TestMonthCalendarViewState extends State<TestMonthCalendarView> {
               final int gridCount = calendar.gridCount(monthPosition);
               final List<DateTime> dateList = calendar.dateList(monthPosition);
               final List<int> days = calendar.days(dateList);
-              
+
               return SizedBox(
                 width: size.width,
                 height: size.height,
@@ -58,15 +58,11 @@ class _TestMonthCalendarViewState extends State<TestMonthCalendarView> {
                     return InkWell(
                       child: Container(
                         alignment: Alignment.center,
-                        child: FutureBuilder(
+                        child: FutureBuilder<Color>(
                           future: _holidayColor(pageIndex, gridIndex),
                           builder: (BuildContext context, AsyncSnapshot snapshot) {
                             return Text(
                               days[gridIndex].toString(),
-                              style: TextStyle(
-                                color: snapshot.data,
-                                height: 1.2,
-                              ),
                             );
                           },
                         ),

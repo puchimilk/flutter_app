@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class AddTodoScreen extends StatefulWidget {
   const AddTodoScreen({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Todo'),
+        title: const Text('Create Todo'),
         actions: [
           IconButton(
             onPressed: () async {
@@ -28,7 +28,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
 
               Routemaster.of(context).pop();
             },
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
           ),
         ],
       ),
@@ -37,17 +37,17 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('タイトル'),
+            const Text('タイトル'),
             TextField(
               controller: titleController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
               ),
             ),
-            Text('ノート'),
+            const Text('ノート'),
             TextField(
               controller: noteController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
               ),
             ),

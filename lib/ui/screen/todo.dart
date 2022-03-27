@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 final _repositoryProvider = Provider((ref) => Repository());
 
@@ -8,19 +8,21 @@ final todoProvider = StreamProvider.autoDispose<List<Todo>>((ref) {
 });
 
 class TodoScreen extends StatelessWidget {
+  const TodoScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Todo'),
+        title: const Text('Todo'),
         actions: [
           IconButton(
             onPressed: () => Routemaster.of(context).push('/todo/new'),
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
-      body: TodoList(),
+      body: const TodoList(),
     );
   }
 }

@@ -23,7 +23,7 @@ class Event {
   final DateTime? endDate;
   final bool isAllDay;
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => <String, dynamic>{
     'summary': summary,
     'description': description,
     'created': created.toString(),

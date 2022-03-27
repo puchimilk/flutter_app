@@ -1,6 +1,8 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class TodoList extends ConsumerWidget {
+  const TodoList({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     AsyncValue<List<Todo>> watch = ref.watch(todoProvider);
@@ -11,7 +13,7 @@ class TodoList extends ConsumerWidget {
       child: watch.when(
         data: (todos) {
           if (todos.isEmpty)
-            return Center(child: Text('Todo List'));
+            return const Center(child: Text('Todo List'));
 
           return ListView.builder(
             shrinkWrap: true,
@@ -39,7 +41,7 @@ class TodoList extends ConsumerWidget {
           );
         },
         error: (error, stack) => Text('Error: $error'),
-        loading: () => Center(child: CircularProgressIndicator()),
+        loading: () => const Center(child: CircularProgressIndicator()),
       ),
     );
   }

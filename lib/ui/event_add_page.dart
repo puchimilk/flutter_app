@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class EventAddPage extends StatelessWidget {
   const EventAddPage({Key? key}) : super(key: key);
@@ -59,7 +59,7 @@ class EventAddPage extends StatelessWidget {
                         onChanged: (bool value) {},
                       ),
                     ),
-                    ListTile(
+                    const ListTile(
                       leading: Icon(Icons.ac_unit),
                       title: Text(
                         '2021/12/13',
@@ -76,7 +76,7 @@ class EventAddPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ListTile(
+                    const ListTile(
                       leading: Icon(Icons.ac_unit),
                       title: Text(
                         '2021/12/13',
@@ -98,17 +98,17 @@ class EventAddPage extends StatelessWidget {
                       children: <Widget>[
                         ListTile(
                           title: const Text('繰り返し'),
-                          trailing: Icon(Icons.chevron_right),
+                          trailing: const Icon(Icons.chevron_right),
                           onTap: () {},
                         ),
                         ListTile(
                           title: const Text('カレンダー'),
-                          trailing: Icon(Icons.chevron_right),
+                          trailing: const Icon(Icons.chevron_right),
                           onTap: () {},
                         ),
                         ListTile(
                           title: const Text('通知'),
-                          trailing: Icon(Icons.chevron_right),
+                          trailing: const Icon(Icons.chevron_right),
                           onTap: () {},
                         ),
                       ],

@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 // final bottomNavigationProvider = StateProvider<int>((ref) => 0);
 
@@ -7,7 +7,7 @@ class BottomNavigation extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: <BottomNavigationBarItem>[
+      items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(
             Icons.layers,

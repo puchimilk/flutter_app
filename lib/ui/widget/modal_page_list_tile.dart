@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class ModalPageListTile extends StatelessWidget {
   const ModalPageListTile({
@@ -14,11 +14,11 @@ class ModalPageListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        constraints: BoxConstraints.expand(height: 56),
-        padding: EdgeInsets.symmetric(horizontal: 16),
+        constraints: const BoxConstraints.expand(height: 56),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
+          children: const [
             Icon(Icons.ac_unit),
             Text(
               'てきすと',

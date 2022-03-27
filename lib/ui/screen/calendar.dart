@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 final _repositoryProvider = Provider((ref) => Repository());
 
@@ -14,15 +14,15 @@ class CalendarScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calendar'),
+        title: const Text('Calendar'),
         actions: [
           IconButton(
             onPressed: () => Routemaster.of(context).push('/calendar/new'),
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
         ],
       ),
-      body: Center(child: Text('Calendar Screen')),
+      body: const Center(child: Text('Calendar Screen')),
     );
   }
 }

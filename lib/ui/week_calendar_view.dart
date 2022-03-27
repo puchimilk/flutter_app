@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class WeekCalendarView extends StatefulWidget {
   const WeekCalendarView({Key? key}) : super(key: key);
@@ -11,8 +11,8 @@ class _WeekCalendarViewState extends State<WeekCalendarView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints.expand(height: 80),
-      decoration: BoxDecoration(
+      constraints: const BoxConstraints.expand(height: 80),
+      decoration: const BoxDecoration(
         border: Border(bottom: BorderSide(color: Colors.black12)),
       ),
       child: LayoutBuilder(
@@ -25,18 +25,18 @@ class _WeekCalendarViewState extends State<WeekCalendarView> {
                 width: size.width,
                 height: size.height,
                 alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
                 child: Container(
                   alignment: Alignment.center,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white12,
                     borderRadius: BorderRadius.all(Radius.circular(4)),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 4),
+                  padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
+                      const Text(
                         'Sun',
                         style: TextStyle(
                           fontSize: 16,
@@ -44,7 +44,7 @@ class _WeekCalendarViewState extends State<WeekCalendarView> {
                       ),
                       Text(
                         '$index',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                         ),
                       ),

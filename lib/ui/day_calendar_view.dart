@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class DayCalendarView extends StatefulWidget {
   const DayCalendarView({Key? key}) : super(key: key);
@@ -154,7 +154,7 @@ class _DayCalendarViewState extends State<DayCalendarView> {
                           padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
                             color: Colors.orange[200],
-                            border: Border(
+                            border: const Border(
                               left: BorderSide(
                                 color: Colors.orange,
                                 width: 6,

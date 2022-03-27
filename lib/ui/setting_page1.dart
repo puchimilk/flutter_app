@@ -1,4 +1,4 @@
-import '/importer.dart';
+import 'package:flutter_app/importer.dart';
 
 class SettingPage1 extends StatefulWidget {
   const SettingPage1({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _SettingPage1State extends State<SettingPage1> {
                 return RadioListTile(
                   title: Text(
                     weekdays[index],
-                    style: TextStyle(height: 1.2),
+                    style: const TextStyle(height: 1.2),
                   ),
                   value: StartingWeekday.values[index],
                   groupValue: startingWeekday,
