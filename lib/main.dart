@@ -6,10 +6,14 @@ Future<void> main() async {
       child: MyApp(),
     ),
   );
+
+  // FirebaseDatabase database = FirebaseDatabase.instance;
+  // FirebaseApp secondaryApp = Firebase.app('SecondaryApp');
+  // FirebaseDatabase database = FirebaseDatabase.instanceFor(app: secondaryApp);
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,4 +71,10 @@ class MyApp extends StatelessWidget {
 }
 
 // TODO: Todayページ実装
-// TODO:  祝日判定の処理の重さ問題
+// TODO: 祝日判定の処理の重さ問題
+
+// NOTE: 月間カレンダーのレイヤーについて
+// カレンダーを描画する階層
+// カレンダーの予定のみ表示する階層
+// カレンダーの各日付の選択を制御する階層
+// TimeTreeより

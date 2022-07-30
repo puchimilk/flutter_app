@@ -1,7 +1,7 @@
 import 'package:flutter_app/importer.dart';
 
 class MemoScreen extends StatelessWidget {
-  const MemoScreen({Key? key}) : super(key: key);
+  const MemoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

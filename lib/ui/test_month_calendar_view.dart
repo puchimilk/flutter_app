@@ -1,7 +1,7 @@
 import 'package:flutter_app/importer.dart';
 
 class TestMonthCalendarView extends StatefulWidget {
-  const TestMonthCalendarView({Key? key}) : super(key: key);
+  const TestMonthCalendarView({super.key});
 
   @override
   State<TestMonthCalendarView> createState() => _TestMonthCalendarViewState();

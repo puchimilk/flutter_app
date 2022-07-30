@@ -1,7 +1,7 @@
 import 'package:flutter_app/importer.dart';
 
 class ModalPage extends StatelessWidget {
-  const ModalPage({Key? key}) : super(key: key);
+  const ModalPage({super.key});
 
   @override
   Widget build(BuildContext context) {

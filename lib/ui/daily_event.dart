@@ -2,10 +2,10 @@ import 'package:flutter_app/importer.dart';
 
 class DailyEvent extends StatefulWidget {
   const DailyEvent({
-    Key? key,
+    super.key,
     required this.title,
     this.backgroundColor = Colors.red,
-  }) : super(key: key);
+  });
 
   final String title;
   final Color backgroundColor;

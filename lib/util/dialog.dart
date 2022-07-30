@@ -21,20 +21,25 @@ Future<bool> showMessageDialog(
                 pt32,
               ],
               SizedBox(
-                height: 36,
+                height: 48,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(true),
-                      style: ButtonStyles.filledPrimary,
-                      child: const Text('OK'),
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        style: ButtonStyles.filledPrimary,
+                        child: const Text('決定'),
+                      ),
                     ),
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(false),
-                      style: ButtonStyles.outlinedPrimary,
-                      child: const Text('キャンセル'),
+                    pl8,
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        style: ButtonStyles.outlinedPrimary,
+                        child: const Text('キャンセル'),
+                      ),
                     ),
                   ],
                 ),

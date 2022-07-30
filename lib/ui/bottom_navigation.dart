@@ -3,7 +3,7 @@ import 'package:flutter_app/importer.dart';
 // final bottomNavigationProvider = StateProvider<int>((ref) => 0);
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({Key? key}) : super(key: key);
+  const BottomNavigation({super.key});
 
   Widget build(BuildContext context) {
     return BottomNavigationBar(

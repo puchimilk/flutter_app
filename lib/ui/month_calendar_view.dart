@@ -6,7 +6,7 @@ import 'package:flutter_app/importer.dart';
 // });
 
 class MonthCalendarView extends StatelessWidget {
-  const MonthCalendarView({Key? key}) : super(key: key);
+  const MonthCalendarView({super.key});
 
   @override
   Widget build(BuildContext context) {

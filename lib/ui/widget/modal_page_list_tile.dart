@@ -2,10 +2,10 @@ import 'package:flutter_app/importer.dart';
 
 class ModalPageListTile extends StatelessWidget {
   const ModalPageListTile({
-    Key? key,
+    super.key,
     required this.title,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final String title;
   final GestureTapCallback? onTap;

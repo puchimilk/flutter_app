@@ -1,7 +1,7 @@
 import 'package:flutter_app/importer.dart';
 
 class EventAddPage extends StatelessWidget {
-  const EventAddPage({Key? key}) : super(key: key);
+  const EventAddPage({super.key});
 
   @override
   Widget build(BuildContext context) {

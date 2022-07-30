@@ -1,7 +1,7 @@
 import 'package:flutter_app/importer.dart';
 
 class WeekdayRow extends StatelessWidget {
-  const WeekdayRow({Key? key}) : super(key: key);
+  const WeekdayRow({super.key});
 
   @override
   Widget build(BuildContext context) {

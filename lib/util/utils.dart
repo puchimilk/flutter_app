@@ -45,6 +45,10 @@ const br4 = BorderRadius.all(Radius.circular(4));
 const br6 = BorderRadius.all(Radius.circular(6));
 const br8 = BorderRadius.all(Radius.circular(8));
 
+const pl4 = Padding(padding: EdgeInsets.only(left: 4));
+const pl8 = Padding(padding: EdgeInsets.only(left: 8));
+const pl12 = Padding(padding: EdgeInsets.only(left: 12));
+
 const pt4 = Padding(padding: EdgeInsets.only(top: 4));
 const pt8 = Padding(padding: EdgeInsets.only(top: 8));
 const pt12 = Padding(padding: EdgeInsets.only(top: 12));

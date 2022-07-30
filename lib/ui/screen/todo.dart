@@ -8,7 +8,7 @@ final todoProvider = StreamProvider.autoDispose<List<Todo>>((ref) {
 });
 
 class TodoScreen extends StatelessWidget {
-  const TodoScreen({Key? key}) : super(key: key);
+  const TodoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

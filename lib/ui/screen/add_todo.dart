@@ -1,7 +1,8 @@
 import 'package:flutter_app/importer.dart';
+import 'package:sqflite/sqflite.dart';
 
 class AddTodoScreen extends StatefulWidget {
-  const AddTodoScreen({Key? key}) : super(key: key);
+  const AddTodoScreen({super.key});
 
   @override
   State<AddTodoScreen> createState() => _AddTodoScreenState();
@@ -37,17 +38,25 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('タイトル'),
             TextField(
               controller: titleController,
               decoration: const InputDecoration(
+                hintText: 'タイトル',
                 border: OutlineInputBorder(),
               ),
             ),
-            const Text('ノート'),
+            pt8,
             TextField(
               controller: noteController,
               decoration: const InputDecoration(
+                hintText: 'ノート',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            pt8,
+            const TextField(
+              decoration: const InputDecoration(
+                hintText: '期日',
                 border: OutlineInputBorder(),
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter_app/importer.dart';
 
 class SettingPage1 extends StatefulWidget {
-  const SettingPage1({Key? key}) : super(key: key);
+  const SettingPage1({super.key});
 
   State<SettingPage1> createState() => _SettingPage1State();
 }
